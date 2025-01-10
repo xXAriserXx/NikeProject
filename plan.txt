@@ -1,0 +1,37 @@
+I'm only left with 5 days
+Four hours every day. In total 20 hours
+
+In the first two days I would like to make it so the website works,
+So these are the features that need to be included:
+You should:
+Be able to see different sliders on the home based on the property of the shoes (nuovi arrivi , best seller)
+Be able to look for the shoe in the search bar
+Be able to register and login.
+Be able to filter the list of shoes that you will be provided with
+Be able to chose which shoe you want, size and color
+Be able to add shoes to your cart
+Be able to purchase a shoe
+In your personal dashboard you should be able to see all your orders and their status and also make orders
+
+In the third and fourth day I would like the site to be finished stylistically
+So the elements that need particular care in their styling are:
+Header
+sliders
+Footer
+cart
+shoe
+dashboard
+filter
+login form
+register form
+payment form
+
+In the fifth day I would like to add some other things like 
+lazyloading, children routes, and route guards
+
+
+1-
+2-
+3-
+4-
+5-

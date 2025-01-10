@@ -1,0 +1,5 @@
+<app-filter></app-filter>
+@for (shoe of allShoes; track shoe) {
+    <p [routerLink]="['/shoeDetail', shoe._id]">{{shoe.nome}}</p>
+    <p>{{shoe.prezzo}}</p>
+}
