@@ -1,0 +1,44 @@
+So this handles a patch request to add a shoe to the shoes property of a cart document inside a collection.
+
+router.patch("/:id", tokenRequired, async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const shoe = req.body.shoe; 
+        console.log(shoe)
+
+        const updatedCart = await carts.updateOne(
+            {
+                userId: userId,
+                "shoes.shoeId": shoe.shoeId,
+                "shoes.color": shoe.color,
+                "shoes.size": shoe.size,
+            },
+            { $inc: { "shoes.$.quantity": 1 } } // Increment quantity if found
+        );
+
+        if (updatedCart.matchedCount === 0) {
+            // Shoe doesn't exist, push a new one
+            await carts.updateOne(
+                { userId: userId },
+                { $push: { shoes: { ...shoe, quantity: 1 } } } // Add with quantity 1
+            );
+        }
+
+        res.status(200).send({ msg: "Shoe updated in cart successfully" });
+    } catch (error) {
+        res.status(500).send({ msg: "Internal server error", error: error.message });
+    }
+});
+
+The kind of object that I want to add is the following:
+{
+  shoeName: 'Nike Air Max Excee',
+  shoeId: '677cd253b851ec124e595462',
+  color: 'Nero',
+  size: 38,
+  quantity: 1
+}
+
+The problem is that if I add shoe1 two times and then shoe2 two times, it says that shoe1 has quantity 3 and shoe2 has quantity 1.
+This happens if the shoes have the same id, same size but different color.
+This shouldn't happend since in the query i specify that for it to increase the quantity they should have same color, size and shoeId

@@ -26,12 +26,47 @@ login form
 register form
 payment form
 
-In the fifth day I would like to add some other things like 
-lazyloading, children routes, and route guards
-
-
 1-
 2-
 3-
 4-
 5-
+
+So if i add it to the cart to the localstorage cart...
+if the shoe is already present in the array then it shouldn't be added again but the shoe  that is the same to it should have the quantity increased by one
+
+Allright
+
+I'm at a good point right now
+
+So basically when the user is logged in and he adds a shoe to his cart it should make a patch request, to add shoe to the shoes array of cart document
+I that shoes is already present than it should increase the quantity of that shoes
+
+Later on on the cart there will also be two other kind of requests:
+One for adding/subtrascting quantity (patch)
+One for removing the shoe completely (put)
+
+Once that is done then the project will be functionally completed
+
+There is still the part of the dashboard though
+you should be able to make orders there 
+
+
+still have to manage the infinite scrolling thing
+
+
+
+
+
+
+
+Also later on I will have to calculate the price of the things, it shouldn't matter where i get the array of items from, the calculation will work regardless
+
+
+
+what the project still lacks to be functionally
+search bar
+favorites
+pagination
+
+now i need to make those requests

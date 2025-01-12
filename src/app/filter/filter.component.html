@@ -1,47 +1,26 @@
 <form [formGroup]="filterForm">
   <div formArrayName="price">
     <p>Prezzo</p>
-    <label for="50_100">50</label>
-    <input id="50_100" formControlName="price" type="checkbox" />
-    <label for="100_150">50</label>
-    <input id="100_150" formControlName="price" type="checkbox" />
-    <label for="150_plus">50</label>
-    <input id="150_plus" formControlName="price" type="checkbox" />
+    <div *ngFor="let price of priceOptions; let i = index">
+      <label [for]="'price_' + i">{{ price.label }}</label>
+      <input [id]="'price_' + i" type="checkbox" [formControlName]="i" />
+    </div>
   </div>
 
   <div formArrayName="color">
     <p>Colore</p>
-    <label for="white">Bianco</label>
-    <input id="white" formControlName="color" type="checkbox" />
-    <label for="red">Rosso</label>
-    <input id="red" formControlName="color" type="checkbox" />
-    <label for="blue">Blue</label>
-    <input id="blue" formControlName="color" type="checkbox" />
-    <label for="gray">Grigio</label>
-    <input id="gray" formControlName="color" type="checkbox" />
-    <label for="black">Nero</label>
-    <input id="black" formControlName="color" type="checkbox" />
-    <label for="orange">Arancione</label>
-    <input id="orange" formControlName="color" type="checkbox" />
-    <label for="green">Verde</label>
-    <input id="green" formControlName="color" type="checkbox" />
-    <label for="silver">Argento</label>
-    <input id="silver" formControlName="color" type="checkbox" />
-    <label for="multicolor">Multicolore</label>
-    <input id="multicolor" formControlName="color" type="checkbox" />
+    <div *ngFor="let color of colorOptions; let i = index">
+      <label [for]="'color_' + i">{{ color }}</label>
+      <input [id]="'color_' + i" type="checkbox" [formControlName]="i" />
+    </div>
   </div>
 
   <div formArrayName="category">
-    <label for="running">Running</label>
-    <input id="running" formControlName="category" type="checkbox" />
-    <label for="sneakers">Sneakers</label>
-    <input id="sneakers" formControlName="category" type="checkbox" />
-    <label for="basket">Basket</label>
-    <input id="basket" formControlName="category" type="checkbox" />
-    <label for="training">Training</label>
-    <input id="training" formControlName="category" type="checkbox" />
-    <label for="trailRunning">Trail Running</label>
-    <input id="trailRunning" formControlName="category" type="checkbox" />
+    <p>Categoria</p>
+    <div *ngFor="let category of categoryOptions; let i = index">
+      <label [for]="'category_' + i">{{ category }}</label>
+      <input [id]="'category_' + i" type="checkbox" [formControlName]="i" />
+    </div>
   </div>
 
   <button type="submit" [disabled]="filterForm.invalid">Submit</button>

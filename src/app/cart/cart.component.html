@@ -1,1 +1,6 @@
-<p>cart works!</p>
+<div *ngFor="let shoe of cart.shoes">
+    <p>{{ shoe.shoeName }}</p> 
+    <p>Quantita': {{ shoe.quantity}}</p>
+    <p>Colore: {{ shoe.color }}</p>
+</div>
+

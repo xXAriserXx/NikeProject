@@ -14,7 +14,11 @@ app.use(cors())
 app.use("/shoes", shoesWs)
 app.use("/users", usersWs)
 app.use("/orders", ordersWs)
-app.use("/cart", cartWs)
+app.use("/carts", cartWs)
+
+
+
+export const secretKey:string = "KGJH324234@sdfkbj"
 
 app.listen(3000, () => {console.log("Backend started, listening on port 3000")})
 

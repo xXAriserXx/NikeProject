@@ -1,8 +1,9 @@
 import express, { Request, Response } from "express";
-import { users } from "../db";
+import { carts, users } from "../db";
 import { createHash } from "crypto";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongodb";
+import { secretKey } from "../app";
 
 const router = express.Router();
 
@@ -26,8 +27,12 @@ router.post("/register", async (req, res) => {
             phone: req.body.phone,
             password: encrypt(req.body.password),
         });
+        const cart = await carts.insertOne({
+            userId: String(user.insertedId),
+            shoes: []
+        })
         res.send({
-            msg: `Utente ${user.insertedId} creato`
+            msg: `Utente ${user.insertedId} creato, anche il suo carrello e' stato creato ${cart.insertedId}`
         });
     }
     catch (e) {
@@ -57,7 +62,7 @@ router.post("/login", async (req, res) => {
             res.status(401).send({ msg: "Email o password errati" })
         }
         else {
-            const token = jwt.sign(user, "KGJH324234@sdfkbj", { expiresIn: '4h' })
+            const token = jwt.sign(user, secretKey, { expiresIn: '24h' })
             res.send({ access_token: token })
         }
     }

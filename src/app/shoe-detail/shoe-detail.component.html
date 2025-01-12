@@ -1,1 +1,17 @@
 <h1>{{shoe.nome}}</h1>
+
+<select [(ngModel)]="chosenSize" name="" id="">
+    @for (size of sizes; track size) {
+        <option value="{{size}}">{{size}}</option>
+    } 
+</select>
+
+<select [(ngModel)]="chosenColor" name="" id="">
+    @for (color of colors; track color) {
+        <option value="{{color}}">{{color}}</option>
+    } 
+</select>
+
+<button (click)="addToCart()">Order</button>
+
+<button [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">Go to Cart</button>

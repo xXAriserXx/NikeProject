@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const shoeId = new ObjectId(String(req.params.id))
-        const shoe = await shoes.find(
+        const shoe = await shoes.findOne(
             { _id: shoeId }
-        ).toArray()
+        )
         res.send(shoe) 
     } 
     catch {

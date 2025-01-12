@@ -29,4 +29,9 @@ export class ProductsComponent {
     })
   }
 
+  onFilterChange (filteredShoes) {
+    this.allShoes = filteredShoes
+    console.log("ciao")
+  }
+
 }
