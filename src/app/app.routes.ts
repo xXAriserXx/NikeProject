@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoeDetailComponent } from './shoe-detail/shoe-detail.component';
 import { authGuard } from './auth.guard';
+import { PaymentComponent } from './payment/payment.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 export const routes: Routes = [
     { path: "", pathMatch:"full", redirectTo:"home" },
@@ -18,4 +20,6 @@ export const routes: Routes = [
     { path: "dashboard/:id", component: DashboardComponent, canActivate: [authGuard]}, 
     { path: "products", component:  ProductsComponent},
     { path: "shoeDetail/:id", component: ShoeDetailComponent}, 
+    { path: "payment", component:PaymentComponent},
+    { path: "thankYou", component:ThankYouComponent}
 ];

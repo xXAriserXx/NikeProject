@@ -9,19 +9,25 @@ export class CartService {
 
   constructor(private http:HttpClient) { } 
 
-  apiShoes = "http://localhost:3000/carts"
+  apiCart = "http://localhost:3000/carts"
 
 
   createCart (userId) { //this method should be called when the user registers
-    return this.http.post(this.apiShoes, {userId: userId, shoes: []})
+    return this.http.post(this.apiCart, {userId: userId, shoes: []})
   }
-
-  addToCart(shoe: any, userId) {
-    return this.http.patch(`${this.apiShoes}/${userId}`, { shoe });
-  }
-
 
   getUserCart (userId) { //this gets the user cart
-    return this.http.get(`${this.apiShoes}/${userId}`)
+    return this.http.get(`${this.apiCart}/${userId}`)
   }
+
+  updateQuantity (shoe: any, action: "increase" | "decrease" | "remove" | "add") {
+    console.log("the new one is working")
+    return this.http.patch(`${this.apiCart}/update-quantity`, { shoe, action })
+  }
+
+  emptyCart () {
+    return this.http.patch(`${this.apiCart}/empty`, "")
+  }
+
+
 }

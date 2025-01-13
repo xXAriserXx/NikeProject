@@ -1,18 +1,23 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
-export const tokenRequired = (req: Request, res: Response, next: NextFunction) => {
-    const authHeader = req.header("authorization")
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        res.status(401).send({ msg: "Token non presente" })
-        return
-    }
-    const token = authHeader.slice(7)
-    try {
-        jwt.verify(token, 'KGJH324234@sdfkbj') // just check validity
-    } catch (e) {
-        res.status(401).send({ msg: "Il tuo token non è formalmente valido" })
-        return
-    }
-    next()
+export interface CustomRequest extends Request {
+    user?: { _id: string };
 }
+
+export const tokenRequired = (req: CustomRequest, res: Response, next: NextFunction) => {
+    const authHeader = req.header("authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        res.status(401).send({ msg: "Token non presente" });
+        return;
+    }
+    const token = authHeader.slice(7);
+    try {
+        const decoded = jwt.verify(token, 'KGJH324234@sdfkbj'); // Check validity and decode
+        (req as any).user = decoded; // Attach decoded user info to req.user
+    } catch (e) {
+        res.status(401).send({ msg: "Il tuo token non è formalmente valido" });
+        return;
+    }
+    next();
+};

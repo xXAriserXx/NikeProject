@@ -1,4 +1,19 @@
-<p>home works!</p>
+<h2>Home</h2>
 <button [routerLink]="'/cart'">cart</button>
-<button [routerLink]="isLoggedIn ? ['dashboard', userId] : '/login'">register/login</button>
+<button [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">register/login</button>
 <button [routerLink]="'/products'">products</button>
+
+<div class="newArrivals">
+    <h5>New Arrivals</h5>
+    <div *ngFor="let newArrival of newArrivals">
+        <p>{{newArrival.nome}}</p>
+    </div>
+</div> 
+
+<div class="bestSeller">
+    <h5>Best sellers</h5>
+    <div *ngFor="let bestSeller of bestSellers">
+        <p>{{bestSeller.nome}}</p>
+    </div>
+</div> 
+

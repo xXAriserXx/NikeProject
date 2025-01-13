@@ -18,7 +18,7 @@ export class FilterComponent {
     { label: '100', value: '100' },
     { label: '150+', value: '150' },
   ];
-  colorOptions = ['Bianco', 'Rosso', 'Blu', 'Grigio', 'Nero', 'Arancione', 'Verde', 'Argento', 'Multicolore'];
+  colorOptions = ['Bianco', 'Rosso', 'Blu', 'Grigio', 'Nero', 'Arancione', 'Verde', 'Argento'];
   categoryOptions = ['Running', 'Sneakers', 'Basket', 'Training', 'Trail Running'];
 
   constructor(private fb: FormBuilder, private productService:ProductService) {

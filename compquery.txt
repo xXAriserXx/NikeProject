@@ -42,3 +42,107 @@ The kind of object that I want to add is the following:
 The problem is that if I add shoe1 two times and then shoe2 two times, it says that shoe1 has quantity 3 and shoe2 has quantity 1.
 This happens if the shoes have the same id, same size but different color.
 This shouldn't happend since in the query i specify that for it to increase the quantity they should have same color, size and shoeId
+
+
+------------------------
+
+So I'm having a problem in my backend. 
+It says that the user does not exist on type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' here:
+router.patch("/update-quantity", tokenRequired, async (req, res) => {
+    try {
+        const { action, shoe } = req.body
+        const userId = req.user._id
+
+        if (action === "add") {
+
+            const cart = await carts.findOne({
+                userId: userId,
+                shoes: {
+                    $elemMatch: {
+                        shoeId: shoe.shoeId,
+                        color: shoe.color,
+                        size: shoe.size
+                    }
+                }
+            });
+
+            if (cart) {
+                await carts.updateOne(
+                    {
+                        userId: userId,
+                        shoes: {
+                            $elemMatch: {
+                                shoeId: shoe.shoeId,
+                                color: shoe.color,
+                                size: shoe.size
+                            }
+                        }
+                    },
+                    { $inc: { "shoes.$.quantity": 1 } }
+                );
+            } else {
+                await carts.updateOne(
+                    { userId: userId },
+                    { $push: { shoes: { ...shoe, quantity: 1 } } }
+                );
+            }
+
+            const updatedCart = await carts.findOne({ userId: userId });
+            res.status(200).send({ 
+                msg: "Shoe updated in cart successfully",
+                cart: updatedCart
+            });
+            }
+        } catch (error) {
+        res.status(500).send({ msg: "Internal server error", error: error.message });
+    }
+    
+})
+
+
+This is the tokenRequired middleware: 
+import { NextFunction, Request, Response } from "express";
+import jwt from 'jsonwebtoken';
+
+export const tokenRequired = (req: Request, res: Response, next: NextFunction) => {
+    const authHeader = req.header("authorization");
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        res.status(401).send({ msg: "Token non presente" });
+        return;
+    }
+    const token = authHeader.slice(7);
+    try {
+        const decoded = jwt.verify(token, 'KGJH324234@sdfkbj'); // Check validity and decode
+        (req as any).user = decoded; // Attach decoded user info to req.user
+    } catch (e) {
+        res.status(401).send({ msg: "Il tuo token non è formalmente valido" });
+        return;
+    }
+    next();
+};
+
+This is the custom.d.ts file i created to add the type user:
+declare namespace Express {
+  export interface Request {
+    user?: { _id: string }; // Adjust the type according to your user object
+  }
+}
+
+and this is the tsconfigfile of the:server 
+{
+  "ts-node": {
+    "compilerOptions": {
+      "module": "NodeNext"
+    }
+  },
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+  },
+    "include": [
+    "server/**/*.ts", // Your server folder
+    "custom.d.ts"      // Include the types file here
+  ]
+}
+

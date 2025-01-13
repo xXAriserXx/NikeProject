@@ -4,7 +4,7 @@ import cors from "cors"
 import { shoesWs } from "./route_handlers/shoes"
 import { usersWs } from "./route_handlers/users"
 import { ordersWs } from "./route_handlers/orders"
-import { cartWs } from "./route_handlers/cart"
+import { cartWs } from "./route_handlers/carts"
 
 const app = express()
 

@@ -70,3 +70,13 @@ favorites
 pagination
 
 now i need to make those requests
+
+
+So now im in the payment  thing
+
+When i click purchase it should create a order document inside the orders collection
+So what does this order contain:
+It contains:
+userId: This is needed because when I am on the user dashboard this allows me to find his orders
+shoes: This contains the shoes that the user had added to his cart
+status: This shows the status of the order ("I will leave it at pending")

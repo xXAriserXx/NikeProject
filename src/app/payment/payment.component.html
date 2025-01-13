@@ -1,1 +1,18 @@
 <p>payment works!</p>
+
+<div class="test">
+    <div *ngFor="let shoe of cart.shoes">
+        <p>{{ shoe.shoeName }}</p> 
+        <p>Quantita': {{ shoe.quantity}}</p>
+        <p>Colore: {{ shoe.color }}</p>
+        <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
+        <br>
+    </div>
+</div>
+<div class="test">form for the general data of the user</div>
+<div class="test">form for the payment method</div>
+
+
+<div class="test">  
+    <button (click)="onPurchase()">Purchase</button>
+</div>

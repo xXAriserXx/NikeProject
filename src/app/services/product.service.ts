@@ -12,8 +12,18 @@ export class ProductService {
   apiShoes = "http://localhost:3000/shoes"
   
   getAllShoes() {
-    return this.http.get(this.apiShoes)
+    return this.http.get(`${this.apiShoes}`)
   }
+
+  getNewArrivals () {
+    return  this.http.get(`${this.apiShoes}/newArrivals`)
+  }
+
+  getBestSellers () {
+
+    return  this.http.get(`${this.apiShoes}/bestSellers`)
+  }
+
 
   getDetailShoe (id) {
     console.log("request made to get the details of the shoe")

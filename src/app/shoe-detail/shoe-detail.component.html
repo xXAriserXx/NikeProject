@@ -1,15 +1,14 @@
 <h1>{{shoe.nome}}</h1>
+<img [src]="shoe.immagini[0]" alt="">
 
 <select [(ngModel)]="chosenSize" name="" id="">
-    @for (size of sizes; track size) {
-        <option value="{{size}}">{{size}}</option>
-    } 
+  <option value="" selected>Seleziona una taglia</option>
+  <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
 </select>
 
 <select [(ngModel)]="chosenColor" name="" id="">
-    @for (color of colors; track color) {
-        <option value="{{color}}">{{color}}</option>
-    } 
+  <option value="" selected>Seleziona un colore</option>
+  <option *ngFor="let color of colors" [value]="color">{{color}}</option>
 </select>
 
 <button (click)="addToCart()">Order</button>

@@ -14,6 +14,28 @@ router.get("/", async (req, res) => {
     }
 })
 
+router.get("/newArrivals", async (req, res) => {
+  try {
+    const foundShoes = await shoes.find(
+      { nuovo_arrivi: true }
+    ).toArray()
+    res.send(foundShoes);
+  } catch (err) {
+    res.status(500).send('Error removing ID field');
+  }
+})
+
+router.get("/bestSellers", async (req, res) => {
+  try {
+    const foundShoes = await shoes.find(
+      { best_seller: {$gte: 5}  }
+    ).toArray()
+    res.send(foundShoes);
+  } catch (err) {
+    res.status(500).send('Error removing ID field');
+  }
+})
+
 router.get("/:id", async (req, res) => {
     try {
         const shoeId = new ObjectId(String(req.params.id))

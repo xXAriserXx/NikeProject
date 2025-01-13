@@ -1,5 +1,13 @@
-<app-filter (filterChange)="onFilterChange($event)"></app-filter>
-@for (shoe of allShoes; track shoe) {
-    <p [routerLink]="['/shoeDetail', shoe._id]">{{shoe.nome}}</p>
-    <p>{{shoe.prezzo}}</p>
-}
+
+<section>
+    <app-filter class="filter" (filterChange)="onFilterChange($event)"></app-filter>
+
+    <div class="containerGrande">
+        @for (shoe of allShoes; track shoe) {
+            <div class="containerScarpa">
+                <p [routerLink]="['/shoeDetail', shoe._id]">{{shoe.nome}}</p>
+                <p>{{shoe.prezzo}}</p>
+            </div>
+        }
+    </div>
+</section>
