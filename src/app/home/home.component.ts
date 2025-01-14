@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { IshoeOrders } from '../../../server/models/IShoeOrders';
+import { FooterComponent } from "../footer/footer.component";
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FooterComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

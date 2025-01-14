@@ -1,1 +1,1 @@
-.test{border:1px solid #000;padding:10px;margin:10px;border-radius:10px;width:fit-content}.singleTest{border:1px solid green}
+.test{display:flex;justify-content:center;flex-wrap:wrap}.singleTest{padding:10px;border:1px solid #000;margin:10px;border-radius:10px;width:fit-content}.product:not(:last-child){border-bottom:1px solid #000}section{border:1px solid #000;width:80vw;margin:0 auto}section h2{text-align:center}

@@ -110,7 +110,6 @@ router.patch("/update-quantity", tokenRequired, async (req:CustomRequest, res) =
         }
 
         if (action === "decrease") {
-            // First check if quantity would become 0
             const cart = await carts.findOne({
                 userId: userId,
                 shoes: {
@@ -129,7 +128,6 @@ router.patch("/update-quantity", tokenRequired, async (req:CustomRequest, res) =
             );
 
             if (shoeItem && shoeItem.quantity <= 1) {
-                // Remove the shoe if quantity would become 0
                 await carts.updateOne(
                     { userId: userId },
                     {
@@ -143,7 +141,6 @@ router.patch("/update-quantity", tokenRequired, async (req:CustomRequest, res) =
                     }
                 );
             } else {
-                // Decrease quantity by 1
                 await carts.updateOne(
                     {
                         userId: userId,

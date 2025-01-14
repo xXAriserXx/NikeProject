@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
                 password: encrypt(req.body.password)
             }, 
             { 
-                projection: { password: 0 } // non seleziono la password
+                projection: { password: 0 } 
             }
         )
         if(!user){

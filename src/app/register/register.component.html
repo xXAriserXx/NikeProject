@@ -1,18 +1,18 @@
 <div class="container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-        <label for="name">Name</label>
+        <label for="name">Nome</label>
         <input id="name" formControlName="name" />
         <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
-        <small *ngIf="form.get('name')?.hasError('required')">Name is required.</small>
+        <small *ngIf="form.get('name')?.hasError('required')">Nome obbligatorio</small>
         </div>
     </div>
 
     <div>
-        <label for="surname">Surname</label>
+        <label for="surname">Cognome</label>
         <input id="surname" formControlName="surname" />
         <div *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">
-        <small *ngIf="form.get('surname')?.hasError('required')">Surname is required.</small>
+        <small *ngIf="form.get('surname')?.hasError('required')">Cognome obbligatorio</small>
         </div>
     </div>
 
@@ -26,10 +26,10 @@
     </div>
 
     <div>
-        <label for="phone">Phone Number</label>
+        <label for="phone">Telefono </label>
         <input id="phone" formControlName="phone" />
         <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
-        <small *ngIf="form.get('phone')?.hasError('required')">Phone number is required.</small>
+        <small *ngIf="form.get('phone')?.hasError('required')">Telefono obbligatorio</small>
         </div>
     </div>
 
@@ -37,11 +37,11 @@
         <label for="password">Password</label>
         <input id="password" type="password" formControlName="password" />
         <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-        <small *ngIf="form.get('password')?.hasError('required')">Password is required.</small>
-        <small *ngIf="form.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</small>
+        <small *ngIf="form.get('password')?.hasError('required')">Password obbligatoria</small>
+        <small *ngIf="form.get('password')?.hasError('minlength')">Almeno 6 caratteri</small>
         </div>
     </div>
 
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <button type="submit" [disabled]="form.invalid">Registrati</button>
     </form>
 </div>

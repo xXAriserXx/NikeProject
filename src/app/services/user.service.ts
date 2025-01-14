@@ -28,4 +28,8 @@ export class UserService {
     return null;
   }
 
+  logOut () {
+    localStorage.setItem("authToken", "")
+  }
+
 }

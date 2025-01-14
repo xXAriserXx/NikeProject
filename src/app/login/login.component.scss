@@ -1,0 +1,37 @@
+.container {
+    border: 1px solid black;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 150px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div {
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    input {
+        border-radius: 10px;
+        box-shadow: 0 0 0 1px black;
+        border: none;
+    }
+    button {
+        border-radius: 10px;
+        margin: 10px;
+    }
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    margin-left: 10px;
+}

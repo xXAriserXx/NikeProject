@@ -1,16 +1,20 @@
-<div class="divShoes" *ngFor="let shoe of cart.shoes">
-    <p>{{ shoe.shoeName }}</p> 
-    <p>Quantita': {{ shoe.quantity}}</p>
-    <p>Colore: {{ shoe.color }}</p>
-    <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
-    <div class="buttons">
-        <button (click)="updateQuantity(shoe, 'increase')">+</button>
-        <button (click)="updateQuantity(shoe, 'decrease')">-</button>
-        <button (click)="updateQuantity(shoe, 'remove')">remove</button>
+<app-header></app-header>
+<section>
+    <div class="divShoes" *ngFor="let shoe of cart.shoes">
+        <p>{{ shoe.shoeName }}</p> 
+        <p>Quantita': {{ shoe.quantity}}</p>
+        <p>Colore: {{ shoe.color }}</p>
+        <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
+        <div class="buttons">
+            <button (click)="updateQuantity(shoe, 'increase')">+</button>
+            <button (click)="updateQuantity(shoe, 'decrease')">-</button>
+            <button (click)="updateQuantity(shoe, 'remove')">rimuovi</button>
+        </div>
     </div>
-</div>
 
-<div>Final price: {{totalPrice | currency: "EUR"}}</div>
-
-
-<button [routerLink]="'/payment'">Purchase</button>
+    <div class="price">
+        <div>Prezzo finale: {{totalPrice | currency: "EUR"}}</div>
+        <button [routerLink]="'/payment'" [disabled]="totalPrice === 0">Vai al pagamento</button>
+    </div>
+</section>
+<app-footer></app-footer>

@@ -5,11 +5,13 @@ import { CheckLogService } from '../services/check-log.service';
 import { CartService } from '../services/cart.service';
 import { UserService } from '../services/user.service';
 import { RouterLink } from '@angular/router';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, RouterLink],
+  imports: [CommonModule, CurrencyPipe, RouterLink, HeaderComponent, FooterComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

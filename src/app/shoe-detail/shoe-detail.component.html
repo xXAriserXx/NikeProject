@@ -1,16 +1,28 @@
+<app-header></app-header>
+
+<section>
 <h1>{{shoe.nome}}</h1>
 <img [src]="shoe.immagini[0]" alt="">
 
-<select [(ngModel)]="chosenSize" name="" id="">
-  <option value="" selected>Seleziona una taglia</option>
-  <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
-</select>
+<div class="select">
+  <select [(ngModel)]="chosenSize" name="" id="">
+    <option value="" selected>Seleziona una taglia</option>
+    <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
+  </select>
 
-<select [(ngModel)]="chosenColor" name="" id="">
-  <option value="" selected>Seleziona un colore</option>
-  <option *ngFor="let color of colors" [value]="color">{{color}}</option>
-</select>
+  <select [(ngModel)]="chosenColor" name="" id="">
+    <option value="" selected>Seleziona un colore</option>
+    <option *ngFor="let color of colors" [value]="color">{{color}}</option>
+  </select>
+</div>
 
-<button (click)="addToCart()">Order</button>
+<div class="buttons">
+  <button (click)="addToCart()" [disabled]="!chosenColor || !chosenSize">
+    Aggiungi al Carrello
+  </button>
+  <button [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">Vai al carrello</button>
+</div>
 
-<button [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">Go to Cart</button>
+</section>
+
+<app-footer></app-footer>

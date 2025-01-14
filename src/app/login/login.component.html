@@ -1,21 +1,25 @@
 <div class="container">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>
-            <label for="email">Email:</label>
+            <label for="email">Email</label>
+            <div class="group">
             <input id="email" formControlName="email" type="email" />
             <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                Please enter a valid email.
+                Email non valida
             </small>
+
+            </div>
         </div>
         <div>
-            <label for="password">Password:</label>
-            <input id="password" formControlName="password" type="password" />
-            <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                Password must be at least 6 characters long.
-            </small>
+            <label for="password">Password</label>
+            <div class="group">
+                <input id="password" formControlName="password" type="password" />
+                <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    Almeno 6 caratteri
+                </small>
+            </div>
         </div>
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button type="submit" [disabled]="loginForm.invalid">Accedi</button>
     </form>
+    <button router [routerLink]="['/register']">Registrati</button>
 </div>
-
-<button router [routerLink]="['/register']">register</button>

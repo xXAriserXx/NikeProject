@@ -146,3 +146,278 @@ and this is the tsconfigfile of the:server
   ]
 }
 
+
+So I would like you to generate a form that instead of the values that are here present contains:
+-Name 
+-Surname
+-Address ()
+-Email
+-Phone number
+
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">Name</label>
+        <input id="name" formControlName="name" />
+        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        <small *ngIf="form.get('name')?.hasError('required')">Name is required.</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="surname">Surname</label>
+        <input id="surname" formControlName="surname" />
+        <div *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">
+        <small *ngIf="form.get('surname')?.hasError('required')">Surname is required.</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        <small *ngIf="form.get('email')?.hasError('required')">Email is required.</small>
+        <small *ngIf="form.get('email')?.hasError('email')">Enter a valid email.</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="phone">Phone Number</label>
+        <input id="phone" formControlName="phone" />
+        <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
+        <small *ngIf="form.get('phone')?.hasError('required')">Phone number is required.</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        <small *ngIf="form.get('password')?.hasError('required')">Password is required.</small>
+        <small *ngIf="form.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</small>
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>
+
+  constructor(private fb: FormBuilder, private usersService:UserService) {
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  The validators should not be really strict
+
+
+
+
+<app-header></app-header>
+<section>
+
+    <h2>Pagamento</h2>
+
+    <div class="test">
+        <div *ngFor="let shoe of cart.shoes">
+            <p>{{ shoe.shoeName }}</p> 
+            <p>Quantita': {{ shoe.quantity}}</p>
+            <p>Colore: {{ shoe.color }}</p>
+            <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
+            <br>
+        </div>
+    </div>
+
+    <div class="containerForm1 containerForm">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="name">Nome</label>
+                <div>
+                    <input id="name" formControlName="name" />
+                    <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                        <small *ngIf="form.get('name')?.hasError('required')">Il nome e' obbligatorio</small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="surname">Cognome</label>
+                <div class="group">
+                    <input id="surname" formControlName="surname" />
+                    <div *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">
+                        <small *ngIf="form.get('surname')?.hasError('required')">Il cognome e' obbligatorio.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="address">Indirizzo</label>
+                <input id="address" formControlName="address" />
+                <div *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+                    <small *ngIf="form.get('address')?.hasError('required')">La via e' obbligatoria</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <div class="group">
+                    <input id="email" type="email" formControlName="email" />
+                    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                        <small *ngIf="form.get('email')?.hasError('required')">La E-mail e' obbligatoria</small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="phone">Telefono</label>
+                <div class="group">
+                    <input id="phone" formControlName="phone" />
+                    <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
+                        <small *ngIf="form.get('phone')?.hasError('required')">Il telefono e' obbligatorio</small>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="form.invalid">Conferma</button>
+        </form>
+    </div>
+
+    <div class="containerForm2 containerForm">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="cardNumber">Card Number</label>
+                <input 
+                    id="cardNumber" 
+                    formControlName="cardDetails.cardNumber" 
+                    maxlength="19" 
+                    placeholder="1234 5678 9012 3456"
+                />
+                <div *ngIf="form.get('cardDetails.cardNumber')?.invalid && form.get('cardDetails.cardNumber')?.touched">
+                    <small *ngIf="form.get('cardDetails.cardNumber')?.hasError('required')">Il numero della carta e' obbligatorio.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="expireDate">Expiration Date</label>
+                <input 
+                    id="expireDate" 
+                    formControlName="cardDetails.expireDate" 
+                    placeholder="MM/YY" 
+                    maxlength="5"
+                />
+                <div *ngIf="form.get('cardDetails.expireDate')?.invalid && form.get('cardDetails.expireDate')?.touched">
+                    <small *ngIf="form.get('cardDetails.expireDate')?.hasError('required')">La data di scadenza e' obbligatoria</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="cvv">CVV</label>
+                <input 
+                    id="cvv" 
+                    formControlName="cardDetails.cvv" 
+                    type="password" 
+                    maxlength="3" 
+                    placeholder="123"
+                />
+                <div *ngIf="form.get('cardDetails.cvv')?.invalid && form.get('cardDetails.cvv')?.touched">
+                    <small *ngIf="form.get('cardDetails.cvv')?.hasError('required')">Il codice CVV e' obbligatorio.</small>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="form.invalid">Completa L'ordine</button>
+        </form>
+    </div>
+
+    <div class="test">form for the payment method</div>
+
+    <div class="test">  
+        <button (click)="onPurchase()">Purchase</button>
+    </div>
+</section>
+
+<app-footer></app-footer>
+
+
+
+import { Component } from '@angular/core';
+import { CartService } from '../services/cart.service';
+import { UserService } from '../services/user.service';
+import { ICart } from '../../../server/models/ICart';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { OrderService } from '../services/order.service';
+import { IShoeCart } from '../../../server/models/IShoeCart';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+
+@Component({
+  selector: 'app-payment',
+  standalone: true,
+  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent, ReactiveFormsModule],
+  templateUrl: './payment.component.html',
+  styleUrl: './payment.component.scss'
+})
+export class PaymentComponent {
+  form:FormGroup
+  constructor (private cartService:CartService, private userService:UserService, private router:Router, private orderService:OrderService, private fb: FormBuilder) {
+
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      cardDetails: this.fb.group({
+        cardNumber: ['', Validators.required],
+        expireDate: ['', Validators.required],
+        cvv: ['', Validators.required]
+      })
+    });
+  }
+  
+
+  userId:string
+  cart:ICart = {userId: undefined, shoes: []}
+  order:IShoeCart[]
+
+  ngOnInit () {
+    this.userId = this.userService.getUserData()._id
+    this.cartService.getUserCart(this.userId).subscribe({
+      next: (data:ICart) => {
+        console.log(data)
+        this.cart = data
+        this.order = data.shoes
+      },
+      error: (error) => {console.log(error)},
+      complete: () => {}
+    })
+  }
+
+  onSubmit () {
+
+  }
+
+  onPurchase () {
+    console.log(this.order)
+    this.orderService.createOrder(this.order).subscribe({
+      next: (data) => {
+        console.log(data)
+        this.cartService.emptyCart().subscribe({
+          next: (data) => {console.log(data)},
+          error: (error) => {console.log(error)},
+          complete: () => {}
+        })
+      },
+      error: (error) => {console.log(error)},
+      complete: () => {}
+    })
+    this.router.navigate(["/thankYou"])
+  }
+
+
+}

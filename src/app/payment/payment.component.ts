@@ -3,20 +3,38 @@ import { CartService } from '../services/cart.service';
 import { UserService } from '../services/user.service';
 import { ICart } from '../../../server/models/ICart';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
-import { IOrder } from '../../../server/models/IOrder';
 import { IShoeCart } from '../../../server/models/IShoeCart';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, HeaderComponent, FooterComponent, ReactiveFormsModule],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })
 export class PaymentComponent {
-  constructor (private cartService:CartService, private userService:UserService, private router:Router, private orderService:OrderService) {}
+  form:FormGroup
+  constructor (private cartService:CartService, private userService:UserService, private router:Router, private orderService:OrderService, private fb: FormBuilder) {
+
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      address: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      cardDetails: this.fb.group({
+        cardNumber: ['', Validators.required],
+        expireDate: ['', Validators.required],
+        cvv: ['', Validators.required]
+      })
+    });
+  }
+  
 
   userId:string
   cart:ICart = {userId: undefined, shoes: []}
@@ -35,7 +53,7 @@ export class PaymentComponent {
     })
   }
 
-  onPurchase () {
+  onSubmit () {
     console.log(this.order)
     this.orderService.createOrder(this.order).subscribe({
       next: (data) => {
@@ -51,5 +69,6 @@ export class PaymentComponent {
     })
     this.router.navigate(["/thankYou"])
   }
+
 
 }

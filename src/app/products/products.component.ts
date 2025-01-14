@@ -4,11 +4,13 @@ import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { RouterLink } from '@angular/router';
 import { FilterComponent } from '../filter/filter.component';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink, FilterComponent],
+  imports: [RouterLink, FilterComponent, HeaderComponent, FooterComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

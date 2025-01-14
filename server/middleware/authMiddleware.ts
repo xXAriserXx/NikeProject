@@ -13,8 +13,8 @@ export const tokenRequired = (req: CustomRequest, res: Response, next: NextFunct
     }
     const token = authHeader.slice(7);
     try {
-        const decoded = jwt.verify(token, 'KGJH324234@sdfkbj'); // Check validity and decode
-        (req as any).user = decoded; // Attach decoded user info to req.user
+        const decoded = jwt.verify(token, 'KGJH324234@sdfkbj');    
+        (req as any).user = decoded; 
     } catch (e) {
         res.status(401).send({ msg: "Il tuo token non è formalmente valido" });
         return;

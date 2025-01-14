@@ -1,18 +1,24 @@
-<h2>I tuoi ordini</h2>
-<div class="test">
-    <div class="singleTest" *ngFor="let order of orders">
-        <p>Id ordine: {{ order._id }}</p> 
-        <p>Data ordine: {{ order.orderDate | date }}</p> 
-        <p>Stato ordine: {{ order.status}}</p>
-        <br>
-        <p>Prodotti: </p>
-        <div *ngFor="let order of order.orderItems">
-            <p>Nome: {{order.shoeName}}</p>
-            <p>Quantita': {{order.quantity}}</p>
-            <p>Colore: {{order.color}}</p>
-            <p>Taglia: {{order.size}}</p>
-            <p>Prezzo: {{ order.price | currency: "EUR" }}</p>
+<app-header></app-header>
+<section>
+    <h2>I tuoi ordini</h2>
+    <div class="test">
+        <div class="singleTest" *ngFor="let order of orders">
+            <p>Id ordine: {{ order._id }}</p> 
+            <p>Data ordine: {{ order.orderDate | date }}</p> 
+            <p>Stato ordine: {{ order.status}}</p>
+            <hr> 
+            <h3>Prodotti: </h3>
+            <div class="product" *ngFor="let order of order.orderItems">
+                <p>Nome: {{order.shoeName}}</p>
+                <p>Quantita': {{order.quantity}}</p>
+                <p>Colore: {{order.color}}</p>
+                <p>Taglia: {{order.size}}</p>
+                <p>Prezzo: {{ order.price | currency: "EUR" }}</p>
 
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<button (click)="logOut()">LougOut</button>
+<app-footer></app-footer>

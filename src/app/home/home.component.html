@@ -1,10 +1,11 @@
+<app-header></app-header>
 <h2>Home</h2>
-<button [routerLink]="'/cart'">cart</button>
-<button [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">register/login</button>
-<button [routerLink]="'/products'">products</button>
+<button [routerLink]="'/cart'">Carrello</button>
+<button [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">Registrati/Accedi</button>
+<button [routerLink]="'/products'">Prodotti</button>
 
 <div class="newArrivals">
-    <h5>New Arrivals</h5>
+    <h5>Nuovi arrivi</h5>
     <div *ngFor="let newArrival of newArrivals">
         <p>{{newArrival.nome}}</p>
     </div>
@@ -16,4 +17,6 @@
         <p>{{bestSeller.nome}}</p>
     </div>
 </div> 
+
+<app-footer></app-footer>
 

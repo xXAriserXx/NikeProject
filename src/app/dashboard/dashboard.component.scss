@@ -1,11 +1,27 @@
 .test {
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .singleTest {
-    border: 1px solid green;
+    padding: 10px;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 10px;
+    width: fit-content;
+
+}
+
+.product:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+section {
+    border: 1px solid black;
+    width: 80vw;
+    margin: 0 auto;
+    h2 {
+        text-align: center;
+    }
 }

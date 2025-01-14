@@ -8,11 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { CheckLogService } from '../services/check-log.service';
 import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-shoe-detail',
   standalone: true,
-  imports: [FormsModule, RouterLink, CommonModule],
+  imports: [FormsModule, RouterLink, CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './shoe-detail.component.html',
   styleUrl: './shoe-detail.component.scss'
 })
@@ -80,6 +82,8 @@ addToCart () {
   this.shoeCart.shoeId = this.route.snapshot.paramMap.get("id")
   this.shoeCart.quantity = 1
   this.shoeCart.price = this.shoe.prezzo
+
+  alert(`${this.shoeCart.shoeName} aggiunto al carrello`)
 
   if (this.isLoggedIn) {
     this.cartService.updateQuantity(this.shoeCart, "add").subscribe({
