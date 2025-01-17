@@ -1,3 +1,53 @@
 <header>
-    Header
+    <div class="smallBar">
+        <div class="iconsDiv">
+            <img src="icons/mj.svg" alt=""> 
+            <img src="icons/converse.svg" alt="">
+        </div>
+
+        <div class="optionsDiv">
+            <div>
+                <p>
+                    Trova un negozio
+                </p>
+            </div> 
+            <div>
+                <p>
+                    Aiuto
+                </p>
+            </div> 
+            <div>
+                <p>
+                    Unisciti a noi
+                </p>
+            </div> 
+            <div>
+                @if (isLoggedIn) {
+                    <p>Bevevenuto</p>
+                } @else {
+                    <p>Accedi</p>
+                }
+            </div> 
+        </div>
+    </div>
+
+    <div class="bigBar">
+        <div class="conLogo"> <!--This is where the logo will go just the logo-->
+            <img src="icons/nikelogo.svg" alt="">
+        </div>
+
+        <div> <!--This is where the menu will be this disappears at some point -->
+
+        </div>
+
+        <div class="conSearchIcons"> <!--Contains the search bar and the favorites and cart icons-->
+            <div class="conSearchBar">
+
+            </div> <!--contains the search bar-->
+            <div class="conHeartCart">
+                <img src="icons/heart.svg" alt="">
+                <img src="icons/cart.svg" alt="">
+            </div> <!--contains the heart and cart icons-->
+        </div> 
+    </div>
 </header>

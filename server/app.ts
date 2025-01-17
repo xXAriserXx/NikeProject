@@ -17,7 +17,6 @@ app.use("/orders", ordersWs)
 app.use("/carts", cartWs)
 
 
-
 export const secretKey:string = "KGJH324234@sdfkbj"
 
 app.listen(3000, () => {console.log("Backend started, listening on port 3000")})

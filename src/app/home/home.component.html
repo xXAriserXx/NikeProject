@@ -1,4 +1,9 @@
 <app-header></app-header>
+<div class="containerBanner"> <!--Contains the biggest image-->
+    <img src="img/banner.jpg" alt="">
+</div>
+
+
 <h2>Home</h2>
 <button [routerLink]="'/cart'">Carrello</button>
 <button [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">Registrati/Accedi</button>

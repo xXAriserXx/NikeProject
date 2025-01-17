@@ -1,9 +1,67 @@
 header {
-    height: 80px;
-    width: 100vw;
-    border-bottom: 1px solid black;
-    text-align: center;
-    line-height: 80px;
-    font-size: 3em;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+.smallBar {
+    height: 36px;
+    width: 100%;
+    background-color: var(--lightGray);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 48px;
+}
+
+.bigBar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .conLogo {
+        img {
+            padding-left: 48px;
+        }
+    }
+}
+
+.iconsDiv {
+    display: flex;
+    align-items: center;
+    img:nth-of-type(1) {
+        margin-right: 24px;
+    }
+}
+
+.optionsDiv {
+    font-family: "fontNikeMedium";
+    display: flex;
+    border: 1px solid red;
+
+    div {
+        p {
+            font-size: 0.7em;
+            padding: 0 5px;
+            border-right: 1px solid black;
+        }
+        &:last-child {
+            p {
+                border-right: none;
+            }
+        }
+    }
+}
+
+.conSearchBar {
+    border: 1px solid pink;
+}
+
+.conSearchIcons {
+    border: 1px solid red;
+}
+
+.conHeartCart {
+    border: 1px solid black;
+    display: flex;
 }

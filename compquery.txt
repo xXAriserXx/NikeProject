@@ -421,3 +421,13 @@ export class PaymentComponent {
 
 
 }
+
+can you do the same but this time the name of the files are HelveticaNowTextMedium, font family should be fontNikeMedium
+@font-face {
+  font-family: 'fontNike';
+  src: url('../public/fonts/Nike-Futura.woff2') format('woff2'),
+       url('../public/fonts/Nike-Futura.woff') format('woff'),
+       url('../public/fonts/Nike-Futura.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
