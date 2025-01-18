@@ -65,3 +65,47 @@ header {
     border: 1px solid black;
     display: flex;
 }
+
+
+.conMenu {
+    display: flex;
+}
+
+.menu {
+    padding: 0 20px; 
+    p {
+        cursor: pointer;
+    }
+    &:hover .inner {
+        visibility: visible;
+    }
+}
+
+.inner {
+    visibility: hidden; 
+    position: absolute;
+    background-color: white;
+    width: 100vw;
+    left: 0;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    max-height: 40vh; 
+    p {
+        &:first-of-type {
+            margin-top: 40px;
+            font-size: 0.85em;
+            color: black;
+        }
+        &:last-of-type {
+            margin-bottom: 40px;
+        }
+        color: var(--grayText);
+        font-size: 0.8em;
+        &:hover {
+            color: black;
+            cursor: pointer;
+        }
+    }
+}
+
