@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div class="containerBanner"> <!--Contains the biggest image-->
     <img src="img/banner.jpg" alt="">
 </div>
@@ -9,19 +10,30 @@
 <button [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">Registrati/Accedi</button>
 <button [routerLink]="'/products'">Prodotti</button>
 
-<div class="newArrivals">
-    <h5>Nuovi arrivi</h5>
-    <div *ngFor="let newArrival of newArrivals">
-        <p>{{newArrival.nome}}</p>
-    </div>
-</div> 
+<div class="conSliders">
+    <div class="newArrivals">
+        <h5>Nuovi arrivi</h5>
+        
+        <div class="outerSlider">
+            <div class="slider">
+                <div *ngFor="let newArrival of newArrivals">
+                    <img src="{{newArrival.immagini[0]}}">
+                </div>
+            </div>
+        </div>
+    </div> 
 
-<div class="bestSeller">
-    <h5>Best sellers</h5>
-    <div *ngFor="let bestSeller of bestSellers">
-        <p>{{bestSeller.nome}}</p>
-    </div>
-</div> 
+    <div class="bestSeller">
+        <h5>Best sellers</h5>
+        <div class="outerSlider">
+            <div class="slider">
+                <div *ngFor="let bestSeller of bestSellers">
+                    <img src="{{bestSeller.immagini[0]}}">
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
 
 <app-footer></app-footer>
 

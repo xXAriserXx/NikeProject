@@ -1,3 +1,4 @@
+
 .containerBanner {
     img {
         width: 100%;
@@ -12,9 +13,22 @@
 
 }
 
-div:has(div) {
-    border: 1px solid black;
-    border-radius: 15px;
-    padding: 10px;
-    margin: 10px;
+
+.conSliders {
+    width: 1728px;
+    margin: 0 auto;
+}
+
+.outerSlider {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.slider {
+    display: flex;
+    gap: 12px;
+    img {
+        width: 568px;
+    }
 }

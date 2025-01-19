@@ -1,12 +1,52 @@
-footer > div {
-    width: fit-content;
-    margin: 0 auto
+footer {
+    width: 1824px;
+    margin: 0 auto;
 }
+
 
 .footerFirst {
     display: flex;
+    width: fit-content; 
+    margin: 0 auto;
+    gap: 40px;
+    margin-top: 40px;
+    div {
+        p {
+            color: var(--grayText);
+        } 
+        p:nth-of-type(1) {
+            color: black;
+            font-size: 1.4em;
+        }
+    }
 }
 
 .footerSecond {
     display: flex;    
+    justify-content: space-around; 
+    div {
+        p {
+            color: var(--grayText);
+        } 
+        p:nth-of-type(1) {
+            color: black;
+        }
+    }
+}
+
+.logoItalia {
+    justify-self: flex-end; 
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    color: var(--grayText);
+    img {
+        fill: var(--grayText);
+    }
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }

@@ -11,7 +11,6 @@ header {
     background-color: var(--lightGray);
     display: flex;
     justify-content: space-between;
-    padding: 0 48px;
 }
 
 .bigBar {
@@ -27,6 +26,7 @@ header {
 }
 
 .iconsDiv {
+    margin-left: 48px;
     display: flex;
     align-items: center;
     img:nth-of-type(1) {
@@ -35,9 +35,9 @@ header {
 }
 
 .optionsDiv {
+    margin-right: 48px;
     font-family: "fontNikeMedium";
     display: flex;
-    border: 1px solid red;
 
     div {
         p {
@@ -53,18 +53,6 @@ header {
     }
 }
 
-.conSearchBar {
-    border: 1px solid pink;
-}
-
-.conSearchIcons {
-    border: 1px solid red;
-}
-
-.conHeartCart {
-    border: 1px solid black;
-    display: flex;
-}
 
 
 .conMenu {
@@ -73,11 +61,18 @@ header {
 
 .menu {
     padding: 0 20px; 
-    p {
+    > p:nth-of-type(1){
         cursor: pointer;
+        border-bottom: 3px solid white;
+    &:hover {
+        border-bottom: 3px solid black;
+    }
     }
     &:hover .inner {
         visibility: visible;
+    }
+    &:hover > p {
+        border-bottom: 3px solid black;
     }
 }
 
@@ -88,7 +83,7 @@ header {
     width: 100vw;
     left: 0;
     display: flex;
-    gap: 40px;
+    gap: 80px;
     justify-content: center;
     max-height: 40vh; 
     p {
@@ -109,3 +104,54 @@ header {
     }
 }
 
+
+.conSearchIcons { //contains the whole thing
+    display: flex;
+    gap: 20px;
+    margin-right: 48px;
+    width: fit-content;
+}
+
+.conSearchBar { //contains searchbar with the input and stuff
+    cursor: pointer;
+    height: 36px;
+    width: 168px;
+    border-radius: 100px;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    background-color: var(--lightGray);
+    outline: none;
+    &:hover {
+        background-color: var(--grayPressed2);
+    } 
+    img {
+        padding: 6px;
+        border-radius: 100px;
+        background-color: var(--lightGray);
+        &:hover {
+            background-color: var(--grayPressed);
+        }
+    }
+    input {
+        width: 80%;
+        border: none;
+        margin-right: 5px;
+        background-color: transparent;
+        outline: none;
+    }
+}
+
+
+.conHeartCart { //contains heart and cart icons
+    display: flex;
+    width: fit-content;
+    img {
+        padding: 6px;
+        border-radius: 50%;
+        &:hover {
+        background-color: var(--grayPressed2);
+        }
+    }
+}
