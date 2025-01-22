@@ -1,0 +1,61 @@
+.conSearch {
+    width: 100vw;
+    background-color: white;
+    padding-bottom: 40px;
+    height: fit-content;
+    display: grid;
+    grid-template-areas: 
+    "nikeLogo searchBar annulla"
+    "results results results";
+    justify-content: center;
+    position: relative;
+    align-items: center;
+}
+
+.conSearchBar { //contains searchbar with the input and stuff
+    grid-area: searchBar;
+    margin-top: 10px; 
+    cursor: pointer;
+    height: 36px;
+    width: 70vw;
+    border-radius: 100px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    background-color: var(--lightGray);
+    outline: none;
+    &:hover {
+        background-color: var(--grayPressed2);
+    } 
+    img {
+        padding: 6px;
+        border-radius: 100px;
+        background-color: var(--lightGray);
+        &:hover {
+            background-color: var(--grayPressed);
+        }
+    }
+    input {
+        width: 100%;
+        border: none;
+        margin-right: 5px;
+        background-color: transparent;
+        outline: none;
+    }
+}
+
+.overlay {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.356);
+}
+
+p { 
+    grid-area: annulla;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.results {
+    grid-area: results;
+}

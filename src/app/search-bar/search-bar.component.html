@@ -1,0 +1,13 @@
+<div class="conSearch">
+    <div class="conSearchBar">
+        <img src="icons/search.svg" alt="">
+        <input [(ngModel)]="userInput" (keyup)="onSearch()" type="text" placeholder="Cerca" #searchInput>
+    </div> 
+    <p (click)="close()">Annulla</p>
+    <div class="results">
+        <h4 *ngFor="let shoe of shoes">
+        {{shoe.nome}}
+        </h4>
+    </div>
+</div>
+<div (click)="close()" class="overlay"></div>

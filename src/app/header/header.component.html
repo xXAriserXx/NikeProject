@@ -1,3 +1,7 @@
+@if (searching) {
+    <app-search-bar (closeEvent)="searching = false"></app-search-bar>
+}
+
 <header>
     <div class="smallBar">
         <div class="iconsDiv">
@@ -301,7 +305,7 @@
         </div>
 
         <div class="conSearchIcons"> <!--Contains the search bar and the favorites and cart icons-->
-            <div class="conSearchBar">
+            <div (click)="onClickSearch()" class="conSearchBar">
                 <img src="icons/search.svg" alt="">
                 <input type="text" placeholder="Cerca">
             </div> <!--contains the search bar-->

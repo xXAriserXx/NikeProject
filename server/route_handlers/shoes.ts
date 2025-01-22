@@ -36,6 +36,25 @@ router.get("/bestSellers", async (req, res) => {
   }
 })
 
+router.get("/byName/:userInput", async (req, res) => {
+  const userInput = req.params.userInput;
+  try {
+    const foundShoes = await shoes.find(
+      { nome: { $regex: userInput, $options: "i" } }
+    )
+    .limit(6) // Limit to 6 items
+    .toArray();
+
+    if (foundShoes) {
+      res.send(foundShoes);
+    }
+  } catch (err) {
+    res.status(500).send("Internal Server error " + err);
+  }
+});
+
+
+
 router.get("/:id", async (req, res) => {
     try {
         const shoeId = new ObjectId(String(req.params.id))

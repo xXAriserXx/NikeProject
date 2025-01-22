@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
+import { IShoe } from '../../../server/models/IShoe';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,14 @@ export class ProductService {
   getDetailShoe (id) {
     console.log("request made to get the details of the shoe")
     return this.http.get(`${this.apiShoes}/${id}`)
+  }
+
+  getShoesByName (userInput) {
+    if (userInput !== "") {
+      return this.http.get(`${this.apiShoes}/byName/${encodeURIComponent(userInput)}`)
+    } else {
+      return of([])
+    }
   }
 
   getFilteredShoes(filter) {
