@@ -3,11 +3,12 @@ import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IShoe } from '../../../server/models/IShoe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
 })

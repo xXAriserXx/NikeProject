@@ -27,21 +27,20 @@
             </div> 
             <div>
                 @if (isLoggedIn) {
-                    <p>Bevevenuto</p>
+                    <p [routerLink]="['/dashboard', user._id]">Bevevenuto, {{user.name}}</p>
                 } @else {
-                    <p>Accedi</p>
+                    <p routerLink="/login">Accedi</p>
                 }
             </div> 
         </div>
     </div>
 
     <div class="bigBar">
-        <div class="conLogo"> <!--This is where the logo will go just the logo-->
+        <div routerLink="/home" class="conLogo"> <!--This is where the logo will go just the logo-->
             <img src="icons/nikelogo.svg" alt="">
         </div>
 
         <div class="conMenu"> <!--This is where the menu will be this disappears at some point -->
-
             <div class="menu menuNovita"> <!--This is the first section in which Novita e in evidenza is contained, it has 4 sections so 4 divsThis div will be shown when hovering on novita' e in evidenza -->
                 <p>Novita' e in evidenza</p> 
                 <div class="inner innerNovita">

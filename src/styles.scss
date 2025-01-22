@@ -32,6 +32,15 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'fontNikeLight';
+  src: url('../public/fonts/HelveticaNowText.woff2') format('woff2'),
+       url('../public/fonts/HelveticaNowText.woff') format('woff'),
+       url('../public/fonts/HelveticaNowText.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   width: 100vw;
   margin: 0;
@@ -40,3 +49,4 @@ body {
   box-sizing: border-box;
   padding: 0;
 }
+

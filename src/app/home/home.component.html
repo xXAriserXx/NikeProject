@@ -1,4 +1,6 @@
-<app-header></app-header>
+
+<app-header #header></app-header>
+<div class="home">
 
 <div class="containerBanner"> <!--Contains the biggest image-->
     <img src="img/banner.jpg" alt="">
@@ -13,21 +15,28 @@
 <div class="conSliders">
     <div class="newArrivals">
         <h5>Nuovi arrivi</h5>
-        
-        <div class="outerSlider">
+        <div class="buttons">
+            <img src="icons/left.svg" (click)="sliderMove('left', 'newArrivals')" alt="">
+            <img src="icons/right.svg" (click)="sliderMove('right', 'newArrivals')" alt="">
+        </div> 
+        <div #scrollContainer class="outerSlider">
             <div class="slider">
-                <div *ngFor="let newArrival of newArrivals">
+                <div [routerLink]="['/shoeDetail', newArrival._id]" *ngFor="let newArrival of newArrivals">
                     <img src="{{newArrival.immagini[0]}}">
                 </div>
             </div>
         </div>
     </div> 
 
-    <div class="bestSeller">
+    <div class="bestSellers">
         <h5>Best sellers</h5>
-        <div class="outerSlider">
+        <div class="buttons">
+            <img src="icons/left.svg" (click)="sliderMove('left', 'bestSellers')" alt="">
+            <img src="icons/right.svg" (click)="sliderMove('right', 'bestSellers')" alt="">
+        </div> 
+        <div #scrollContainer2 class="outerSlider">
             <div class="slider">
-                <div *ngFor="let bestSeller of bestSellers">
+                <div [routerLink]="['/shoeDetail', bestSeller._id]" *ngFor="let bestSeller of bestSellers">
                     <img src="{{bestSeller.immagini[0]}}">
                 </div>
             </div>
@@ -37,3 +46,4 @@
 
 <app-footer></app-footer>
 
+</div>

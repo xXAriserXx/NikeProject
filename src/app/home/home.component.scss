@@ -1,3 +1,10 @@
+app-header {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
 
 .containerBanner {
     img {
@@ -5,21 +12,40 @@
     }
 }
 
-.newArrivals {
-
-}
-
-.bestSellers {
-
-}
-
-
 .conSliders {
     width: 1728px;
     margin: 0 auto;
+    h5 {
+        font-family: fontNikeLight;
+        font-size: 2em;
+        grid-area: title;
+        font-weight: normal;
+    }
+}
+
+.newArrivals:hover, .bestSellers:hover {
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+}
+}
+
+
+.newArrivals {
+    display: grid;
+    grid-template-areas: 
+    "title buttons"
+    "slider slider";
+}
+
+.bestSellers {
+    display: grid;
+    grid-template-areas: 
+    "title buttons"
+    "slider slider";
 }
 
 .outerSlider {
+    grid-area: slider;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -31,4 +57,37 @@
     img {
         width: 568px;
     }
+}
+
+.buttons {
+    grid-area: buttons;
+    justify-self: flex-end;
+    display: flex;
+    gap: 10px;
+    img {
+        width: 24px;
+        height: 24px;
+        padding: 12px;
+        border-radius: 50%;
+        background: var(--grayPressed2);
+        &:hover {
+        background-color: var(--grayPressed);
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    height: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Transparent background of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent; /* Semi-transparent scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.7); /* Darker thumb on hover */
 }

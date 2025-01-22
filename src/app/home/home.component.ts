@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CheckLogService } from '../services/check-log.service';
 import {jwtDecode} from 'jwt-decode';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
-import { IshoeOrders } from '../../../server/models/IShoeOrders';
 import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 
@@ -20,6 +19,14 @@ export class HomeComponent {
 
   constructor (private checkLogService:CheckLogService, private productService:ProductService) {}
 
+  @ViewChild("scrollContainer") scrollContainer!: ElementRef
+  @ViewChild("scrollContainer2") scrollContainer2!: ElementRef
+  @ViewChild("header") header!: ElementRef
+  @HostListener("window:scroll", ["$event"])
+  onWindowScroll(event: Event) {
+  }
+
+  private canClick = true
   isLoggedIn:boolean = false
   userId:string
   bestSellers:IShoe[]
@@ -54,6 +61,34 @@ export class HomeComponent {
     })
 
   }
+
+  sliderMove (input, slider) {
+    if (!this.canClick) {
+      return
+    }
+    this.canClick = false
+    if (input === "left" && slider === "newArrivals") {
+      this.scrollContainer.nativeElement.scrollBy({ left: -568, behavior: 'smooth' });
+      console.log("slider goes left")
+    }
+    if (input === "right" && slider === "newArrivals") {
+      this.scrollContainer.nativeElement.scrollBy({ left: 568, behavior: 'smooth' });
+      console.log("slider goes right")
+    }
+    if (input === "left" && slider === "bestSellers") {
+      this.scrollContainer2.nativeElement.scrollBy({ left: -568, behavior: 'smooth' });
+      console.log("slider goes left")
+    }
+    if (input === "right" && slider === "bestSellers") {
+      this.scrollContainer2.nativeElement.scrollBy({ left: 568, behavior: 'smooth' });
+      console.log("slider goes right")
+    }
+    setTimeout(() => {
+      this.canClick = true 
+    }, 200);
+  }
+
+
 
 
 }

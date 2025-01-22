@@ -3,13 +3,25 @@ footer {
     margin: 0 auto;
 }
 
+hr {
+    border: none;
+    background-color: var(--grayPressed);
+    height: 1px;
+}
 
 .footerFirst {
+    max-height: 200px;
     display: flex;
+    overflow: hidden;
     width: fit-content; 
     margin: 0 auto;
     gap: 40px;
     margin-top: 40px;
+    transition: 0.5s;
+    border: 1px solide black;
+    &:hover {
+        max-height: 500px;
+    }
     div {
         p {
             color: var(--grayText);
