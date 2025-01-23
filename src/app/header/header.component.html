@@ -1,8 +1,4 @@
-@if (searching) {
-    <app-search-bar (closeEvent)="searching = false"></app-search-bar>
-}
-
-<header>
+<header #header>
     <div class="smallBar">
         <div class="iconsDiv">
             <img src="icons/mj.svg" alt=""> 
@@ -27,7 +23,7 @@
             </div> 
             <div>
                 @if (isLoggedIn) {
-                    <p [routerLink]="['/dashboard', user._id]">Bevevenuto, {{user.name}}</p>
+                    <p [routerLink]="['/dashboard', user._id]">Benvenuto, {{user.name}}</p>
                 } @else {
                     <p routerLink="/login">Accedi</p>
                 }
@@ -302,6 +298,7 @@
                 </div>
             </div>
         </div>
+            <div class="overlay"></div>
 
         <div class="conSearchIcons"> <!--Contains the search bar and the favorites and cart icons-->
             <div (click)="onClickSearch()" class="conSearchBar">
@@ -310,8 +307,27 @@
             </div> <!--contains the search bar-->
             <div class="conHeartCart">
                 <img src="icons/heart.svg" alt="">
-                <img src="icons/cart.svg" alt="">
+                <img src="icons/cart.svg" [routerLink]="isLoggedIn ? ['/cart', user._id] : ['/cart']" alt="">
             </div> <!--contains the heart and cart icons-->
         </div> 
     </div>
 </header>
+
+<div *ngIf="searching" class="searchPart">
+    <div class="conSearch2">
+        <img src="icons/nikelogo.svg" alt="">
+        <div class="conSearchBar2">
+            <img src="icons/search.svg" alt="">
+            <input [(ngModel)]="userInput" (keyup)="onSearch()" type="text" placeholder="Cerca" #searchInput>
+        </div> 
+        <p (click)="close()">Annulla</p>
+        <div class="results">
+            <div [routerLink]="['/shoeDetail', shoe._id]" (click)="close()" class="conShoes" *ngFor="let shoe of shoes">
+                <img [src]="shoe.immagini[0]" alt="">
+                <p>{{shoe.nome}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="overlay2"></div>
+</div>
+

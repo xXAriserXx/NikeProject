@@ -20,6 +20,7 @@ router.post("/register", async (req, res) => {
             return 
         }
         const user = await users.insertOne({
+            _id: undefined,
             name: req.body.name,
             role: "user",
             surname: req.body.surname,
@@ -70,26 +71,6 @@ router.post("/login", async (req, res) => {
 
     }
 })
-
-
-router.get("/", async (req, res) => {
-    const excludeId = new ObjectId(String(req.query.excludeId))
-    try {
-        const r = await users.find(
-            { _id: { $ne: excludeId } }
-        ).toArray();
-
-        res.send({
-            usersIds : r
-        });
-    } catch (e) {
-        console.error(e);
-        res.status(500).send({
-            esito: false,
-            msg: "Something is wrong with the server"
-        });
-    }
-});
 
 
 export const usersWs = router

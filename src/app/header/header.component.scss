@@ -1,12 +1,14 @@
 header {
+    width: 100vw;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out
 }
 
 app-search-bar {
-    position: sticky;
-    top: 0;
     left: 0;
     z-index: 1;
 }
@@ -25,7 +27,7 @@ app-search-bar {
     height: 60px;
     display: grid; 
     align-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3.5fr 1fr;
     grid-template-areas: 
     "logo menu search";
 }
@@ -75,7 +77,24 @@ app-search-bar {
     grid-area: menu;
     display: flex;
     justify-self: center;
+    &:hover + .overlay {
+        visibility: visible;
+        opacity: 1;
+    }
 }
+
+.overlay {
+    opacity: 0;
+    top: 60px; 
+    transition: 0.2s;
+    visibility: hidden;
+    z-index: -1;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.465);
+}
+
 
 .menu {
     padding: 0 20px; 
@@ -91,9 +110,6 @@ app-search-bar {
     }
     &:hover > p {
         border-bottom: 3px solid black;
-    }
-    &:hover .overlay {
-        visibility: visible;
     }
 }
 
@@ -179,3 +195,81 @@ app-search-bar {
     }
 }
 
+.searchPart {
+    position: fixed;
+    overflow: hidden;
+    z-index: 10;
+    p { 
+        cursor: pointer;
+        grid-area: annulla;
+        padding: 10px;
+    }
+}
+
+.conSearch2 {
+    width: 100vw;
+    background-color: white;
+    padding-bottom: 40px;
+    height: fit-content;
+    display: grid;
+    grid-template-areas: 
+    "nikeLogo searchBar annulla"
+    "results results results";
+    justify-content: center;
+    position: relative;
+    align-items: center;
+}
+
+.conSearchBar2 { //contains searchbar with the input and stuff
+    grid-area: searchBar;
+    margin-top: 10px; 
+    cursor: pointer;
+    height: 36px;
+    width: 70vw;
+    border-radius: 100px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    background-color: var(--lightGray);
+    outline: none;
+    &:hover {
+        background-color: var(--grayPressed2);
+    } 
+    img {
+        padding: 6px;
+        border-radius: 100px;
+        background-color: var(--lightGray);
+        &:hover {
+            background-color: var(--grayPressed);
+        }
+    }
+    input {
+        width: 100%;
+        border: none;
+        margin-right: 5px;
+        background-color: transparent;
+        outline: none;
+    }
+}
+
+.overlay2 {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.465);
+    overflow: hidden;
+}
+
+.results {
+    grid-area: results;
+    display: flex;
+
+}
+
+.conShoes {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    img {
+    width: 15vw; 
+    }
+}

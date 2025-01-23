@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb"
 
 export interface IUser {
+    _id:string
     role: string,
     name: string,
     surname: string,

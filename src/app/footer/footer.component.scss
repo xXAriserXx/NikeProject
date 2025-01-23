@@ -1,5 +1,5 @@
 footer {
-    width: 1824px;
+    max-width: 1824px;
     margin: 0 auto;
 }
 
@@ -35,7 +35,7 @@ hr {
 
 .footerSecond {
     display: flex;    
-    justify-content: space-around; 
+    justify-content:space-between; 
     div {
         p {
             color: var(--grayText);
@@ -61,4 +61,13 @@ hr {
 hr {
     margin-top: 40px;
     margin-bottom: 40px;
+    height: 0.5px;
+    background-color: var(--grayPressed2);
+}
+
+.footerThird {
+    margin-top: 40px;
+    gap: 25px;
+    display: flex;
+    color: var(--grayText);
 }

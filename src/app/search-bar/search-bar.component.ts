@@ -28,7 +28,6 @@ export class SearchBarComponent {
 
   close () {
     this.closeEvent.emit()
-    document.body.style.overflow = "auto"
   }
 
   onSearch () {
