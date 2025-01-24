@@ -1,25 +1,40 @@
 <form [formGroup]="filterForm">
-  <div formArrayName="price">
-    <p>Prezzo</p>
-    <div *ngFor="let price of priceOptions; let i = index">
-      <label [for]="'price_' + i">{{ price.label }}</label>
-      <input [id]="'price_' + i" type="checkbox" [formControlName]="i" />
+  <div class="prices" formArrayName="price">
+    <input type="checkbox" id="priceSec">
+    <label for="priceSec">Acquista per prezzo
+      <img src="icons/down.svg" alt="">
+    </label> 
+    <div class="conPrice">
+      <div *ngFor="let price of priceOptions; let i = index">
+        <label [for]="'price_' + i">{{ price.label }}</label>
+        <input [id]="'price_' + i" type="checkbox" [formControlName]="i" />
+      </div>
     </div>
   </div>
 
-  <div formArrayName="color">
-    <p>Colore</p>
-    <div *ngFor="let color of colorOptions; let i = index">
-      <label [for]="'color_' + i">{{ color }}</label>
-      <input [id]="'color_' + i" type="checkbox" [formControlName]="i" />
+  <div class="colors" formArrayName="color">
+    <input type="checkbox" id="colorSec">
+    <label for="colorSec">Colore
+      <img src="icons/down.svg" alt="">
+    </label>
+    <div class="conColor">
+      <div *ngFor="let color of colorOptions; let i = index">
+        <label [for]="'color_' + i">{{ color }}</label>
+        <input [id]="'color_' + i" type="checkbox" [formControlName]="i" />
+      </div>
     </div>
   </div>
 
-  <div formArrayName="category">
-    <p>Categoria</p>
-    <div *ngFor="let category of categoryOptions; let i = index">
-      <label [for]="'category_' + i">{{ category }}</label>
-      <input [id]="'category_' + i" type="checkbox" [formControlName]="i" />
+  <div class="categories" formArrayName="category">
+    <input type="checkbox" id="categorySec">
+    <label for="categorySec">Categoria
+      <img src="icons/down.svg" alt="">
+    </label>
+    <div class="conCategory">
+      <div *ngFor="let category of categoryOptions; let i = index">
+        <label [for]="'category_' + i">{{ category }}</label>
+        <input [id]="'category_' + i" type="checkbox" [formControlName]="i" />
+      </div>
     </div>
   </div>
 

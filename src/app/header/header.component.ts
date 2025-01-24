@@ -21,18 +21,19 @@ export class HeaderComponent {
 
 
   @ViewChild("header", { read: ElementRef }) header!: ElementRef;
+  @ViewChild("searchInput") searchInput!: ElementRef
   @HostListener("window:scroll", ["$event"])
   onWindowScroll(event: Event) {
-  const currentScrollY = window.scrollY;
+    const currentScrollY = window.scrollY;
 
-  if (currentScrollY > this.lastScrollY) {
-    this.header.nativeElement.style.transform = "translateY(-100%)";
-  } else {
-    this.header.nativeElement.style.transform = "translateY(0)";
-    this.header.nativeElement.style.position = "fixed";
-  }
+    if (currentScrollY > this.lastScrollY) {
+      this.header.nativeElement.style.transform = "translateY(-100%)";
+    } else {
+      this.header.nativeElement.style.transform = "translateY(0)";
+      this.header.nativeElement.style.position = "fixed";
+    }
 
-  this.lastScrollY = currentScrollY;
+    this.lastScrollY = currentScrollY;
   }
   
   lastScrollY:number
@@ -49,9 +50,13 @@ export class HeaderComponent {
     console.log(this.user)
   }
 
+
   onClickSearch () {
     this.searching = true
     document.body.style.overflow = "hidden"
+    setTimeout(() => {
+      this.searchInput.nativeElement.focus()
+    }, 1);
   }
 
   onSearch () {

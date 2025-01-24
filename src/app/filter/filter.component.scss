@@ -1,3 +1,77 @@
 form {
+    margin-left: 200px;
     width: 400px;
+    display: flex;
+    flex-direction: column;
 }
+
+label {
+    user-select: none;
+}
+
+#priceSec, #colorSec, #categorySec {
+    display: none;
+}
+
+.prices, .colors, .categories {
+    margin-bottom: 30px;
+}
+
+#priceSec:checked ~ .conPrice {
+    max-height: 300px;
+    transition: 0.2s;
+}
+
+#priceSec:checked + label img {
+    transform: rotate(180deg);
+}
+
+label img {
+    transition: 0.2s;
+}
+
+.conPrice {
+    overflow: hidden;
+    max-height: 0;
+}
+
+#colorSec:checked ~ .conColor {
+    max-height: 300px;
+    transition: 0.2s;
+}
+
+#colorSec:checked ~ .conColor {
+    max-height: 300px;
+    transition: 0.2s;
+}
+
+#colorSec:checked + label img {
+    transform: rotate(180deg);
+}
+
+.conColor {
+    overflow: hidden;
+    max-height: 0;
+}
+
+
+#categorySec:checked ~ .conCategory {
+    max-height: 300px;
+    transition: 0.2s;
+}
+
+#categorySec:checked ~ .conCategory {
+    max-height: 300px;
+    transition: 0.2s;
+}
+
+#categorySec:checked + label img {
+    transform: rotate(180deg);
+}
+
+.conCategory {
+    overflow: hidden;
+    max-height: 0;
+}
+
+

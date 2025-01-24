@@ -1,28 +1,40 @@
 <app-header></app-header>
 
-<section>
-<h1>{{shoe.nome}}</h1>
-<img [src]="shoe.immagini[0]" alt="">
+<div class="spacer"></div>
 
-<div class="select">
-  <select [(ngModel)]="chosenSize" name="" id="">
-    <option value="" selected>Seleziona una taglia</option>
-    <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
-  </select>
+<div class="container">
+  <div class="left">
+    <img [src]="shoe.immagini[0]" alt="">
+  </div>
 
-  <select [(ngModel)]="chosenColor" name="" id="">
-    <option value="" selected>Seleziona un colore</option>
-    <option *ngFor="let color of colors" [value]="color">{{color}}</option>
-  </select>
+  <div class="right">
+    <h1>{{shoe.nome}}</h1>
+    <p>{{shoe.prezzo}}</p>
+
+  <div class="options">
+    @for (color of colors; track color) {
+      <input [(ngModel)]="chosenColor" id="{{color}}" type="radio" name="shoeColor" value="{{color}}">
+      <label for="{{color}}" class="colorLabel {{color}}"></label>
+    }
+  </div>
+
+  <div class="options sizes">
+    @for (size of sizes; track size) {
+      <input [(ngModel)]="chosenSize" id="{{size}}" type="radio" name="shoeSize" value="{{size}}"> 
+      <label for="{{size}}" class="sizeLabel">{{size}}</label>
+    }
+  </div>
+
+
+  <div class="buttons">
+    <button class="buyButton" (click)="addToCart()" [disabled]="!chosenColor || !chosenSize">
+      Aggiungi al Carrello
+    </button>
+    <button class="cartButton" [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">Vai al carrello</button>
+  </div>
+
+  </div>
+
 </div>
-
-<div class="buttons">
-  <button (click)="addToCart()" [disabled]="!chosenColor || !chosenSize">
-    Aggiungi al Carrello
-  </button>
-  <button [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">Vai al carrello</button>
-</div>
-
-</section>
 
 <app-footer></app-footer>
