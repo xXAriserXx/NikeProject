@@ -9,6 +9,7 @@ import { IShoeCart } from '../../../server/models/IShoeCart';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { CheckLogService } from '../services/check-log.service';
 
 @Component({
   selector: 'app-payment',
@@ -19,7 +20,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular
 })
 export class PaymentComponent {
   form:FormGroup
-  constructor (private cartService:CartService, private userService:UserService, private router:Router, private orderService:OrderService, private fb: FormBuilder) {
+  constructor (private cartService:CartService, private userService:UserService, private router:Router, private orderService:OrderService, private fb: FormBuilder, private checkLogService:CheckLogService) {
 
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -39,18 +40,27 @@ export class PaymentComponent {
   userId:string
   cart:ICart = {userId: undefined, shoes: []}
   order:IShoeCart[]
+  isLoggedIn:boolean
 
   ngOnInit () {
-    this.userId = this.userService.getUserData()._id
-    this.cartService.getUserCart(this.userId).subscribe({
-      next: (data:ICart) => {
-        console.log(data)
-        this.cart = data
-        this.order = data.shoes
-      },
-      error: (error) => {console.log(error)},
-      complete: () => {}
-    })
+    this.checkLogService.checkLoginStatus()
+    this.isLoggedIn = this.checkLogService.isLoggedIn()
+
+
+    if (this.isLoggedIn) {
+      this.userId = this.userService.getUserData()._id
+      this.cartService.getUserCart(this.userId).subscribe({
+        next: (data:ICart) => {
+          console.log(data)
+          this.cart = data
+          this.order = data.shoes
+        },
+        error: (error) => {console.log(error)},
+        complete: () => {}
+      })
+    } else {
+      this.cart = this.cartService.getGuestCart()
+    }
   }
 
   onSubmit () {

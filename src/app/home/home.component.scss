@@ -1,3 +1,7 @@
+.spacer {
+    height: 96px;
+}
+
 /*app-header {
     width: 100vw;
     position: absolute;
@@ -62,6 +66,7 @@
 }
 
 .buttons {
+    cursor: pointer;
     grid-area: buttons;
     justify-self: flex-end;
     display: flex;

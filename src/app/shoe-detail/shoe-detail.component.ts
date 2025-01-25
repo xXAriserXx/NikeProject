@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IShoe } from '../../../server/models/IShoe';
@@ -21,7 +21,7 @@ import { FooterComponent } from "../footer/footer.component";
 export class ShoeDetailComponent {
 
 constructor (private productService:ProductService, private route: ActivatedRoute, private cartService: CartService, private checkLogService:CheckLogService, private userService:UserService) { }
-
+@ViewChild(HeaderComponent) headerComponent: HeaderComponent;
 
 shoeCart:IShoeCart = {
   shoeName: undefined,
@@ -51,6 +51,8 @@ chosenSize:string = ""
 shoeName:string
 
 ngOnInit () {
+  window.scrollTo(0, 0)
+  console.log(window.scrollY)
   this.checkLogService.checkLoginStatus()
   this.isLoggedIn = this.checkLogService.isLoggedIn()
   if (this.isLoggedIn) {
@@ -75,6 +77,7 @@ ngOnInit () {
   })
 }
 
+
 addToCart () {
   this.shoeCart.shoeName = this.shoeName
   this.shoeCart.color = this.chosenColor
@@ -87,12 +90,14 @@ addToCart () {
 
   if (this.isLoggedIn) {
     this.cartService.updateQuantity(this.shoeCart, "add").subscribe({
-      next: (data) => {console.log(data)},
+      next: (data) => {
+        console.log(data)
+        this.headerComponent.getShoeQuantity()
+      },
       error: (error) => {console.log(error)},
       complete: () => {}
     })
 
-    console.log("hello")
   } else {
     const guestCart = JSON.parse(localStorage.getItem("cart") || '{"userId": "guest", "shoes": []}');
     const alreadyPresent:number = guestCart.shoes.findIndex((shoe) => shoe.shoeId === this.shoeCart.shoeId && shoe.color === this.shoeCart.color && shoe.size === this.shoeCart.size)
@@ -103,7 +108,9 @@ addToCart () {
       console.log(this.shoeCart)
     }
     localStorage.setItem("cart", JSON.stringify(guestCart))
+    this.headerComponent.getShoeQuantity()
   }
+
 }
 
 }

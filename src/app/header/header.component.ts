@@ -7,6 +7,8 @@ import { IUser } from '../../../server/models/IUser';
 import { ProductService } from '../services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../services/cart.service';
+import { ICart } from '../../../server/models/ICart';
 
 @Component({
   selector: 'app-header',
@@ -17,63 +19,79 @@ import { FormsModule } from '@angular/forms';
 })
 export class HeaderComponent {
 
-  constructor (private checkLogService:CheckLogService, private userService:UserService, private productService:ProductService) {}
-
-
   @ViewChild("header", { read: ElementRef }) header!: ElementRef;
-  @ViewChild("searchInput") searchInput!: ElementRef
+  @ViewChild("searchInput") searchInput!: ElementRef;
+
+  lastScrollY: number;
+  isLoggedIn: boolean;
+  searching: boolean = false;
+  user: IUser;
+  userId: string;
+  userInput: string;
+  shoes: IShoe[] = [];
+  quantity: number = undefined;
+
+  constructor(private checkLogService: CheckLogService, private userService: UserService, private productService: ProductService, private cartService: CartService) {}
+
+  ngAfterViewInit() {
+    this.lastScrollY = 0; 
+  }
+
   @HostListener("window:scroll", ["$event"])
   onWindowScroll(event: Event) {
-    const currentScrollY = window.scrollY;
+    if (this.header) {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > this.lastScrollY) {
+        this.header.nativeElement.style.transform = "translateY(-100%)";
+      } else {
+        this.header.nativeElement.style.transform = "translateY(0)";
+        this.header.nativeElement.style.position = "fixed";
+      }
 
-    if (currentScrollY > this.lastScrollY) {
-      this.header.nativeElement.style.transform = "translateY(-100%)";
-    } else {
-      this.header.nativeElement.style.transform = "translateY(0)";
-      this.header.nativeElement.style.position = "fixed";
+      this.lastScrollY = currentScrollY;
     }
-
-    this.lastScrollY = currentScrollY;
-  }
-  
-  lastScrollY:number
-  isLoggedIn:boolean
-  searching:boolean = false
-  user:IUser
-  userInput:string
-  shoes:IShoe[] = []
-
-  ngOnInit () {
-    this.checkLogService.checkLoginStatus()
-    this.isLoggedIn = this.checkLogService.isLoggedIn()
-    this.user = this.userService.getUserData()
-    console.log(this.user)
   }
 
+  ngOnInit() {
+    this.checkLogService.checkLoginStatus();
+    this.isLoggedIn = this.checkLogService.isLoggedIn();
+    this.getShoeQuantity();
+  }
 
-  onClickSearch () {
-    this.searching = true
-    document.body.style.overflow = "hidden"
+  getShoeQuantity() {
+    if (this.isLoggedIn) {
+      this.user = this.userService.getUserData();
+      this.cartService.getUserCart(this.user._id).subscribe({
+        next: (cart: ICart) => {
+          this.quantity = cart.shoes.length;
+        },
+        error: () => {},
+        complete: () => {}
+      });
+    } else {
+      this.quantity = this.cartService.getQuantityGuest();
+    }
+  }
+
+  onClickSearch() {
+    this.searching = true;
     setTimeout(() => {
-      this.searchInput.nativeElement.focus()
+      this.searchInput.nativeElement.focus();
     }, 1);
   }
 
-  onSearch () {
+  onSearch() {
     this.productService.getShoesByName(this.userInput).subscribe({
-      next: (data:IShoe[]) => {
-        console.log(data)
-        this.shoes = data
+      next: (data: IShoe[]) => {
+        this.shoes = data;
       },
-      error: (error) => {console.log(error)},
+      error: (error) => { console.log(error); },
       complete: () => {}
-    })
+    });
   }
 
-  close () {
-    this.searching = false
-    document.body.style.overflow = "auto"
+  close() {
+    this.searching = false;
   }
-
-}
+} 
 

@@ -18,7 +18,6 @@ import { HeaderComponent } from "../header/header.component";
 export class HomeComponent {
 
   constructor (private checkLogService:CheckLogService, private productService:ProductService) {}
- lastScrollY = 0;
 
   @ViewChild("scrollContainer") scrollContainer!: ElementRef
   @ViewChild("scrollContainer2") scrollContainer2!: ElementRef

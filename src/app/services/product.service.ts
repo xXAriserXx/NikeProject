@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
 import { IShoe } from '../../../server/models/IShoe';
+import { ICart } from '../../../server/models/ICart';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,12 @@ export class ProductService {
       })
     );
   }
+
+  getQuantity () {
+    
+  }
+
+;
 
 }
 

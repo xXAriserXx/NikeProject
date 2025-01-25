@@ -25,11 +25,11 @@ export class CartComponent {
   
 
   ngOnInit () { 
+    window.scroll(0, 0)
     this.checkLogService.checkLoginStatus()
     this.isLoggedIn = this.checkLogService.isLoggedIn()
 
     if (this.isLoggedIn) {
-
       const userId = this.userService.getUserData()._id
       this.cartService.getUserCart(userId).subscribe({
         next: (userCart:ICart) => {
@@ -51,6 +51,7 @@ export class CartComponent {
   }
   
   updateQuantity (shoe, action) {
+    if (this.isLoggedIn) {
      this.cartService.updateQuantity(shoe, action).subscribe({
       next: (data:any) => {
         console.log(data)
@@ -61,6 +62,12 @@ export class CartComponent {
       complete: () => {}
 
      })
+    } else {
+      this.cart = this.cartService.updateQuantityGuest(shoe, action)
+      localStorage.setItem("cart", JSON.stringify(this.cart))
+      this.calcTotPrice(this.cart)
+    }
+  
   }
 
 calcTotPrice(cart: ICart) {

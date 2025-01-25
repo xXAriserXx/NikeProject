@@ -2,6 +2,7 @@
     height: 96px;
 }
 
+
 .divShoes {
     border: 1px solid black;
     display: flex;
@@ -13,7 +14,7 @@
 }
 
 section {
-    width: 80vw;
+    width: 1100px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -26,4 +27,36 @@ section {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.buttons {
+    display: flex;
+    border: 1px solid var(--grayPressed2);
+    border-radius: 20px;
+    width: 104px;
+    height: 40px;
+    button {
+        cursor: pointer;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-family: "fontNikeMedium2";
+        font-weight: lighter;
+        align-self: center;
+        &:hover {
+            background-color: var(--grayPressed2);
+        }
+    }
+    p {
+        text-align: center; 
+        align-self: center;
+        width: 24px;
+        margin: 0;
+    }
 }

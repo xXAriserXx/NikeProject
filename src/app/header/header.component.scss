@@ -1,6 +1,7 @@
 header {
     width: 100vw;
     position: absolute;
+    height: fit-content;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -34,6 +35,7 @@ app-search-bar {
 
 .conLogo {
     grid-area: logo;
+    cursor: pointer;
     img {
         padding-left: 48px;
     }
@@ -43,6 +45,7 @@ app-search-bar {
     margin-left: 48px;
     display: flex;
     align-items: center;
+        cursor: pointer;
     img:nth-of-type(1) {
         margin-right: 24px;
     }
@@ -52,6 +55,7 @@ app-search-bar {
     margin-right: 48px;
     font-family: "fontNikeMedium";
     display: flex;
+    cursor: pointer;
 
     div {
         p {
@@ -59,7 +63,6 @@ app-search-bar {
             padding: 0 5px;
             border-right: 1px solid black;
             &:hover {
-                cursor: pointer;
                 color: var(--grayText);
             }
         }
@@ -187,6 +190,7 @@ app-search-bar {
     display: flex;
     width: fit-content;
     img {
+        cursor: pointer;
         padding: 6px;
         border-radius: 50%;
         &:hover {
@@ -197,13 +201,25 @@ app-search-bar {
 
 .searchPart {
     position: fixed;
-    overflow: hidden;
     z-index: 10;
     p { 
         cursor: pointer;
         grid-area: annulla;
         padding: 10px;
     }
+}
+
+.cart {
+    position: relative;
+}
+
+.quantity {
+    position: absolute;
+    font-size: 0.65em;
+    top: 12px;
+    left: 15px;
+    margin: 0;
+    pointer-events: none;
 }
 
 .conSearch2 {
@@ -256,7 +272,6 @@ app-search-bar {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.465);
-    overflow: hidden;
 }
 
 .results {
@@ -273,3 +288,4 @@ app-search-bar {
     width: 15vw; 
     }
 }
+
