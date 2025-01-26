@@ -2,14 +2,22 @@
 <div class="spacer"></div>
 <section>
     <div class="left"> 
+        <h2>Carrello</h2> 
         <div *ngIf="cart.shoes.length === 0">
-        <p>Carrello vuoto</p>
+        <p>Nel tuo carrello non sono presenti articoli.</p>
         </div>
         <div class="divShoes" *ngFor="let shoe of cart.shoes">
-            <p>{{ shoe.shoeName }}</p> 
-            <p>Quantita': {{ shoe.quantity}}</p>
-            <p>Colore: {{ shoe.color }}</p>
-            <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
+            <div class="image">
+                <img src="{{shoe.imageIcon}}" alt="">
+            </div>
+            <div class="text">
+                <p>{{ shoe.shoeName }}</p> 
+                <p>Quantita': {{ shoe.quantity}}</p>
+                <p>Colore: {{ shoe.color }}</p>
+            </div>
+            <div class="priceText">
+                <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
+            </div>
             <div class="buttons">
                 <button *ngIf="shoe.quantity > 1" (click)="updateQuantity(shoe, 'decrease')">
                     <img src="icons/minus.svg" alt="">
@@ -20,13 +28,27 @@
                     <img src="icons/plus.svg" alt="">
                 </button>
             </div>
+        <div class="extraText">
+            <p>Ritiro gratuito in negozio</p>
+            <p>Trova un negozio</p>
+        </div>
         </div>
     </div>
 
     <div class="right">
+        <h2>Riepilogo</h2>
+        <p>Hai un codice promozionale</p>
+        <p>Subtotale</p>
+        <p>Costi di spedizione e gestione previsti</p>
         <div class="price">
             <div>Prezzo finale: {{totalPrice | currency: "EUR"}}</div>
             <button [routerLink]="'/payment'" [disabled]="totalPrice === 0">Vai al pagamento</button>
+        </div>
+        <div class="bigButtons">
+            <button>Vai al pagamento</button>
+            <button>
+                <img src="icons/PayPal.svg" alt="">
+            </button>
         </div>
     </div>
 

@@ -11,6 +11,21 @@
 
 .left {
     width: 612px;
+    display: flex;
+
+}
+
+.conScroll {
+    border: 1px solid black;
+}
+
+.images img {
+    width: 60px;
+    height: 60px;
+}
+
+.mainImage {
+    width: 552px;
 }
 
 .right {
@@ -28,6 +43,11 @@ button {
     border: none;
 }
 
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .buyButton {
     background-color: black;
     color: white;
@@ -38,16 +58,11 @@ button {
     border: 1px solid var(--grayPressed2);
 }
 
-
 .options {
     display: flex;
     flex-wrap: wrap;
 }
 
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-}
 
 
 .sizeLabel {

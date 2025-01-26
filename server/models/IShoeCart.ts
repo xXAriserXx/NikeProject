@@ -19,4 +19,5 @@ export interface IShoeCart {
     color: string
     quantity: number
     price: number
+    imageIcon: string
 }

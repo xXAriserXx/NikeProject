@@ -2,24 +2,75 @@
     height: 96px;
 }
 
-
-.divShoes {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-    border-radius: 15px;
-}
-
 section {
+    border: 1px solid orange;
+    display: flex;
     width: 1100px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 30vh;
+    justify-content: space-between;
+    gap: 10px;
 }
+
+h2 {
+    font-weight: normal;
+    font-size: 2em
+}
+
+.left {
+    border: 1px solid green;
+    width: 100%;
+}
+
+.right {
+    border: 1px solid red;
+}
+
+.divShoes {
+    width: 100%;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "image text priceText"
+    "buttons . ."
+    "extraText extraText .";
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.image {
+    grid-area: image;
+    height: fit-content;
+    width: fit-content;
+    img {
+        height: 164px;
+        width: 164px;
+    }
+}
+
+.text {
+    grid-area: text;
+    align-self: flex-start;
+}
+
+.priceText {
+    grid-area: priceText;
+    align-self: flex-start;
+    justify-self: flex-end; 
+    width: fit-content;
+    p {
+        width: fit-content;
+    }
+}
+
+.buttons {
+    grid-area: buttons;
+}
+
+.extraText {
+    grid-area: extraText;
+}
+
 
 .price {
     display: flex;
@@ -58,5 +109,26 @@ section {
         align-self: center;
         width: 24px;
         margin: 0;
+    }
+}
+
+.bigButtons {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 334px;
+    button {
+        height: 64px;
+        border-radius: 32px;
+        border: none;
+        &:nth-of-type(1) {
+            font-family: "fontNike";
+            background-color: black;
+            color: white;
+            font-size: 1.15em;
+        }
+        &:nth-of-type(2) {
+            background-color: var(--lightGray);
+        }
     }
 }

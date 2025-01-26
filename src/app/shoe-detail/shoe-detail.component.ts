@@ -10,11 +10,12 @@ import { UserService } from '../services/user.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
+import { ModalComponent } from "../modal/modal.component";
 
 @Component({
   selector: 'app-shoe-detail',
   standalone: true,
-  imports: [FormsModule, RouterLink, CommonModule, HeaderComponent, FooterComponent],
+  imports: [FormsModule, RouterLink, CommonModule, HeaderComponent, FooterComponent, ModalComponent],
   templateUrl: './shoe-detail.component.html',
   styleUrl: './shoe-detail.component.scss'
 })
@@ -29,7 +30,8 @@ shoeCart:IShoeCart = {
   color: undefined,
   size: undefined,
   quantity: undefined,
-  price: undefined
+  price: undefined,
+  imageIcon: undefined
 }
 
 shoe:IShoe = {
@@ -49,6 +51,7 @@ sizes:number[]
 chosenColor:string = ""
 chosenSize:string = ""
 shoeName:string
+modalActive:boolean = false
 
 ngOnInit () {
   window.scrollTo(0, 0)
@@ -61,7 +64,6 @@ ngOnInit () {
   } else {
     console.log("not logged in ")
   }
-
 
   const id = this.route.snapshot.paramMap.get("id");
   this.productService.getDetailShoe(id).subscribe({
@@ -85,8 +87,7 @@ addToCart () {
   this.shoeCart.shoeId = this.route.snapshot.paramMap.get("id")
   this.shoeCart.quantity = 1
   this.shoeCart.price = this.shoe.prezzo
-
-  alert(`${this.shoeCart.shoeName} aggiunto al carrello`)
+  this.shoeCart.imageIcon = this.shoe.immagini[0]
 
   if (this.isLoggedIn) {
     this.cartService.updateQuantity(this.shoeCart, "add").subscribe({
@@ -110,7 +111,22 @@ addToCart () {
     localStorage.setItem("cart", JSON.stringify(guestCart))
     this.headerComponent.getShoeQuantity()
   }
+  this.modalActive = true
+  setTimeout(() => {
+    this.modalActive = false 
+  }, 500000);
+}
 
+isImage(url: string): boolean {
+  return /\.(jpg|jpeg|png|gif)$/i.test(url);
+}
+
+isVideo(url: string): boolean {
+  return /\.(mp4|webm|ogg)$/i.test(url);
+}
+
+closeModal () {
+  this.modalActive = false
 }
 
 }

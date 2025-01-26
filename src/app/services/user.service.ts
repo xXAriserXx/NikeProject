@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {jwtDecode} from 'jwt-decode';
+import { IUser } from '../../../server/models/IUser';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,10 @@ export class UserService {
     return this.http.post(`${this.apiLogin}/login`, userCredentials)
   }
 
-  getUserData() : any {
+  getUserData() : IUser {
     const token = localStorage.getItem("authToken");
     if (token) {
-      const decoded = jwtDecode(token);
+      const decoded:IUser = jwtDecode(token);
       return decoded; // this contains the user data
     }
     return null;

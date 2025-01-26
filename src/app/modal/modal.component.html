@@ -1,0 +1,19 @@
+<div class="container">
+    <p>Aggiunto al carrello</p>
+    <div class="shoeDetails">
+        <img src="{{shoeImage}}" alt="">
+        <div>
+            <p>{{shoeData.shoeName}}</p>
+            <p>Taglia/misura EU {{shoeData.size}}</p>
+            <p>{{shoeData.price}}</p>
+        </div>
+    </div>
+  <div class="buttons">
+    <button class="cartButton" [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">
+      Visualizza il carrello ({{quantity}}) 
+    </button>
+    <button class="paymentButton" [routerLink]="['/payment']">Pagamento</button>
+  </div>
+</div>
+
+<div class="overlay" (click)="close()"></div>

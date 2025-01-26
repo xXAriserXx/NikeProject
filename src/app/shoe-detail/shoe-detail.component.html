@@ -1,10 +1,16 @@
 <app-header></app-header>
+<app-modal (closeEvent)="closeModal()" *ngIf="modalActive" [shoeImage]="shoe.immagini[0]" [shoeData]="shoeCart"></app-modal>
 
 <div class="spacer"></div>
 
 <div class="container">
   <div class="left">
-    <img [src]="shoe.immagini[0]" alt="">
+    <div class="conScroll">
+
+    </div>
+    <div class="mainImage">
+      <img [src]="shoe.immagini[0]" alt="">
+    </div>
   </div>
 
   <div class="right">

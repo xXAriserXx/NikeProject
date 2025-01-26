@@ -306,7 +306,7 @@
                 <input type="text" placeholder="Cerca">
             </div> <!--contains the search bar-->
             <div class="conHeartCart">
-                <img src="icons/heart.svg" alt="">
+                <img class="heartIcon" src="icons/heart.svg" alt="">
                 <div class="cart" [routerLink]="isLoggedIn ? ['/cart', user._id] : ['/cart']" alt="">
                     <img  src="icons/cart.svg" >
                     @if (quantity > 0) {
