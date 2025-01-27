@@ -3,12 +3,11 @@
 }
 
 section {
-    border: 1px solid orange;
     display: flex;
     width: 1100px;
     margin: 0 auto;
     justify-content: space-between;
-    gap: 10px;
+    gap: 30px;
 }
 
 h2 {
@@ -17,17 +16,15 @@ h2 {
 }
 
 .left {
-    border: 1px solid green;
     width: 100%;
 }
 
-.right {
-    border: 1px solid red;
-}
+
 
 .divShoes {
+    border-bottom: 1px solid var(--grayPressed2);
+    margin-bottom: 20px;
     width: 100%;
-    border: 1px solid black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
@@ -63,28 +60,16 @@ h2 {
     }
 }
 
-.buttons {
-    grid-area: buttons;
-}
-
 .extraText {
     grid-area: extraText;
 }
 
-
-.price {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 .buttons {
+    grid-area: buttons;
     display: flex;
     border: 1px solid var(--grayPressed2);
     border-radius: 20px;
-    width: 104px;
+    width: fit-content;
     height: 40px;
     button {
         cursor: pointer;
@@ -112,12 +97,94 @@ h2 {
     }
 }
 
+
+.right {
+}
+
+
+.promoCode {
+    cursor: pointer;
+    user-select: none;
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+#promoInput {
+    display: none; 
+}
+
+#promoInput:checked ~ #textInputPromo {
+    max-height: 150px;
+}
+
+#promoInput:checked ~ label img {
+    transform: rotate(180deg);
+    transition: 0.2s;
+}
+
+#textInputPromo {
+    margin-top: 5px;
+    max-height: 0;
+    height: fit-content;
+    overflow: hidden;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    input {
+        height: 34px;
+        border-radius: 10px;
+        border: 1px solid var(--grayText);
+        padding: none;
+        width: 100%;
+        &:focus {
+            outline: none;
+        }
+    }
+    button {
+        cursor: pointer;
+        padding: 0;
+        font-family: "fontNike";
+        height: 37px; 
+        border-radius: 50px;
+        border: 1px solid var(--grayText);
+        outline: none;
+        background-color: white;
+        width: 150px;
+    }
+}
+
+
+
+.subTotal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.deliveryCost {
+    display: flex;
+    justify-content: space-between;
+    > p {
+        max-width: 70%;
+    }
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+}
+
 .bigButtons {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     width: 334px;
+    gap: 12px;
     button {
+        cursor: pointer;
         height: 64px;
         border-radius: 32px;
         border: none;
@@ -129,6 +196,7 @@ h2 {
         }
         &:nth-of-type(2) {
             background-color: var(--lightGray);
+            border: 1px solid var(--grayPressed2);
         }
     }
 }

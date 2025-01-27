@@ -5,11 +5,16 @@
 
 <div class="container">
   <div class="left">
-    <div class="conScroll">
-
+    <div class="conScroll" >
+      <ng-container  *ngFor="let image of shoe.immagini; let i = index">
+        <div (mouseenter)="test(i)" class="image" *ngIf="i % 2 !== 0">
+          <img [src]="image" alt="">
+        </div>
+      </ng-container>
     </div>
     <div class="mainImage">
-      <img [src]="shoe.immagini[0]" alt="">
+      <img *ngIf="isImage(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" alt="media" />
+      <video *ngIf="isVideo(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" autoplay loop></video>
     </div>
   </div>
 
@@ -17,17 +22,30 @@
     <h1>{{shoe.nome}}</h1>
     <p>{{shoe.prezzo}}</p>
 
-  <div class="options">
+  <div class="options colors">
     @for (color of colors; track color) {
       <input [(ngModel)]="chosenColor" id="{{color}}" type="radio" name="shoeColor" value="{{color}}">
       <label for="{{color}}" class="colorLabel {{color}}"></label>
     }
   </div>
 
+  <div class="textSizes">
+    <div>
+      <p>Seleziona la taglia/misura</p>   
+    </div>
+    <div>
+      <p>
+        Guida alle taglie e alle misure
+      </p>
+      <img src="icons/size.svg" alt="">
+    </div>
+  </div>
+
+
   <div class="options sizes">
     @for (size of sizes; track size) {
       <input [(ngModel)]="chosenSize" id="{{size}}" type="radio" name="shoeSize" value="{{size}}"> 
-      <label for="{{size}}" class="sizeLabel">{{size}}</label>
+      <label for="{{size}}" class="sizeLabel">EU {{size}}</label>
     }
   </div>
 

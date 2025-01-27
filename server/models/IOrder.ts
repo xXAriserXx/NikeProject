@@ -1,4 +1,3 @@
-import { ICart } from "./ICart";
 import { IShoeCart } from "./IShoeCart";
 
 export interface IOrder {

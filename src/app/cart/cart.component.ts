@@ -7,11 +7,13 @@ import { UserService } from '../services/user.service';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
+import { EuroPipe } from '../pipes/euro.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, RouterLink, HeaderComponent, FooterComponent],
+  imports: [CommonModule, CurrencyPipe, RouterLink, HeaderComponent, FooterComponent, EuroPipe, FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -22,6 +24,9 @@ export class CartComponent {
   cart:ICart = {userId: undefined, shoes: []}
   isLoggedIn: boolean
   totalPrice: number
+  couponCode: string = ""
+  validCoupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
+  priceAfterDiscount: number
   
 
   ngOnInit () { 
@@ -48,6 +53,7 @@ export class CartComponent {
     }
 
     this.calcTotPrice(this.cart)
+    this.priceAfterDiscount = this.totalPrice
   }
   
   updateQuantity (shoe, action) {
@@ -67,7 +73,9 @@ export class CartComponent {
       localStorage.setItem("cart", JSON.stringify(this.cart))
       this.calcTotPrice(this.cart)
     }
-  
+
+    this.applyCoupon()
+
   }
 
 calcTotPrice(cart: ICart) {
@@ -76,4 +84,13 @@ calcTotPrice(cart: ICart) {
 }
 
 
+applyCoupon () {
+  if (this.validCoupons.some(validCoupon => this.couponCode === validCoupon.code)) {
+    const discount:number = this.validCoupons.find(validCoupon => this.couponCode === validCoupon.code).discount
+    this.priceAfterDiscount = this.totalPrice - ((this.totalPrice * discount) / 100)
+    console.log(this.priceAfterDiscount)
+  }
 }
+
+}
+

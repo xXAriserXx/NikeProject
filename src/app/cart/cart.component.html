@@ -27,6 +27,9 @@
                 <button (click)="updateQuantity(shoe, 'increase')">
                     <img src="icons/plus.svg" alt="">
                 </button>
+                <button (click)="addToFavorites()">
+                    <img src="icons/heart.svg" alt="">
+                </button>
             </div>
         <div class="extraText">
             <p>Ritiro gratuito in negozio</p>
@@ -37,15 +40,32 @@
 
     <div class="right">
         <h2>Riepilogo</h2>
-        <p>Hai un codice promozionale</p>
-        <p>Subtotale</p>
-        <p>Costi di spedizione e gestione previsti</p>
+        <div class="promoCode">
+            <input type="checkbox" id="promoInput">
+            <label for="promoInput">
+                Hai un codice promozionale?
+                <img src="icons/down.svg" alt="">
+            </label>
+            <div id="textInputPromo">
+                <input [(ngModel)]="couponCode" type="text" id="couponCode">
+                <button (click)="applyCoupon()">Applica</button>
+            </div>
+        </div>
+        <div class="subTotal">
+            <p>Subtotale</p>
+            <p>{{totalPrice | euro}}</p>
+        </div>
+        <div class="deliveryCost">
+            <p>Costi di spedizione e gestione previsti</p>
+            <p>Gratis</p>
+        </div>
+
         <div class="price">
-            <div>Prezzo finale: {{totalPrice | currency: "EUR"}}</div>
-            <button [routerLink]="'/payment'" [disabled]="totalPrice === 0">Vai al pagamento</button>
+            <p>Totale</p>
+            <p>Prezzo finale: {{priceAfterDiscount | euro}}</p>
         </div>
         <div class="bigButtons">
-            <button>Vai al pagamento</button>
+            <button [routerLink]="'/payment'" [disabled]="totalPrice === 0">Vai al pagamento</button>
             <button>
                 <img src="icons/PayPal.svg" alt="">
             </button>

@@ -52,6 +52,7 @@ chosenColor:string = ""
 chosenSize:string = ""
 shoeName:string
 modalActive:boolean = false
+currentImage:number = 2
 
 ngOnInit () {
   window.scrollTo(0, 0)
@@ -127,6 +128,11 @@ isVideo(url: string): boolean {
 
 closeModal () {
   this.modalActive = false
+}
+
+test (i) {
+  console.log("test", i)
+  this.currentImage = i + 1
 }
 
 }
