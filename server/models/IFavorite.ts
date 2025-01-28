@@ -1,6 +1,6 @@
-import { IShoeCart } from "./IShoeCart"
+import { IShoeFav } from "./IShoeFav"
 
 export interface IFavorite {
     userId: string,
-    favoriteItems: IShoeCart[]
+    favoriteItems: IShoeFav[]
 }

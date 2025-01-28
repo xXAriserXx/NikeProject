@@ -7,6 +7,8 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
+    font-family: "fontNikeMedium2";
 }
 
 .left {
@@ -24,6 +26,21 @@
 
 .image {
     height: 60px;
+    position: relative;
+    &::after {
+        content: "";
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 60px;
+        width: 60px;
+        background-color: rgba(0, 0, 0, 0.257);
+        border-radius: 3px;
+        opacity: 0
+    }
+    &:hover::after {
+        opacity: 1;
+    }
 }
 
 .image img {
@@ -48,6 +65,25 @@
     display: flex;
     flex-direction: column;
     width: 376px;
+    gap: 20px;
+}
+
+.shoeName {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.textSizes {
+    display: flex;
+    div:nth-of-type(2) {
+        display: flex;
+        img {
+            width: 18px;
+        }
+        p {
+            font-size: 0.90em;
+        }
+    }
 }
 
 button {
@@ -62,16 +98,25 @@ button {
 .buttons {
     display: flex;
     flex-wrap: wrap;
+    gap: 12px;
 }
 
 .buyButton {
     background-color: black;
     color: white;
+    cursor: pointer;
+    font-size: 1.1em;
 }
 
-.cartButton {
+.favoriteButton {
+    font-size: 1.1em;
     background-color: white;
     border: 1px solid var(--grayPressed2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .options {
@@ -159,6 +204,14 @@ button {
     background: linear-gradient(to right, black 50%, red 50%);
 }
 
+.Grigio\/Arancione {
+    background: linear-gradient(to right, gray 50%, orange 50%);
+}
+
+.Blu\/Verde {
+    background: linear-gradient(to right, blue 50%, green 50%);
+}
+
 .colors {
     gap: 5px;
 }
@@ -168,7 +221,23 @@ input {
     display: none;
 }
 
-input[type="radio"]:checked + label {
+.colorLabel {
+    position: relative;
+}
+
+.colorLabel::after {
+    content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="white" d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.393 7.5l-5.643 5.784-2.644-2.506-1.856 1.858 4.5 4.364 7.5-7.643-1.857-1.857z"/></svg>');
+
+    opacity: 0;
+    position: absolute;
+}
+
+input[type="radio"]:checked + .sizeLabel {
     box-shadow: inset 0 0 0 1px black;
+}
+
+input[type="radio"]:checked + label::after {
+    opacity: 1;
+    transition: 0.2s;
 }
 

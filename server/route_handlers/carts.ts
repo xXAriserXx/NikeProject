@@ -18,8 +18,6 @@ router.get("/:id", tokenRequired, async (req, res) => {
     }
 })
 
-
-
 router.patch("/update-quantity", tokenRequired, async (req:CustomRequest, res) => {
     try {
         const { action, shoe } = req.body

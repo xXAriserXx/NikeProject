@@ -2,19 +2,21 @@
     height: 96px;
 }
 
-.containerScarpa {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-    height: 80px;
-}
 
 .containerGrande {
     display: flex;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 100%;
+    gap: 10px;
+}
+
+.containerScarpa {
+    border-radius: 10px;
+}
+
+.image {
+    height: 508px;
+    width: 508px;
 }
 
 

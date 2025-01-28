@@ -19,9 +19,10 @@
   </div>
 
   <div class="right">
-    <h1>{{shoe.nome}}</h1>
-    <p>{{shoe.prezzo}}</p>
+    <p class="shoeName">{{shoe.nome}}</p>
+    <p>{{shoe.prezzo | euro}}</p>
 
+    <p>Seleziona il colore</p>
   <div class="options colors">
     @for (color of colors; track color) {
       <input [(ngModel)]="chosenColor" id="{{color}}" type="radio" name="shoeColor" value="{{color}}">
@@ -34,10 +35,10 @@
       <p>Seleziona la taglia/misura</p>   
     </div>
     <div>
+      <img src="icons/size.svg" alt="">
       <p>
         Guida alle taglie e alle misure
       </p>
-      <img src="icons/size.svg" alt="">
     </div>
   </div>
 
@@ -54,7 +55,10 @@
     <button class="buyButton" (click)="addToCart()" [disabled]="!chosenColor || !chosenSize">
       Aggiungi al Carrello
     </button>
-    <button class="cartButton" [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">Vai al carrello</button>
+    <button class="favoriteButton" (click)="addToFavorites()">
+      Aggiungi ai preferiti
+      <img src="icons/heart.svg" alt="">
+    </button>
   </div>
 
   </div>

@@ -19,6 +19,13 @@
             </div>
         </div>
     </div>
+    <div>
+        <div *ngFor="let favorite of favorites">
+            <div *ngFor="let shoe of favorite.favoriteItems">
+                <p>{{shoe.shoeName}}</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <button (click)="logOut()">LougOut</button>

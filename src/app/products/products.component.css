@@ -1,1 +1,1 @@
-.spacer{height:96px}.containerScarpa{border:1px solid #000;border-radius:10px;padding:10px;margin:10px;width:200px;height:80px}.containerGrande{display:flex;flex-wrap:wrap;width:70vw}app-filter{display:block;width:fit-content}section{display:flex}
+.spacer{height:96px}.containerGrande{display:flex;flex-wrap:wrap;width:100%;gap:10px}.containerScarpa{border-radius:10px}.image{height:508px;width:508px}app-filter{display:block;width:fit-content}section{display:flex}

@@ -6,6 +6,8 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { FavoritesService } from '../services/favorites.service';
+import { IFavorite } from '../../../server/models/IFavorite';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,15 +18,24 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  constructor (private orderService:OrderService, private userService:UserService, private router:Router) { }
+  constructor (private orderService:OrderService, private userService:UserService, private router:Router, private favoritesService:FavoritesService) { }
 
   orders:IOrder
+  favorites:IFavorite
     
   ngOnInit () {
       this.orderService.getOrders().subscribe({
         next: (data:any) => {
-          console.log(data)
           this.orders = data.ordersFound
+        },
+        error: (error) => {console.log(error)},
+        complete: () => {}
+      })
+
+      this.favoritesService.getFavorites().subscribe({
+        next: (response:any) => {
+          console.log(response.favoritesFound)
+          this.favorites = response.favoritesFound
         },
         error: (error) => {console.log(error)},
         complete: () => {}

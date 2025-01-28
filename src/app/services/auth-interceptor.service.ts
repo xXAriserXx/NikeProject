@@ -7,7 +7,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authToken = localStorage.getItem('authToken');
 
-    if (authToken  && req.url.includes('/users') || req.url.includes('/cart') || req.url.includes('/dashboard') || req.url.includes('/orders')) {
+    if (authToken  && req.url.includes('/users') || req.url.includes('/cart') || req.url.includes('/dashboard') || req.url.includes('/orders') || req.url.includes("/favorites")) {
       const clonedRequest = req.clone({
         setHeaders: { Authorization: `Bearer ${authToken}` }
       });

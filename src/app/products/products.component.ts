@@ -6,11 +6,12 @@ import { RouterLink } from '@angular/router';
 import { FilterComponent } from '../filter/filter.component';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
+import { EuroPipe } from '../pipes/euro.pipe';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink, FilterComponent, HeaderComponent, FooterComponent],
+  imports: [RouterLink, FilterComponent, HeaderComponent, FooterComponent, EuroPipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

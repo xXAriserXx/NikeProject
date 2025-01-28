@@ -14,10 +14,6 @@ export class CartService {
   apiCart = "http://localhost:3000/carts"
 
 
-  createCart (userId) { //this method should be called when the user registers
-    return this.http.post(this.apiCart, {userId: userId, shoes: []})
-  }
-
   getUserCart (userId) { //this gets the user cart
     return this.http.get(`${this.apiCart}/${userId}`)
   }

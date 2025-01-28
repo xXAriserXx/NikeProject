@@ -6,9 +6,10 @@
 
     <div class="containerGrande">
         @for (shoe of allShoes; track shoe) {
-            <div class="containerScarpa">
-                <p [routerLink]="['/shoeDetail', shoe._id]">{{shoe.nome}}</p>
-                <p>{{shoe.prezzo}}</p>
+            <div [routerLink]="['/shoeDetail', shoe._id]" class="containerScarpa">
+                <img class="image" src="{{shoe.immagini[0]}}" alt="">
+                <p >{{shoe.nome}}</p>
+                <p>{{shoe.prezzo | euro}}</p>
             </div>
         }
     </div>

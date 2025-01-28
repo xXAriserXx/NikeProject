@@ -1,8 +1,7 @@
-import express, { Request, Response } from "express";
-import { carts, users } from "../db";
+import express from "express";
+import { carts, favorites, users } from "../db";
 import { createHash } from "crypto";
 import jwt from "jsonwebtoken";
-import { ObjectId } from "mongodb";
 import { secretKey } from "../app";
 
 const router = express.Router();
@@ -31,9 +30,14 @@ router.post("/register", async (req, res) => {
         const cart = await carts.insertOne({
             userId: String(user.insertedId),
             shoes: []
+        });
+
+        const favorite = await favorites.insertOne({
+            userId: String(user.insertedId),
+            favoriteItems: []
         })
         res.send({
-            msg: `Utente ${user.insertedId} creato, anche il suo carrello e' stato creato ${cart.insertedId}`
+            msg: `Utente ${user.insertedId} creato, anche il suo carrello e' stato creato ${cart.insertedId} e anche i suoi preferiti`
         });
     }
     catch (e) {

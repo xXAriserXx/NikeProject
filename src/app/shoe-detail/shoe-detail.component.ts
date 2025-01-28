@@ -11,17 +11,20 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ModalComponent } from "../modal/modal.component";
+import { EuroPipe } from '../pipes/euro.pipe';
+import { FavoritesService } from '../services/favorites.service';
+import { IShoeFav } from '../../../server/models/IShoeFav';
 
 @Component({
   selector: 'app-shoe-detail',
   standalone: true,
-  imports: [FormsModule, RouterLink, CommonModule, HeaderComponent, FooterComponent, ModalComponent],
+  imports: [FormsModule, RouterLink, CommonModule, HeaderComponent, FooterComponent, ModalComponent, EuroPipe],
   templateUrl: './shoe-detail.component.html',
   styleUrl: './shoe-detail.component.scss'
 })
 export class ShoeDetailComponent {
 
-constructor (private productService:ProductService, private route: ActivatedRoute, private cartService: CartService, private checkLogService:CheckLogService, private userService:UserService) { }
+constructor (private productService:ProductService, private route: ActivatedRoute, private cartService: CartService, private checkLogService:CheckLogService, private userService:UserService, private favoritesService:FavoritesService) {}
 @ViewChild(HeaderComponent) headerComponent: HeaderComponent;
 
 shoeCart:IShoeCart = {
@@ -31,6 +34,12 @@ shoeCart:IShoeCart = {
   size: undefined,
   quantity: undefined,
   price: undefined,
+  imageIcon: undefined
+}
+
+shoeFavorite:IShoeFav = {
+  shoeName: undefined,
+  shoeId: undefined,
   imageIcon: undefined
 }
 
@@ -74,6 +83,7 @@ ngOnInit () {
       this.colors = data.colori_disponibili
       this.sizes = data.taglie_disponibili
       this.shoeName = data.nome
+      this.chosenColor = this.colors[0]
     },
     error:() => {},
     complete:() => {}
@@ -118,12 +128,23 @@ addToCart () {
   }, 500000);
 }
 
+addToFavorites () {
+  this.shoeFavorite.shoeName = this.shoeName
+  this.shoeFavorite.shoeId = this.route.snapshot.paramMap.get("id")
+  this.shoeFavorite.imageIcon = this.shoe.immagini[0]
+  this.favoritesService.addFavorite(this.shoeFavorite).subscribe({
+    next: (data) => {console.log(data)},
+    error: (error) => {console.log(error)},
+    complete: ()=> {}
+  })
+}
+
 isImage(url: string): boolean {
   return /\.(jpg|jpeg|png|gif)$/i.test(url);
 }
 
 isVideo(url: string): boolean {
-  return /\.(mp4|webm|ogg)$/i.test(url);
+  return /\.(mp4|webm|ogg|mov)$/i.test(url);
 }
 
 closeModal () {
