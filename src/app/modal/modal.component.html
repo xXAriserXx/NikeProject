@@ -10,7 +10,7 @@
     </div>
   <div class="buttons">
     <button class="cartButton" [routerLink]="isLoggedIn ? ['/cart', userId] : ['/cart']">
-      Visualizza il carrello ({{quantity}}) 
+      Visualizza il carrello ({{quantity + 1}}) 
     </button>
     <button class="paymentButton" [routerLink]="['/payment']">Pagamento</button>
   </div>

@@ -18,12 +18,12 @@ export class ProductService {
   }
 
   getNewArrivals () {
-    return  this.http.get(`${this.apiShoes}/newArrivals`)
+    return this.http.get(`${this.apiShoes}/newArrivals`)
   }
 
   getBestSellers () {
 
-    return  this.http.get(`${this.apiShoes}/bestSellers`)
+    return this.http.get(`${this.apiShoes}/bestSellers`)
   }
 
 
@@ -72,9 +72,10 @@ export class ProductService {
     );
   }
 
-  getQuantity () {
-    
+  getRandomShoes() {
+    return this.http.get(`${this.apiShoes}/random`)
   }
+
 
 ;
 

@@ -7,7 +7,7 @@
   <div class="left">
     <div class="conScroll" >
       <ng-container  *ngFor="let image of shoe.immagini; let i = index">
-        <div (mouseenter)="test(i)" class="image" *ngIf="i % 2 !== 0">
+        <div (mouseenter)="hoverImage(i)" class="image" *ngIf="i % 2 !== 0">
           <img [src]="image" alt="">
         </div>
       </ng-container>

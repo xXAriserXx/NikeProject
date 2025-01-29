@@ -2,7 +2,17 @@ import express from "express"
 import { shoes } from "../db"
 import { ObjectId } from "mongodb"
 
-const router = express()
+const router = express.Router()
+
+router.get("/random", async (req, res) => {
+    try {
+        const randomShoes = await shoes.aggregate([{ $sample: { size: 5 } }]).toArray();
+        res.send(randomShoes)
+    } 
+    catch {
+        res.status(500).send("Server error")
+    }
+})
 
 router.get("/", async (req, res) => {
     try {
@@ -68,6 +78,8 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+
+
 router.patch('/remove-id', async (req, res) => {
   try {
     await shoes.updateMany(
@@ -79,5 +91,7 @@ router.patch('/remove-id', async (req, res) => {
     res.status(500).send('Error removing ID field');
   }
 });
+
+
 
 export const shoesWs = router

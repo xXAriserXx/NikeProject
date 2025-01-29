@@ -42,9 +42,9 @@ router.patch("/remove", tokenRequired, async (req: CustomRequest, res) => {
             { userId: userId },
             { $pull: { favoriteItems: favoriteToRemove } }
         );
-        res.status(200).send({ message: "Favorite added successfully" });
+        res.status(200).send({ message: "Favorite removed successfully"});
     } catch (err) {
-        res.status(500).send({ message: "Error adding favorite" });
+        res.status(500).send({ message: "Error removing favorite" });
     }
 });
 

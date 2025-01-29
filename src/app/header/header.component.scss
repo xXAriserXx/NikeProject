@@ -292,3 +292,583 @@ app-search-bar {
     height: 24px;
 }
 
+#barraHamburger {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 320px;
+    background-color: white;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+
+
+    .x {
+        align-self: flex-end;
+    }
+
+    .wrap {
+        padding: 20px;
+    }
+
+    a {
+        border: 1px solid white;
+        width: fit-content;
+        height: fit-content;
+        display: block;
+        display: flex;
+
+    }
+}
+
+input {
+}
+
+.back {
+    display: none;
+}
+
+.menuHamburger {
+    div {
+        div {
+            p {
+                display: none;
+            }
+            label {
+                display: none;
+            }
+        }
+    }
+
+}
+
+#novita:checked ~ div:nth-of-type(1) div label {
+    display: block;
+}
+
+#novita:checked ~ div label {
+    display: none;
+}
+
+#novita:checked ~ div:nth-of-type(1) label:nth-of-type(2) {
+    display: block;
+}
+
+#novita:checked ~ div:nth-of-type(1) div label:nth-of-type(2) {
+    display: none;
+}
+
+#novitaEvidenza:checked ~ div:nth-of-type(1) div:nth-of-type(1) > p{
+    display: block;
+}
+
+#novitaEvidenza:checked ~ div:nth-of-type(1) div:nth-of-type(1) label:nth-of-type(2) {
+    display: block;
+}
+
+#novitaEvidenza:checked ~ div:nth-of-type(1) div label{
+    display: none;
+}
+
+#novitaEvidenza:checked ~ div:nth-of-type(1) label:nth-of-type(2) {
+    display: none;
+}
+
+//2
+#novitaIcone:checked ~ div:nth-of-type(1) div:nth-of-type(2) > p{
+    display: block;
+}
+
+#novitaIcone:checked ~ div:nth-of-type(1) div:nth-of-type(2) label:nth-of-type(2) {
+    display: block;
+}
+
+#novitaIcone:checked ~ div:nth-of-type(1) div label{
+    display: none;
+}
+
+#novitaIcone:checked ~ div:nth-of-type(1) label:nth-of-type(2) {
+    display: none;
+}
+//done2
+
+//3
+
+#novitaSport:checked ~ div:nth-of-type(1) div:nth-of-type(3) > p{
+    display: block;
+}
+
+#novitaSport:checked ~ div:nth-of-type(1) div:nth-of-type(3) label:nth-of-type(2) {
+    display: block;
+}
+
+#novitaSport:checked ~ div:nth-of-type(1) div label{
+    display: none;
+}
+
+#novitaSport:checked ~ div:nth-of-type(1) label:nth-of-type(2) {
+    display: none;
+}
+//done3
+
+//4
+
+#novitaTendenza:checked ~ div:nth-of-type(1) div:nth-of-type(4) > p{
+    display: block;
+}
+
+#novitaTendenza:checked ~ div:nth-of-type(1) div:nth-of-type(4) label:nth-of-type(2) {
+    display: block;
+}
+
+#novitaTendenza:checked ~ div:nth-of-type(1) div label{
+    display: none;
+}
+
+#novitaTendenza:checked ~ div:nth-of-type(1) label:nth-of-type(2) {
+    display: none;
+}
+//done 4
+
+// UOMO
+#uomo:checked ~ div:nth-of-type(2) div label {
+    display: block;
+}
+
+#uomo:checked ~ div label {
+    display: none;
+}
+
+#uomo:checked ~ div:nth-of-type(2) label:nth-of-type(2) {
+    display: block;
+}
+
+#uomo:checked ~ div:nth-of-type(2) div label:nth-of-type(2) {
+    display: none;
+}
+
+#uomoEvidenza:checked ~ div:nth-of-type(2) div:nth-of-type(1) > p{
+    display: block;
+}
+
+#uomoEvidenza:checked ~ div:nth-of-type(2) div:nth-of-type(1) label:nth-of-type(2) {
+    display: block;
+}
+
+#uomoEvidenza:checked ~ div:nth-of-type(2) div label{
+    display: none;
+}
+
+#uomoEvidenza:checked ~ div:nth-of-type(2) label:nth-of-type(2) {
+    display: none;
+}
+
+//2
+#uomoScarpe:checked ~ div:nth-of-type(2) div:nth-of-type(2) > p{
+    display: block;
+}
+
+#uomoScarpe:checked ~ div:nth-of-type(2) div:nth-of-type(2) label:nth-of-type(2) {
+    display: block;
+}
+
+#uomoScarpe:checked ~ div:nth-of-type(2) div label{
+    display: none;
+}
+
+#uomoScarpe:checked ~ div:nth-of-type(2) label:nth-of-type(2) {
+    display: none;
+}
+//done2
+
+//3
+
+#uomoAbbigliamento:checked ~ div:nth-of-type(2) div:nth-of-type(3) > p{
+    display: block;
+}
+
+#uomoAbbigliamento:checked ~ div:nth-of-type(2) div:nth-of-type(3) label:nth-of-type(2) {
+    display: block;
+}
+
+#uomoAbbigliamento:checked ~ div:nth-of-type(2) div label{
+    display: none;
+}
+
+#uomoAbbigliamento:checked ~ div:nth-of-type(2) label:nth-of-type(2) {
+    display: none;
+}
+//done3
+
+//4
+
+#uomoSport:checked ~ div:nth-of-type(2) div:nth-of-type(4) > p{
+    display: block;
+}
+
+#uomoSport:checked ~ div:nth-of-type(2) div:nth-of-type(4) label:nth-of-type(2) {
+    display: block;
+}
+
+#uomoSport:checked ~ div:nth-of-type(2) div label{
+    display: none;
+}
+
+#uomoSport:checked ~ div:nth-of-type(2) label:nth-of-type(2) {
+    display: none;
+}
+//done 4
+
+//5
+
+#uomoAccessori:checked ~ div:nth-of-type(2) div:nth-of-type(5) > p{
+    display: block;
+}
+
+#uomoAccessori:checked ~ div:nth-of-type(2) div:nth-of-type(5) label:nth-of-type(2) {
+    display: block;
+}
+
+#uomoAccessori:checked ~ div:nth-of-type(2) div label{
+    display: none;
+}
+
+#uomoAccessori:checked ~ div:nth-of-type(2) label:nth-of-type(2) {
+    display: none;
+}
+//done 5
+
+//Done Uomo
+
+//Donna 
+#donna:checked ~ div:nth-of-type(3) div label {
+    display: block;
+}
+
+#donna:checked ~ div label {
+    display: none;
+}
+
+#donna:checked ~ div:nth-of-type(3) label:nth-of-type(2) {
+    display: block;
+}
+
+#donna:checked ~ div:nth-of-type(3) div label:nth-of-type(2) {
+    display: none;
+}
+
+#donnaEvidenza:checked ~ div:nth-of-type(3) div:nth-of-type(1) > p{
+    display: block;
+}
+
+#donnaEvidenza:checked ~ div:nth-of-type(3) div:nth-of-type(1) label:nth-of-type(2) {
+    display: block;
+}
+
+#donnaEvidenza:checked ~ div:nth-of-type(3) div label{
+    display: none;
+}
+
+#donnaEvidenza:checked ~ div:nth-of-type(3) label:nth-of-type(2) {
+    display: none;
+}
+
+//2
+#donnaScarpe:checked ~ div:nth-of-type(3) div:nth-of-type(2) > p{
+    display: block;
+}
+
+#donnaScarpe:checked ~ div:nth-of-type(3) div:nth-of-type(2) label:nth-of-type(2) {
+    display: block;
+}
+
+#donnaScarpe:checked ~ div:nth-of-type(3) div label{
+    display: none;
+}
+
+#donnaScarpe:checked ~ div:nth-of-type(3) label:nth-of-type(2) {
+    display: none;
+}
+//done2
+
+//3
+
+#donnaAbbigliamento:checked ~ div:nth-of-type(3) div:nth-of-type(3) > p{
+    display: block;
+}
+
+#donnaAbbigliamento:checked ~ div:nth-of-type(3) div:nth-of-type(3) label:nth-of-type(2) {
+    display: block;
+}
+
+#donnaAbbigliamento:checked ~ div:nth-of-type(3) div label{
+    display: none;
+}
+
+#donnaAbbigliamento:checked ~ div:nth-of-type(3) label:nth-of-type(2) {
+    display: none;
+}
+//done3
+
+//4
+
+#donnaSport:checked ~ div:nth-of-type(3) div:nth-of-type(4) > p{
+    display: block;
+}
+
+#donnaSport:checked ~ div:nth-of-type(3) div:nth-of-type(4) label:nth-of-type(2) {
+    display: block;
+}
+
+#donnaSport:checked ~ div:nth-of-type(3) div label{
+    display: none;
+}
+
+#donnaSport:checked ~ div:nth-of-type(3) label:nth-of-type(2) {
+    display: none;
+}
+//done 4
+
+//5
+
+#donnaAccessori:checked ~ div:nth-of-type(3) div:nth-of-type(5) > p{
+    display: block;
+}
+
+#donnaAccessori:checked ~ div:nth-of-type(3) div:nth-of-type(5) label:nth-of-type(2) {
+    display: block;
+}
+
+#donnaAccessori:checked ~ div:nth-of-type(3) div label{
+    display: none;
+}
+
+#donnaAccessori:checked ~ div:nth-of-type(3) label:nth-of-type(2) {
+    display: none;
+}
+//Done Donna
+
+
+//Kids
+#kids:checked ~ div:nth-of-type(4) div label {
+    display: block;
+}
+
+#kids:checked ~ div label {
+    display: none;
+}
+
+#kids:checked ~ div:nth-of-type(4) label:nth-of-type(2) {
+    display: block;
+}
+
+#kids:checked ~ div:nth-of-type(4) div label:nth-of-type(2) {
+    display: none;
+}
+
+#kidsEvidenza:checked ~ div:nth-of-type(4) div:nth-of-type(1) > p{
+    display: block;
+}
+
+#kidsEvidenza:checked ~ div:nth-of-type(4) div:nth-of-type(1) label:nth-of-type(2) {
+    display: block;
+}
+
+#kidsEvidenza:checked ~ div:nth-of-type(4) div label{
+    display: none;
+}
+
+#kidsEvidenza:checked ~ div:nth-of-type(4) label:nth-of-type(2) {
+    display: none;
+}
+
+//2
+#kidsScarpe:checked ~ div:nth-of-type(4) div:nth-of-type(2) > p{
+    display: block;
+}
+
+#kidsScarpe:checked ~ div:nth-of-type(4) div:nth-of-type(2) label:nth-of-type(2) {
+    display: block;
+}
+
+#kidsScarpe:checked ~ div:nth-of-type(4) div label{
+    display: none;
+}
+
+#kidsScarpe:checked ~ div:nth-of-type(4) label:nth-of-type(2) {
+    display: none;
+}
+//done2
+
+//3
+
+#kidsAbbigliamento:checked ~ div:nth-of-type(4) div:nth-of-type(3) > p{
+    display: block;
+}
+
+#kidsAbbigliamento:checked ~ div:nth-of-type(4) div:nth-of-type(3) label:nth-of-type(2) {
+    display: block;
+}
+
+#kidsAbbigliamento:checked ~ div:nth-of-type(4) div label{
+    display: none;
+}
+
+#kidsAbbigliamento:checked ~ div:nth-of-type(4) label:nth-of-type(2) {
+    display: none;
+}
+//done3
+
+//4
+
+#kidsEta:checked ~ div:nth-of-type(4) div:nth-of-type(4) > p{
+    display: block;
+}
+
+#kidsEta:checked ~ div:nth-of-type(4) div:nth-of-type(4) label:nth-of-type(2) {
+    display: block;
+}
+
+#kidsEta:checked ~ div:nth-of-type(4) div label{
+    display: none;
+}
+
+#kidsEta:checked ~ div:nth-of-type(4) label:nth-of-type(2) {
+    display: none;
+}
+//done 4
+
+//5
+
+#kidsAccessori:checked ~ div:nth-of-type(4) div:nth-of-type(5) > p{
+    display: block;
+}
+
+#kidsAccessori:checked ~ div:nth-of-type(4) div:nth-of-type(5) label:nth-of-type(2) {
+    display: block;
+}
+
+#kidsAccessori:checked ~ div:nth-of-type(4) div label{
+    display: none;
+}
+
+#kidsAccessori:checked ~ div:nth-of-type(4) label:nth-of-type(2) {
+    display: none;
+}
+
+//Kids Done
+
+//Outlet
+#outlet:checked ~ div:nth-of-type(5) div label {
+    display: block;
+}
+
+#outlet:checked ~ div label {
+    display: none;
+}
+
+#outlet:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
+    display: block;
+}
+
+#outlet:checked ~ div:nth-of-type(5) div label:nth-of-type(2) {
+    display: none;
+}
+
+#outletOfferte:checked ~ div:nth-of-type(5) div:nth-of-type(1) > p{
+    display: block;
+}
+
+#outletOfferte:checked ~ div:nth-of-type(5) div:nth-of-type(1) label:nth-of-type(2) {
+    display: block;
+}
+
+#outletOfferte:checked ~ div:nth-of-type(5) div label{
+    display: none;
+}
+
+#outletOfferte:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
+    display: none;
+}
+
+//2
+#outletUomo:checked ~ div:nth-of-type(5) div:nth-of-type(2) > p{
+    display: block;
+}
+
+#outletUomo:checked ~ div:nth-of-type(5) div:nth-of-type(2) label:nth-of-type(2) {
+    display: block;
+}
+
+#outletUomo:checked ~ div:nth-of-type(5) div label{
+    display: none;
+}
+
+#outletUomo:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
+    display: none;
+}
+//done2
+
+//3
+
+#outletDonna:checked ~ div:nth-of-type(5) div:nth-of-type(3) > p{
+    display: block;
+}
+
+#outletDonna:checked ~ div:nth-of-type(5) div:nth-of-type(3) label:nth-of-type(2) {
+    display: block;
+}
+
+#outletDonna:checked ~ div:nth-of-type(5) div label{
+    display: none;
+}
+
+#outletDonna:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
+    display: none;
+}
+//done3
+
+//4
+
+#outletKids:checked ~ div:nth-of-type(5) div:nth-of-type(4) > p{
+    display: block;
+}
+
+#outletKids:checked ~ div:nth-of-type(5) div:nth-of-type(4) label:nth-of-type(2) {
+    display: block;
+}
+
+#outletKids:checked ~ div:nth-of-type(5) div label{
+    display: none;
+}
+
+#outletKids:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
+    display: none;
+}
+//done 4
+
+//5
+
+#outletSport:checked ~ div:nth-of-type(5) div:nth-of-type(5) > p{
+    display: block;
+}
+
+#outletSport:checked ~ div:nth-of-type(5) div:nth-of-type(5) label:nth-of-type(2) {
+    display: block;
+}
+
+#outletSport:checked ~ div:nth-of-type(5) div label{
+    display: none;
+}
+
+#outletSport:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
+    display: none;
+}
+
+//Outlet Done
+
+
+

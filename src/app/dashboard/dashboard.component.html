@@ -19,10 +19,12 @@
             </div>
         </div>
     </div>
-    <div>
-        <div *ngFor="let favorite of favorites">
+    <div class="conFavorites">
+        <div *ngFor="let favorite of favorites; let i = index">
             <div *ngFor="let shoe of favorite.favoriteItems">
                 <p>{{shoe.shoeName}}</p>
+                <img src="{{shoe.imageIcon}}">
+                <button (click)="removeFavorite(shoe)">remove</button>
             </div>
         </div>
     </div>

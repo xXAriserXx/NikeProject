@@ -29,7 +29,7 @@ export class HeaderComponent {
   userId: string;
   userInput: string;
   shoes: IShoe[] = [];
-  quantity: number = undefined;
+  quantity: number = 0;
 
   constructor(private checkLogService: CheckLogService, private userService: UserService, private productService: ProductService, private cartService: CartService) {}
 

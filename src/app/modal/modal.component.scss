@@ -1,5 +1,4 @@
 .container {
-    font-family: "fontNikeMedium";
     font-weight: bolder;
     top: 96px;
     padding: 20px;
@@ -16,7 +15,6 @@
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     > p {
-        border: 1px solid red;
         align-self: flex-start;
     }
 }

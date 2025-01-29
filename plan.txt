@@ -80,3 +80,26 @@ It contains:
 userId: This is needed because when I am on the user dashboard this allows me to find his orders
 shoes: This contains the shoes that the user had added to his cart
 status: This shows the status of the order ("I will leave it at pending")
+
+
+let's list all the things that I still need to take care of:
+
+Responsiveness for every page
+The menu thing that is pure css
+The slider that needs to shrink
+The shoedetail page which needs to shrink 
+The cart page
+The Footer
+
+Modal that works also for preferences
+
+Preferences page
+
+Regex for the payment process
+
+How the dashboard looks:
+Add the random shoes slider 
+Add the favorites slider
+
+
+

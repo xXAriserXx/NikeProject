@@ -46,4 +46,12 @@ export class DashboardComponent {
     this.userService.logOut()
     this.router.navigate(['/home'])
   }
+
+  removeFavorite (favoriteToRemove) {
+    this.favoritesService.removeFavorite(favoriteToRemove).subscribe({
+      next: (data) => {console.log(data)},
+      error: (error) => {console.log(error)},
+      complete: () => {}
+    })
+  }
 }

@@ -46,7 +46,7 @@ shoeFavorite:IShoeFav = {
 shoe:IShoe = {
     nome:undefined,
     categoria:undefined,
-    prezzo: undefined,
+    prezzo: 0,
     taglie_disponibili: undefined,
     colori_disponibili: undefined,
     descrizione: undefined,
@@ -68,6 +68,7 @@ ngOnInit () {
   console.log(window.scrollY)
   this.checkLogService.checkLoginStatus()
   this.isLoggedIn = this.checkLogService.isLoggedIn()
+  this.getRandomShoes()
   if (this.isLoggedIn) {
     this.userId = this.userService.getUserData()._id
     console.log("logged in ")
@@ -123,8 +124,11 @@ addToCart () {
     this.headerComponent.getShoeQuantity()
   }
   this.modalActive = true
+  document.body.style.overflow = "hidden"
+  window.scroll(0, 0)
   setTimeout(() => {
     this.modalActive = false 
+    document.body.style.overflow = "auto"
   }, 500000);
 }
 
@@ -149,11 +153,22 @@ isVideo(url: string): boolean {
 
 closeModal () {
   this.modalActive = false
+  document.body.style.overflow = "auto"
 }
 
-test (i) {
-  console.log("test", i)
+hoverImage (i) {
   this.currentImage = i + 1
+}
+
+getRandomShoes () {
+  this.productService.getRandomShoes().subscribe({
+    next: (randomShoes:IShoe) => {
+      console.log(randomShoes)
+    },
+    error: (error) => {console.log(error)},
+    complete: () => {}
+
+  })
 }
 
 }

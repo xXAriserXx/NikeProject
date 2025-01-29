@@ -20,8 +20,9 @@ export class FavoritesService {
     return this.http.patch(this.apiFavorites, {shoeFav})
   }
 
-  removeFavorite (shoeIndex) {
-    return this.http.patch(`${this.apiFavorites}/remove`, {shoeIndex})
+  removeFavorite (favorite) {
+    console.log(favorite)
+    return this.http.patch(`${this.apiFavorites}/remove`, {favorite})
   }
 
   getFavorites () {

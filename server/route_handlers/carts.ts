@@ -23,7 +23,6 @@ router.patch("/update-quantity", tokenRequired, async (req:CustomRequest, res) =
         const { action, shoe } = req.body
         const userId = req.user._id
 
-        console.log("request received")
         if (action === "add") {
             const cart = await carts.findOne({
                 userId: userId,

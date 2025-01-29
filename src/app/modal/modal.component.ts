@@ -46,6 +46,10 @@ export class ModalComponent {
 
   }
 
+  ngOnDestroy () {
+    document.body.style.overflow = "auto"
+  }
+
   close () {
     this.closeEvent.emit("")
 
