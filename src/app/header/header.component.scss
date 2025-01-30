@@ -74,7 +74,6 @@ app-search-bar {
 }
 
 
-
 .conMenu {
     grid-area: menu;
     display: flex;
@@ -169,7 +168,7 @@ app-search-bar {
     } 
     img {
         padding: 6px;
-        border-radius: 100px;
+        border-radius: 50%;
         background-color: var(--lightGray);
         &:hover {
             background-color: var(--grayPressed);
@@ -196,6 +195,10 @@ app-search-bar {
         background-color: var(--grayPressed2);
         }
     }
+}
+
+.heartIcon {
+    height: 24px;
 }
 
 .searchPart {
@@ -276,7 +279,14 @@ app-search-bar {
 .results {
     grid-area: results;
     display: flex;
-
+    gap: 5px;
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    div {
+        width: 15vw;
+    }
 }
 
 .conShoes {
@@ -288,13 +298,14 @@ app-search-bar {
     }
 }
 
-.heartIcon {
-    height: 24px;
+
+.hamburger {
+    display: none
 }
 
 #barraHamburger {
-    display: none;
-    z-index: 1;
+    z-index: 3;
+    visibility: hidden; 
     position: fixed;
     top: 0;
     right: 0;
@@ -304,7 +315,6 @@ app-search-bar {
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
-
 
     .x {
         align-self: flex-end;
@@ -320,18 +330,40 @@ app-search-bar {
         height: fit-content;
         display: block;
         display: flex;
-
+    }
+    input {
+        display: none;
     }
 }
 
-input {
+.overlay3 {
+    top: 0; 
+    left: 0;
+    transition: 0.2s;
+    z-index: 2;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.465);
+    display: none;
 }
+
 
 .back {
     display: none;
 }
 
 .menuHamburger {
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+    label {
+        font-size: 1.4em;
+        &:hover {
+            color: var(--grayText);
+        }
+    }
+    z-index: 3;
     div {
         div {
             p {
@@ -344,6 +376,37 @@ input {
     }
 
 }
+
+@media (max-width: 1199px) {
+    .conSearchIcons {
+        gap: 0;
+    }
+    .conSearchBar {
+        width: fit-content;
+        img {
+            background-color: white;
+        }
+        input {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 959px) {
+
+    .hamburger {
+        display: block;
+    }
+    .conMenu {
+        display: none;
+    }
+    #barraHamburger {
+        display: flex;
+    }
+
+}
+
+
 
 #novita:checked ~ div:nth-of-type(1) div label {
     display: block;
@@ -868,7 +931,6 @@ input {
     display: none;
 }
 
-//Outlet Done
 
 
 

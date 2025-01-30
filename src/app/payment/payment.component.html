@@ -78,6 +78,7 @@
                         <input id="cardNumber" formControlName="cardNumber" maxlength="19"/>
                         <div *ngIf="form.get('cardDetails.cardNumber')?.invalid && form.get('cardDetails.cardNumber')?.touched">
                             <small *ngIf="form.get('cardDetails.cardNumber')?.hasError('required')">Il numero della carta e' obbligatorio.</small>
+                            <small *ngIf="form.get('cardDetails.cardNumber')?.hasError('pattern')">Il numero della carta non e' valido.</small>
                         </div>
                     </div>
                 </div>
@@ -88,6 +89,7 @@
                         <input id="expireDate" formControlName="expireDate" maxlength="5"/>
                         <div *ngIf="form.get('cardDetails.expireDate')?.invalid && form.get('cardDetails.expireDate')?.touched">
                             <small *ngIf="form.get('cardDetails.expireDate')?.hasError('required')">La data di scadenza e' obbligatoria</small>
+                            <small *ngIf="form.get('cardDetails.expireDate')?.hasError('pattern')">La data di scadenza non e' valida</small>
                         </div>
                     </div>
                 </div>
@@ -98,6 +100,7 @@
                         <input id="cvv" formControlName="cvv" type="password" maxlength="3"/>
                         <div *ngIf="form.get('cardDetails.cvv')?.invalid && form.get('cardDetails.cvv')?.touched">
                         <small *ngIf="form.get('cardDetails.cvv')?.hasError('required')">Il codice CVV e' obbligatorio.</small>
+                        <small *ngIf="form.get('cardDetails.cvv')?.hasError('pattern')">Il codice CVV non e' valido.</small>
                         </div>
                     </div>
                 </div>

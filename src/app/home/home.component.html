@@ -25,6 +25,7 @@
             <div class="slider">
                 <div [routerLink]="['/shoeDetail', newArrival._id]" *ngFor="let newArrival of newArrivals">
                     <img src="{{newArrival.immagini[0]}}">
+                    <p>{{newArrival.nome}}</p>
                 </div>
             </div>
         </div>
@@ -40,6 +41,7 @@
             <div class="slider">
                 <div [routerLink]="['/shoeDetail', bestSeller._id]" *ngFor="let bestSeller of bestSellers">
                     <img src="{{bestSeller.immagini[0]}}">
+                    <p>{{bestSeller.nome}}</p>
                 </div>
             </div>
         </div>

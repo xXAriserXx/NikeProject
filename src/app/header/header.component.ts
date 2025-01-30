@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, viewChild, ViewChild } from '@angular/core';
 import { CheckLogService } from '../services/check-log.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { RouterLink } from '@angular/router';
@@ -19,6 +19,8 @@ import { ICart } from '../../../server/models/ICart';
 })
 export class HeaderComponent {
 
+  @ViewChild("overlay3") overlay3!: ElementRef
+  @ViewChild("barraHamburger") barraHamburger!: ElementRef;
   @ViewChild("header", { read: ElementRef }) header!: ElementRef;
   @ViewChild("searchInput") searchInput!: ElementRef;
 
@@ -38,7 +40,7 @@ export class HeaderComponent {
   }
 
   @HostListener("window:scroll", ["$event"])
-  onWindowScroll(event: Event) {
+  onWindowScroll() {
     if (this.header) {
       const currentScrollY = window.scrollY;
       if (currentScrollY > this.lastScrollY) {
@@ -92,6 +94,23 @@ export class HeaderComponent {
 
   close() {
     this.searching = false;
+    setTimeout(() => {
+      
+    window.location.reload()
+    }, 200);
   }
+
+  closeHamburger () {
+    this.barraHamburger.nativeElement.style.visibility = "hidden"
+    this.overlay3.nativeElement.style.display = "none"
+    document.body.style.overflow = "auto"
+  }
+
+  openHamburger () {
+    this.barraHamburger.nativeElement.style.visibility = "visible"
+    this.overlay3.nativeElement.style.display = "block"
+    document.body.style.overflow = "hidden"
+  }
+
 } 
 

@@ -101,5 +101,7 @@ How the dashboard looks:
 Add the random shoes slider 
 Add the favorites slider
 
+Ok one last time let's list all the things that still need to be done
+
 
 

@@ -22,16 +22,16 @@ export class PaymentComponent {
   form:FormGroup
   constructor (private cartService:CartService, private userService:UserService, private router:Router, private orderService:OrderService, private fb: FormBuilder, private checkLogService:CheckLogService) {
 
-    this.form = this.fb.group({
+this.form = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       address: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       cardDetails: this.fb.group({
-        cardNumber: ['', Validators.required],
-        expireDate: ['', Validators.required],
-        cvv: ['', Validators.required]
+      cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
+      expireDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
+      cvv: ['', [Validators.required, Validators.pattern(/^\d{3,4}$/)]]
       })
     });
   }

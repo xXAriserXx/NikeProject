@@ -171,4 +171,18 @@ getRandomShoes () {
   })
 }
 
+rightImage () {
+  this.currentImage = this.currentImage + 2
+  if (this.currentImage > this.shoe.immagini.length) {
+    this.currentImage = 2
+  }
+}
+
+leftImage () {
+  this.currentImage = this.currentImage - 2
+  if (this.currentImage === 0) {
+    this.currentImage = this.shoe.immagini.length - 1
+  }
+}
+
 }

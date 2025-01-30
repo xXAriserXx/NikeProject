@@ -15,6 +15,10 @@
     <div class="mainImage">
       <img *ngIf="isImage(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" alt="media" />
       <video *ngIf="isVideo(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" autoplay loop></video>
+      <div class="buttons">
+        <button><img src="icons/left.svg" (click)="leftImage()" alt=""></button>
+        <button><img src="icons/right.svg" (click)="rightImage()" alt=""></button>
+      </div>
     </div>
   </div>
 
@@ -59,6 +63,10 @@
       Aggiungi ai preferiti
       <img src="icons/heart.svg" alt="">
     </button>
+  </div>
+
+  <div class="description">
+    <p>{{shoe.descrizione}}</p>
   </div>
 
   </div>

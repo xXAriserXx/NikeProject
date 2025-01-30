@@ -98,3 +98,15 @@
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.7); /* Darker thumb on hover */
 }
+
+@media (max-width: 1919px) {
+    .conSliders {
+        width: 80vw;
+        .slider {
+        img {
+            width: 300px;
+ 
+        }
+       }
+    }
+}

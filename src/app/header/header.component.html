@@ -298,7 +298,7 @@
                 </div>
             </div>
         </div>
-            <div class="overlay"></div>
+        <div class="overlay"></div>
 
         <div class="conSearchIcons"> <!--Contains the search bar and the favorites and cart icons-->
             <div (click)="onClickSearch()" class="conSearchBar">
@@ -315,6 +315,9 @@
                         <p class="quantity"></p>
                     }
                 </div>
+                <div class="hamburger" (click)="openHamburger()">
+                    <img src="icons/hamburger.svg" alt="">
+                </div>
             </div> <!--contains the heart and cart icons-->
         </div> 
     </div>
@@ -329,18 +332,18 @@
         </div> 
         <p (click)="close()">Annulla</p>
         <div class="results">
-            <div [routerLink]="['/shoeDetail', shoe._id]" (click)="close()" class="conShoes" *ngFor="let shoe of shoes">
-                <img [src]="shoe.immagini[0]" alt="">
-                <p>{{shoe.nome}}</p>
+            <div [routerLink]="['/shoeDetail', shoeRes._id]" (click)="close()" class="conShoes" *ngFor="let shoeRes of shoes">
+                <img  [src]="shoeRes.immagini[0]" alt="">
+                <p>{{shoeRes.nome}}</p>
             </div>
         </div>
     </div>
     <div class="overlay2" (click)="close()"></div>
 </div>
 
-<div id="barraHamburger">
+<div id="barraHamburger" #barraHamburger>
 
-    <div class="x" (click)="close()"><img [src]="'/icons/x.svg'" alt=""></div> 
+    <div class="x" (click)="closeHamburger()"><img [src]="'/icons/x.svg'" alt=""></div> 
     <div class="wrap">
         <div class="menuHamburger">
 
@@ -379,11 +382,11 @@
             <input type="checkbox" id="outletSport">
 
             <div>
-            <label for="novita">Novita' e in evidenza</label>
-            <label for="novita" class="back">back</label>
+            <label for="novita">Novita' e in evidenza<img src="icons/right.svg" alt=""></label>
+            <label for="novita" class="back"><img src="icons/left.svg" alt="">Tutto</label>
                 <div>
-                    <label for="novitaEvidenza">In evidenza</label>
-                    <label for="novitaEvidenza" class="back">back</label>
+                    <label for="novitaEvidenza">In evidenza<img src="icons/right.svg" alt=""></label>
+                    <label for="novitaEvidenza" class="back"><img src="icons/left.svg" alt="">Novita' e in evidenza</label>
                     <p>Tutti i nuovi arrivi</p>
                     <p>Best seller</p>
                     <p>Calendario dei lanci SNKRS</p>
@@ -392,7 +395,7 @@
                 </div>
                 <div>
                     <label for="novitaIcone">Scopri le icone</label>
-                    <label for="novitaIcone" class="back">back</label>
+                    <label for="novitaIcone" class="back">Novita' e in evidenza</label>
                     <p>Air Force 1</p>
                     <p>Air Jordan 1</p>
                     <p>Air Max</p>
@@ -404,7 +407,7 @@
                 </div>
                 <div>
                     <label for="novitaSport">Scopri lo sport</label>
-                    <label for="novitaSport" class="back">back</label>
+                    <label for="novitaSport" class="back">Novita' e in evidenza</label>
                     <p>Calcio</p>
                     <p>Running</p>
                     <p>Basket</p>
@@ -418,7 +421,7 @@
                 </div>
                 <div>
                     <label for="novitaTendenza">Di tendenza</label>
-                    <label for="novitaTendenza" class="back">back</label>
+                    <label for="novitaTendenza" class="back">Novita' e in evidenza</label>
                     <p>Nike Sportswear</p>
                     <p>Sneakers Y2K</p>
                     <p>Nike Style By</p>
@@ -431,10 +434,10 @@
 
             <div>
                 <label for="uomo">Uomo</label>
-                <label for="uomo" class="back">back</label>
+                <label for="uomo" class="back">Tutto</label>
                 <div>
                     <label for="uomoEvidenza">In evidenza</label>
-                    <label for="uomoEvidenza" class="back">back</label>
+                    <label for="uomoEvidenza" class="back">Uomo</label>
                     <p>Novità</p>
                     <p>Best seller</p>
                     <p>Sneakers Y2K</p>
@@ -442,7 +445,7 @@
                 </div>
                 <div>
                     <label for="uomoScarpe">Scarpe</label>
-                    <label for="uomoScarpe" class="back">back</label>
+                    <label for="uomoScarpe" class="back">Uomo</label>
                     <p>Tutte le scarpe</p>
                     <p>Lifestyle</p>
                     <p>Jordan</p>
@@ -456,7 +459,7 @@
 
                 <div>
                     <label for="uomoAbbigliamento">Abbigliamento</label>
-                    <label for="uomoAbbigliamento" class="back">back</label>
+                    <label for="uomoAbbigliamento" class="back">Uomo</label>
                     <p>Tutto l'abbigliamento</p>
                     <p>Felpe</p>
                     <p>Giacche</p>
@@ -469,7 +472,7 @@
 
                 <div>
                     <label for="uomoSport">Sport</label>
-                    <label for="uomoSport" class="back">back</label>
+                    <label for="uomoSport" class="back">Uomo</label>
                     <p>Running</p>
                     <p>Calcio</p>
                     <p>Basket</p>
@@ -480,7 +483,7 @@
 
                 <div>
                     <label for="uomoAccessori">Accessori</label>
-                    <label for="uomoAccessori" class="back">back</label>
+                    <label for="uomoAccessori" class="back">Uomo</label>
                     <p>Tutti gli accessori</p>
                     <p>Borse e zaini</p>
                     <p>Copricapi</p>
@@ -491,10 +494,10 @@
 
             <div>
                 <label for="donna">Donna</label>
-                <label for="donna" class="back">back</label>
+                <label for="donna" class="back">Tutto</label>
                 <div>
                     <label for="donnaEvidenza">In evidenza</label>
-                    <label for="donnaEvidenza" class="back">back</label>
+                    <label for="donnaEvidenza" class="back">Donna</label>
                     <p>Novità</p>
                     <p>Best seller</p>
                     <p>Nike Style By</p>
@@ -504,7 +507,7 @@
                 </div>
                 <div>
                     <label for="donnaScarpe">Scarpe</label>
-                    <label for="donnaScarpe" class="back">back</label>
+                    <label for="donnaScarpe" class="back">Donna</label>
                     <p>Tutte le scarpe</p>
                     <p>Lifestyle</p>
                     <p>Jordan</p>
@@ -515,7 +518,7 @@
                 </div>
                 <div>
                     <label for="donnaAbbigliamento">Abbigliamento</label>
-                    <label for="donnaAbbigliamento" class="back">back</label>
+                    <label for="donnaAbbigliamento" class="back">Donna</label>
                     <p>Tutto l'abbigliamento</p>
                     <p>Felpe</p>
                     <p>Giacche</p>
@@ -529,7 +532,7 @@
                 </div>
                 <div>
                     <label for="donnaSport">Scopri lo sport</label>
-                    <label for="donnaSport" class="back">back</label>
+                    <label for="donnaSport" class="back">Donna</label>
                     <p>Fitness</p>
                     <p>Running</p>
                     <p>Calcio</p>
@@ -541,7 +544,7 @@
                 </div>
                 <div>
                     <label for="donnaAccessori">Accessori</label>
-                    <label for="donnaAccessori" class="back">back</label>
+                    <label for="donnaAccessori" class="back">Donna</label>
                     <p>Tutti gli accessori</p>
                     <p>Borse e zaini</p>
                     <p>Copricapi</p>
@@ -550,11 +553,11 @@
             </div>
             <div>
                 <label for="kids">Kids</label>
-                <label for="kids" class="back">back</label>
+                <label for="kids" class="back">Tutto</label>
 
                 <div>
                     <label for="kidsEvidenza">In evidenza</label>
-                    <label for="kidsEvidenza" class="back">back</label>
+                    <label for="kidsEvidenza" class="back">Kids</label>
                     <p>Novità</p>
                     <p>Best seller</p>
                     <p>Teenager ✨</p>
@@ -563,7 +566,7 @@
                 </div>
                 <div>
                     <label for="kidsScarpe">Scarpe</label>
-                    <label for="kidsScarpe" class="back">back</label>
+                    <label for="kidsScarpe" class="back">Kids</label>
                     <p>Tutte le scarpe</p>
                     <p>Lifestyle</p>
                     <p>Jordan</p>
@@ -573,7 +576,7 @@
                 </div>
                 <div>
                     <label for="kidsAbbigliamento">Abbigliamento</label>
-                    <label for="kidsAbbigliamento" class="back">back</label>
+                    <label for="kidsAbbigliamento" class="back">Kids</label>
                     <p>Tutto l'abbigliamento</p>
                     <p>Felpe</p>
                     <p>Giacche</p>
@@ -587,14 +590,14 @@
                 </div>
                 <div>
                     <label for="kidsEta">Kids per eta'</label>
-                    <label for="kidsEta" class="back">back</label>
+                    <label for="kidsEta" class="back">Kids</label>
                     <p>Ragazzo/a (7-15 anni)</p>
                     <p>Bambino/a (3-7 anni)</p>
                     <p>Bebè e bimbo/a (0-3 anni)</p>
                 </div>
                 <div>
                     <label for="kidsAccessori">Accessori</label>
-                    <label for="kidsAccessori" class="back">back</label>
+                    <label for="kidsAccessori" class="back">Kids</label>
                     <p>Tutti gli accessori</p>
                     <p>Borse e zaini</p>
                     <p>Copricapi</p>
@@ -603,10 +606,10 @@
             </div>
             <div>
                 <label for="outlet">Outlet</label>
-                <label for="outlet" class="back">back</label>
+                <label for="outlet" class="back">Tutto</label>
                 <div>
                     <label for="outletOfferte">Offerte</label>
-                    <label for="outletOfferte" class="back">back</label>
+                    <label for="outletOfferte" class="back">Outlet</label>
                     <p>Tutte le offerte</p>
                     <p>Best seller</p>
                     <p>Ultima occasione</p>
@@ -615,7 +618,7 @@
                 </div>
                 <div>
                     <label for="outletUomo">Outlet - Uomo</label>
-                    <label for="outletUomo" class="back">back</label>
+                    <label for="outletUomo" class="back">Outlet</label>
                     <p>Tutti gli articoli outlet – Uomo</p>
                     <p>Scarpe</p>
                     <p>Abbigliamento</p>
@@ -624,7 +627,7 @@
                 </div>
                 <div>
                     <label for="outletDonna">Outlet - Donna</label>
-                    <label for="outletDonna" class="back">back</label>
+                    <label for="outletDonna" class="back">Outlet</label>
                     <p>Tutti gli articoli outlet – Donna</p>
                     <p>Scarpe</p>
                     <p>Abbigliamento</p>
@@ -633,7 +636,7 @@
                 </div>
                 <div>
                     <label for="outletKids">Outlet - Kids</label>
-                    <label for="outletKids" class="back">back</label>
+                    <label for="outletKids" class="back">Outlet</label>
                     <p>Tutti gli articoli outlet – Kids</p>
                     <p>Scarpe</p>
                     <p>Abbigliamento</p>
@@ -642,7 +645,7 @@
                 </div>
                 <div>
                     <label for="outletSport">Outlet per lo sport</label>
-                    <label for="outletSport" class="back">back</label>
+                    <label for="outletSport" class="back">Outlet</label>
                     <p>Running</p>
                     <p>Calcio</p>
                     <p>Fitness e training</p>
@@ -683,4 +686,6 @@
         </a>
     </div> 
 </div>
+<div class="overlay3" #overlay3 (click)="closeHamburger()"></div>
+
 

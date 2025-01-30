@@ -1,6 +1,7 @@
 footer {
     max-width: 1824px;
     margin: 0 auto;
+    width: 100%;
 }
 
 hr {
@@ -71,4 +72,76 @@ hr {
     gap: 25px;
     display: flex;
     color: var(--grayText);
+}
+
+
+.footerFirstM, .footerSecondM {
+    margin-top: 70px;
+    label {
+        font-size: 1.4em;
+    }
+    p {
+        margin-left: 30px;
+        color: var(--grayText);
+        font-size: 1.2em;
+        &:hover {
+            color: black;
+        }
+    }
+    margin-left: 40px;
+    display: none;
+    flex-direction: column;
+    div {
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    input {
+        display: none;
+    }
+}
+
+.footerSecondM {
+    label {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+}
+
+
+#inputScarpe:checked ~ .listScarpe {
+    max-height: 1000px;
+}
+#inputAbbigliamento:checked ~ .listAbbigliamento {
+    max-height: 1000px;
+}
+#inputBambini:checked ~ .listBambini {
+    max-height: 1000px;
+}
+#inputEvidenza:checked ~ .listEvidenza {
+    max-height: 1000px;
+}
+
+#inputRisorse:checked ~ .listRisorse {
+    max-height: 1000px;
+}
+
+#inputAssistenza:checked ~ .listAssistenza {
+    max-height: 1000px;
+}
+
+#inputEvidenza:checked ~ .listEvidenza {
+    max-height: 1000px;
+}
+
+@media (max-width: 959px) {
+    .footerFirst, .footerSecond, .footerThird {
+        display: none;
+    }
+    .footerFirstM, .footerSecondM, .footerThirdM {
+        display: flex;
+    }
+    hr {
+        display: none;
+    }
 }

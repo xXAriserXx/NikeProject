@@ -19,19 +19,23 @@ app-modal {
 .left {
     width: 612px;
     display: flex;
-
+    gap: 20px;
 }
 
 .conScroll {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    overflow: scroll;
+    scrollbar-width: none;
+    height: 690px;
 }
 
 .image {
     height: 60px;
+    overflow: hidden;
     position: relative;
+    border-radius: 3px;
     z-index: 0;
     &::after {
         content: "";
@@ -53,19 +57,42 @@ app-modal {
 
 .image img {
     width: 60px;
-    height: 60px;
     background-color: var(--lightGray);
-    border-radius: 3px;
 }
 
 .mainImage { 
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 690px;
+
     video {
         width: 552px;
-        height: 690px;
     }
     img {
         width: 552px;
-        height: 690px;
+    }
+}
+
+.left .buttons {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    button {
+        background-color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 30px;
+        padding: 0;
+        border: none;
+        &:active {
+            background-color: var(--grayPressed2);
+        }
+    }
+    img {
+        width: 24px;
+        height: 24px;
+        padding: 6px;
     }
 }
 
@@ -94,13 +121,12 @@ app-modal {
     }
 }
 
-button {
+.right button {
     height: 2em;
     border-radius: 10px;
     height: 60px;
     width: 376px;
     border-radius: 30px;
-    border: none;
 }
 
 .buttons {
@@ -248,4 +274,21 @@ input[type="radio"]:checked + label::after {
     opacity: 1;
     transition: 0.2s;
 }
+
+@media (max-width:959px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    } 
+    .left {
+        .conScroll {
+            display: none;
+        }
+    }
+    .right {
+        width: 100%;
+    }
+
+}
+
 
