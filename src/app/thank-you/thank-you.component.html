@@ -1,1 +1,12 @@
-<p>thank-you works!</p>
+<section>
+    @if (loggedIn) {
+    <p>Grazie {{userName}} per il tuo acquisto</p>
+    } @else {
+    <p>Grazie per il tuo acquisto</p>
+    }
+
+    <div>
+        <img routerLink="/home" src="icons/nikelogo.svg" alt="">
+    </div>
+</section>
+

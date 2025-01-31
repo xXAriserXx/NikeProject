@@ -102,12 +102,14 @@ hr {
 }
 
 .footerSecondM {
+    p {
+        margin-left: 0;
+    }
     label {
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
-
 
 #inputScarpe:checked ~ .listScarpe {
     max-height: 1000px;
@@ -130,18 +132,38 @@ hr {
     max-height: 1000px;
 }
 
-#inputEvidenza:checked ~ .listEvidenza {
+#inputAzienda:checked ~ .listAzienda {
     max-height: 1000px;
 }
 
 @media (max-width: 959px) {
-    .footerFirst, .footerSecond, .footerThird {
+    .footerFirst, .footerSecond {
         display: none;
     }
     .footerFirstM, .footerSecondM, .footerThirdM {
         display: flex;
+        label {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
     }
     hr {
         display: none;
     }
+
+    .footerThird {
+        flex-direction: column;
+        padding: 40px;
+        p {
+            margin: 0;
+        }
+    }
+
+    .divHr {
+        border: 1px solid var(--grayPressed2);
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 }
+

@@ -7,11 +7,12 @@ import { FilterComponent } from '../filter/filter.component';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { EuroPipe } from '../pipes/euro.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink, FilterComponent, HeaderComponent, FooterComponent, EuroPipe],
+  imports: [RouterLink, FilterComponent, HeaderComponent, FooterComponent, EuroPipe, CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

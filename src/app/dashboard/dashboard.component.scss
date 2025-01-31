@@ -10,22 +10,140 @@
 
 .singleTest {
     padding: 10px;
-    border: 1px solid black;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.349);
     margin: 10px;
     border-radius: 10px;
     width: fit-content;
-
+    height: fit-content;
 }
 
-.product:not(:last-child) {
-    border-bottom: 1px solid black;
-}
 
 section {
-    border: 1px solid black;
     width: 80vw;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     h2 {
         text-align: center;
+    }
+}
+
+.logOut {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: "fontNike";
+    padding: 10px; 
+    color: var(--grayText);
+    font-size: 1.3em;
+    border-radius: 40px;
+    margin-top: 20px;
+}
+
+#inputProduct {
+    position: relative;
+    visibility: hidden;
+}
+
+#inputProduct::before {
+    font-family: "fontNike";
+    content: "Prodotti";
+    position: absolute;
+    visibility: visible;
+    cursor: pointer;
+}
+
+#inputProduct:checked ~ .product {
+    max-height: 1000px;
+}
+
+.product {
+    height: fit-content;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.conFavorites {
+    width: 100%;
+}
+
+.conFavorites div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    img {
+        cursor: pointer;
+        width: 100%;
+        border-radius: 50px;
+    }
+    button {
+        border-radius: 100px;
+        border: none;
+        height: 50px;
+        width: 50px;
+        img {
+            filter: brightness(0) invert(0.5);
+            cursor: pointer;
+        }
+        &:hover {
+            background-color: var(--grayPressed2);
+        }
+    }
+    .favItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.conRandom {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    img {
+        width: 100%;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+        button {
+        border-radius: 100px;
+        border: none;
+        height: 50px;
+        width: 50px;
+        img {
+            filter: brightness(0) invert(0.5);
+            cursor: pointer;
+        }
+        &:hover {
+            background-color: var(--grayPressed2);
+        }
+    }
+        .favItem {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+@media (max-width: "1199px") {
+    .conRandom {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .conFavorites div {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+
+@media (max-width: "559px") {
+    .conRandom {
+        grid-template-columns: 1fr 1fr;
+    }
+    .conFavorites div{
+        grid-template-columns: 1fr 1fr  ;
     }
 }

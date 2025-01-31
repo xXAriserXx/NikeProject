@@ -9,10 +9,7 @@
 </div>
 
 
-<h2>Home</h2>
-<button [routerLink]="'/cart'">Carrello</button>
-<button [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">Registrati/Accedi</button>
-<button [routerLink]="'/products'">Prodotti</button>
+<button class="productsButton" [routerLink]="'/products'">I nostri prodotti</button>
 
 <div class="conSliders">
     <div class="newArrivals">

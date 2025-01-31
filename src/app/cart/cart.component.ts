@@ -27,7 +27,6 @@ export class CartComponent {
   couponCode: string = ""
   validCoupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
   priceAfterDiscount: number
-  
 
   ngOnInit () { 
     window.scroll(0, 0)
@@ -89,8 +88,11 @@ applyCoupon () {
     const discount:number = this.validCoupons.find(validCoupon => this.couponCode === validCoupon.code).discount
     this.priceAfterDiscount = this.totalPrice - ((this.totalPrice * discount) / 100)
     console.log(this.priceAfterDiscount)
+  } else {
+    alert("Coupon non valido")
   }
 }
+
 
 }
 

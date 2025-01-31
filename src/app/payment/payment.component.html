@@ -4,6 +4,7 @@
 
     <h2>Pagamento</h2>
 
+    <h4>I tuoi articoli</h4>
     <div class="test">
         <div *ngFor="let shoe of cart.shoes">
             <p>{{ shoe.shoeName }}</p> 
@@ -16,9 +17,9 @@
 
     <div class="containerForm1 containerForm">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div>
+            <div >
                 <label for="name">Nome</label>
-                <div>
+                <div [ngClass]="{'error-border': form.get('name')?.invalid && form.get('name')?.touched}" class="group">
                     <input id="name" formControlName="name" />
                     <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
                         <small *ngIf="form.get('name')?.hasError('required')">Il nome e' obbligatorio</small>
@@ -28,7 +29,7 @@
 
             <div>
                 <label for="surname">Cognome</label>
-                <div class="group">
+                <div class="group" [ngClass]="{'error-border': form.get('surname')?.invalid && form.get('surname')?.touched}">
                     <input id="surname" formControlName="surname" />
                     <div *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">
                         <small *ngIf="form.get('surname')?.hasError('required')">Il cognome e' obbligatorio.</small>
@@ -36,7 +37,7 @@
                 </div>
             </div>
 
-            <div>
+            <div [ngClass]="{'error-border': form.get('address')?.invalid && form.get('address')?.touched}">
                 <label for="address">Indirizzo</label>
                 <div class="gruop">
                 <input id="address" formControlName="address" />
@@ -48,17 +49,18 @@
 
             <div>
                 <label for="email">Email</label>
-                <div class="group">
+                <div [ngClass]="{'error-border': form.get('email')?.invalid && form.get('email')?.touched}" class="group">
                     <input id="email" type="email" formControlName="email" />
                     <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
                         <small *ngIf="form.get('email')?.hasError('required')">La E-mail e' obbligatoria</small>
+                        <small *ngIf="form.get('email')?.hasError('email')">La E-mail non e' valida</small>
                     </div>
                 </div>
             </div>
 
             <div>
                 <label for="phone">Telefono</label>
-                <div class="group">
+                <div class="group" [ngClass]="{'error-border': form.get('phone')?.invalid && form.get('phone')?.touched}">
                     <input id="phone" formControlName="phone" />
                     <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
                         <small *ngIf="form.get('phone')?.hasError('required')">Il telefono e' obbligatorio</small>
@@ -74,7 +76,7 @@
             <div formGroupName="cardDetails">
                 <div>
                     <label for="cardNumber">Numero Carta</label>
-                    <div class="group">
+                    <div class="group" [ngClass]="{'error-border': form.get('cardDetails.cardNumber')?.invalid && form.get('cardDetails.cardNumber')?.touched}">
                         <input id="cardNumber" formControlName="cardNumber" maxlength="19"/>
                         <div *ngIf="form.get('cardDetails.cardNumber')?.invalid && form.get('cardDetails.cardNumber')?.touched">
                             <small *ngIf="form.get('cardDetails.cardNumber')?.hasError('required')">Il numero della carta e' obbligatorio.</small>
@@ -85,7 +87,7 @@
 
                 <div>
                     <label for="expireDate">Data di Scadenza</label>
-                    <div class="group">
+                    <div class="group" [ngClass]="{'error-border': form.get('cardDetails.expireDate')?.invalid && form.get('cardDetails.expireDate')?.touched}">
                         <input id="expireDate" formControlName="expireDate" maxlength="5"/>
                         <div *ngIf="form.get('cardDetails.expireDate')?.invalid && form.get('cardDetails.expireDate')?.touched">
                             <small *ngIf="form.get('cardDetails.expireDate')?.hasError('required')">La data di scadenza e' obbligatoria</small>
@@ -96,7 +98,7 @@
 
                 <div>
                     <label for="cvv">CVV</label>
-                    <div class="group">
+                    <div class="group" [ngClass]="{'error-border': form.get('cardDetails.cvv')?.invalid && form.get('cardDetails.cvv')?.touched}">
                         <input id="cvv" formControlName="cvv" type="password" maxlength="3"/>
                         <div *ngIf="form.get('cardDetails.cvv')?.invalid && form.get('cardDetails.cvv')?.touched">
                         <small *ngIf="form.get('cardDetails.cvv')?.hasError('required')">Il codice CVV e' obbligatorio.</small>
@@ -106,7 +108,7 @@
                 </div>
             </div>
 
-            <button type="submit" [disabled]="form.invalid">Completa L'ordine</button>
+            <button class="complete" type="submit" [disabled]="form.invalid">Completa L'ordine</button>
         </form>
     </div>
 

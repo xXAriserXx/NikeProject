@@ -1,6 +1,6 @@
 <div class="container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
+    <div [ngClass]="{'error-border': form.get('name')?.invalid && form.get('name')?.touched}">
         <label for="name">Nome</label>
         <input id="name" formControlName="name" />
         <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div>
+    <div [ngClass]="{'error-border': form.get('surname')?.invalid && form.get('surname')?.touched}">
         <label for="surname">Cognome</label>
         <input id="surname" formControlName="surname" />
         <div *ngIf="form.get('surname')?.invalid && form.get('surname')?.touched">
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div>
+    <div [ngClass]="{'error-border': form.get('email')?.invalid && form.get('email')?.touched}">
         <label for="email">Email</label>
         <input id="email" type="email" formControlName="email" />
         <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div>
+    <div [ngClass]="{'error-border': form.get('phone')?.invalid && form.get('phone')?.touched}">
         <label for="phone">Telefono </label>
         <input id="phone" formControlName="phone" />
         <div *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div>
+    <div [ngClass]="{'error-border': form.get('password')?.invalid && form.get('password')?.touched}">
         <label for="password">Password</label>
         <input id="password" type="password" formControlName="password" />
         <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">

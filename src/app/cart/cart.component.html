@@ -6,8 +6,9 @@
         <div *ngIf="cart.shoes.length === 0">
         <p>Nel tuo carrello non sono presenti articoli.</p>
         </div>
+
         <div class="divShoes" *ngFor="let shoe of cart.shoes">
-            <div class="image">
+            <div class="image" [routerLink]="['/shoeDetail', shoe.shoeId]">
                 <img src="{{shoe.imageIcon}}" alt="">
             </div>
             <div class="text">
@@ -67,6 +68,7 @@
         </div>
         <div class="bigButtons">
             <button [routerLink]="'/payment'" [disabled]="totalPrice === 0">Vai al pagamento</button>
+            <small style="color: red;" *ngIf="totalPrice === 0">Riempi il carrello per andare al pagamento</small>
             <button>
                 <img src="icons/PayPal.svg" alt="">
             </button>

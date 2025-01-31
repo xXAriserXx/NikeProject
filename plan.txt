@@ -101,7 +101,21 @@ How the dashboard looks:
 Add the random shoes slider 
 Add the favorites slider
 
-Ok one last time let's list all the things that still need to be done
+Ok one last time let's list all the things that still need to be done:
 
+Things that only need css:
+-So the login, register,  components need to be more stilistically pleasing and also the error management
+-Footer and header need some responsive adjustments
+-cart needs to be more responsive, payment also and also
+-Thank you page
+-Dashboard also needs to show the random shoes and the favorite shoes
+
+Things that also need some ts:
+-Modal for favorites
+-Pagination on the products page
+-
+-
+
+Also need to figure out how to 
 
 

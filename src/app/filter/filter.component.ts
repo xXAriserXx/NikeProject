@@ -14,9 +14,9 @@ import { switchMap } from 'rxjs';
 export class FilterComponent {
   filterForm: FormGroup;
   priceOptions = [
-    { label: '50', value: '50' },
-    { label: '100', value: '100' },
-    { label: '150+', value: '150' },
+    { label: '50-100€', value: '50' },
+    { label: '100-150€', value: '100' },
+    { label: '150€+', value: '150' },
   ];
   colorOptions = ['Bianco', 'Rosso', 'Blu', 'Grigio', 'Nero', 'Arancione', 'Verde', 'Argento'];
   categoryOptions = ['Running', 'Sneakers', 'Basket', 'Training', 'Trail Running'];

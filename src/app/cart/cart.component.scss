@@ -200,3 +200,14 @@ h2 {
         }
     }
 }
+
+@media (max-width: 1199px) {
+    section {
+        flex-direction: column;
+        width: 80vw;
+    }
+    .bigButtons {
+        padding-top: 15px;
+        justify-self: center;
+    }
+}

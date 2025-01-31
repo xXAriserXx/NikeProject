@@ -2,7 +2,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>
             <label for="email">Email</label>
-            <div class="group">
+            <div class="group" [ngClass]="{'error-border': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
             <input id="email" formControlName="email" type="email" />
             <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                 Email non valida
@@ -12,7 +12,7 @@
         </div>
         <div>
             <label for="password">Password</label>
-            <div class="group">
+            <div class="group" [ngClass]="{'error-border': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
                 <input id="password" formControlName="password" type="password" />
                 <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                     Almeno 6 caratteri

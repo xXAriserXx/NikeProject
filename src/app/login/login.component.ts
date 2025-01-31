@@ -35,7 +35,10 @@ export class LoginComponent {
           localStorage.setItem("authToken", token)
           this.router.navigate(["/dashboard", id])
         },
-        error: (error) => {console.log(error)},
+        error: (error) => {
+          console.log(error)
+          alert("Password errata")
+        },
         complete: () => {
           console.log("user has logged in")
         }

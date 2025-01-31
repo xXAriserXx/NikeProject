@@ -30,7 +30,10 @@ form: FormGroup;
       console.log(this.form.value);
       this.usersService.register(this.form.value).subscribe({
         next: (data) => {console.log(data)},
-        error: (error) => {console.error(error.error.msg)},
+        error: (error) => {
+          console.error(error.error.msg)
+          alert("Utente gia' registrato")
+        },
         complete: () => {console.log("Letsgoski, the user has been registered")}
       })
     }

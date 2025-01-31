@@ -129,26 +129,33 @@ addToCart () {
   setTimeout(() => {
     this.modalActive = false 
     document.body.style.overflow = "auto"
-  }, 500000);
+  }, 5000);
 }
 
 addToFavorites () {
-  this.shoeFavorite.shoeName = this.shoeName
-  this.shoeFavorite.shoeId = this.route.snapshot.paramMap.get("id")
-  this.shoeFavorite.imageIcon = this.shoe.immagini[0]
-  this.favoritesService.addFavorite(this.shoeFavorite).subscribe({
-    next: (data) => {console.log(data)},
-    error: (error) => {console.log(error)},
-    complete: ()=> {}
-  })
+  if (this.isLoggedIn) {
+    this.shoeFavorite.shoeName = this.shoeName
+    this.shoeFavorite.shoeId = this.route.snapshot.paramMap.get("id")
+    this.shoeFavorite.imageIcon = this.shoe.immagini[0]
+    this.favoritesService.addFavorite(this.shoeFavorite).subscribe({
+      next: (data) => {
+        console.log(data)
+        alert("Aggiunto ai preferiti")
+      },
+      error: (error) => {console.log(error)},
+      complete: ()=> {}
+    })
+  } else {
+    alert("Devi essere loggato per aggiungere ai preferiti")
+  }
 }
 
 isImage(url: string): boolean {
-  return /\.(jpg|jpeg|png|gif)$/i.test(url);
+  return /\.(jpg|jpeg|png)$/i.test(url);
 }
 
 isVideo(url: string): boolean {
-  return /\.(mp4|webm|ogg|mov)$/i.test(url);
+  return /\.(mp4|mov)$/i.test(url);
 }
 
 closeModal () {

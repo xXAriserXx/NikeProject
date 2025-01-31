@@ -5,6 +5,9 @@
     <app-filter class="filter" (filterChange)="onFilterChange($event)"></app-filter>
 
     <div class="containerGrande">
+        <div *ngIf="allShoes.length === 0">
+            <p>Non ci sono risultati</p>
+        </div>
         @for (shoe of allShoes; track shoe) {
             <div [routerLink]="['/shoeDetail', shoe._id]" class="containerScarpa">
                 <img class="image" src="{{shoe.immagini[0]}}" alt="">
