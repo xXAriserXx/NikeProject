@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EuroPipe implements PipeTransform {
 
-  transform(value: number, ...args: unknown[]): unknown {
+  transform(value: number | undefined, ...args: unknown[]): unknown {
+    if (value == null) return 
     return value.toFixed(2) + "€" ;
   }
 

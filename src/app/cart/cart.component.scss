@@ -97,11 +97,6 @@ h2 {
     }
 }
 
-
-.right {
-}
-
-
 .promoCode {
     cursor: pointer;
     user-select: none;
@@ -193,6 +188,10 @@ h2 {
             background-color: black;
             color: white;
             font-size: 1.15em;
+            &:disabled {
+                background-color: var(--lightGray);
+                color: var(--grayText);
+            }
         }
         &:nth-of-type(2) {
             background-color: var(--lightGray);

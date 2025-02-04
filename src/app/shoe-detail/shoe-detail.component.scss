@@ -304,8 +304,13 @@ input[type="radio"]:checked + label::after {
         width: 70%;
     }
 
-    .buttons {
+    .right .buttons {
         justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        button {
+            width: 100%;
+        }
     }
     .textSizes {
         flex-direction: column;

@@ -1,6 +1,8 @@
 import express from "express"
 import { CustomRequest, tokenRequired } from "../middleware/authMiddleware"
 import { favorites } from "../db"
+import { IFavorite } from "../models/IFavorite"
+import { IShoeFav } from "../models/IShoeFav"
 
 
 const router = express.Router()
@@ -22,7 +24,6 @@ router.get("/", tokenRequired , async(req:CustomRequest, res) => {
 router.patch("/", tokenRequired, async (req: CustomRequest, res) => {
     try {
         const favoriteToAdd = req.body.shoeFav;
-        console.log(favoriteToAdd)
         const userId = req.user._id;
         const favorite = await favorites.updateOne(
             { userId: userId },

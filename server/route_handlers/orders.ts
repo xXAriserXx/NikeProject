@@ -14,7 +14,7 @@ router.post("", tokenRequired, async (req: CustomRequest, res) => {
             userId: userId,
             orderDate: new Date(),
             status: "In elaborazione",
-            orderItems: orderToAdd
+            orderItems: orderToAdd,
         });
 
         res.status(201).send({ msg: "Order added successfully", order });

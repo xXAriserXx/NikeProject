@@ -1,7 +1,11 @@
 <app-header></app-header>
 <div class="spacer"></div>
 <section>
-    <h2>I tuoi ordini</h2>
+    <div class="userDetails">
+        <p class="userName">{{user.name}} {{user.surname}}</p>
+        <p>Member Nike da {{ user.date | date:'LLLL yyyy':'':'it' | capitalizeFirst }}</p>
+    </div>
+    <h2 *ngIf="orders.length > 0">I tuoi ordini</h2>
     <div class="test">
         <div class="singleTest" *ngFor="let order of orders">
             <p>ID ordine: {{ order._id }}</p> 
@@ -19,9 +23,9 @@
             </div>
         </div>
     </div>
-    <p class="favText">I tuoi Preferiti:</p>
     <div class="conFavorites">
         <div *ngFor="let favorite of favorites; let i = index">
+        <h2 *ngIf="favorite.favoriteItems.length !== 0">I tuoi preferiti</h2>
             <div class="favItem" *ngFor="let shoe of favorite.favoriteItems">
                 <img [routerLink]="['/shoeDetail', shoe.shoeId]" src="{{shoe.imageIcon}}">
                 <button (click)="removeFavorite(shoe)"><img src="icons/trash.svg" alt=""></button>

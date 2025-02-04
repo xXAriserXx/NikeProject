@@ -10,11 +10,14 @@ import { FavoritesService } from '../services/favorites.service';
 import { IFavorite } from '../../../server/models/IFavorite';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
+import { IShoeFav } from '../../../server/models/IShoeFav';
+import { IUser } from '../../../server/models/IUser';
+import { CapitalizeFirstPipe } from '../pipes/capitalize-first.pipe';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink],
+  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, CapitalizeFirstPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -25,20 +28,25 @@ export class DashboardComponent {
   orders:IOrder[] = []
   favorites:IFavorite[] = []
   random:IShoe[] = []
+  user:IUser
     
   ngOnInit () {
+
+    this.user = this.userService.getUserData()
+
     this.orderService.getOrders().subscribe({
       next: (data:any) => {
         this.orders = data.ordersFound
+        console.log(data)
       },
       error: (error) => {console.log(error)},
       complete: () => {}
     })
 
     this.favoritesService.getFavorites().subscribe({
-      next: (response:any) => {
-        console.log(response.favoritesFound)
+      next: (response: {msg:string, favoritesFound:IFavorite[]}) => {
         this.favorites = response.favoritesFound
+        console.log(response)
       },
       error: (error) => {console.log(error)},
       complete: () => {}
@@ -55,7 +63,6 @@ export class DashboardComponent {
   removeFavorite (favoriteToRemove) {
     this.favoritesService.removeFavorite(favoriteToRemove).subscribe({
       next: (data) => {
-        console.log(data)
         window.location.reload()
       },
       error: (error) => {console.log(error)},
@@ -66,7 +73,6 @@ export class DashboardComponent {
   getRandomShoes () {
     this.productService.getRandomShoes().subscribe({
       next: (data: IShoe[]) => {
-        console.log(data)
         this.random = data
       },
       error: () => {},

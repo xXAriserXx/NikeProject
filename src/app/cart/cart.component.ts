@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { ApplicationModule, Component } from '@angular/core';
 import { ICart } from '../../../server/models/ICart';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CheckLogService } from '../services/check-log.service';
 import { CartService } from '../services/cart.service';
 import { UserService } from '../services/user.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { EuroPipe } from '../pipes/euro.pipe';
 import { FormsModule } from '@angular/forms';
+import { FavoritesService } from '../services/favorites.service';
+import { IShoeFav } from '../../../server/models/IShoeFav';
+import { IShoeCart } from '../../../server/models/IShoeCart';
 
 @Component({
   selector: 'app-cart',
@@ -20,13 +23,14 @@ import { FormsModule } from '@angular/forms';
 
 export class CartComponent {
 
-  constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService) {}
+  constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService, private favoritesServices:FavoritesService, private router:Router) {}
   cart:ICart = {userId: undefined, shoes: []}
   isLoggedIn: boolean
   totalPrice: number
   couponCode: string = ""
   validCoupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
   priceAfterDiscount: number
+  discountApplied:boolean = false
 
   ngOnInit () { 
     window.scroll(0, 0)
@@ -39,6 +43,7 @@ export class CartComponent {
         next: (userCart:ICart) => {
           this.cart = userCart
           this.calcTotPrice(this.cart)
+          this.priceAfterDiscount = this.totalPrice
         },
         error: (error) => {console.log(error)},
         complete: () => {}
@@ -51,20 +56,19 @@ export class CartComponent {
 
     }
 
-    this.calcTotPrice(this.cart)
-    this.priceAfterDiscount = this.totalPrice
   }
   
   updateQuantity (shoe, action) {
     if (this.isLoggedIn) {
      this.cartService.updateQuantity(shoe, action).subscribe({
       next: (data:any) => {
-        console.log(data)
         this.cart = data.cart
         this.calcTotPrice(this.cart)
+        this.priceAfterDiscount = this.totalPrice
       },
       error: (error) => {console.log(error)},
-      complete: () => {}
+      complete: () => {
+      }
 
      })
     } else {
@@ -72,14 +76,11 @@ export class CartComponent {
       localStorage.setItem("cart", JSON.stringify(this.cart))
       this.calcTotPrice(this.cart)
     }
-
     this.applyCoupon()
-
   }
 
 calcTotPrice(cart: ICart) {
   this.totalPrice = +cart.shoes.map(item => item.price * item.quantity).reduce((acc, price) => acc + price, 0).toFixed(2);
-  console.log(this.totalPrice);
 }
 
 
@@ -87,9 +88,32 @@ applyCoupon () {
   if (this.validCoupons.some(validCoupon => this.couponCode === validCoupon.code)) {
     const discount:number = this.validCoupons.find(validCoupon => this.couponCode === validCoupon.code).discount
     this.priceAfterDiscount = this.totalPrice - ((this.totalPrice * discount) / 100)
-    console.log(this.priceAfterDiscount)
+    const totalDiscount = (this.totalPrice * discount)/100
+    console.log(totalDiscount)
+    alert("Codice Coupon applicato")
+    this.discountApplied = true
+  } 
+}
+
+addFavorite (shoe:IShoeCart) {
+  alert("Devi essere loggato per aggiungere ai preferiti")
+  const shoeFav:IShoeFav = {
+    shoeId: shoe.shoeId,
+    shoeName: shoe.shoeName,
+    imageIcon: shoe.imageIcon
+  }
+  this.favoritesServices.addFavorite(shoeFav).subscribe({
+    next: (data) => {console.log(data)},
+    error: (error) => {console.log(error)},
+    complete: () => {}
+  })
+}
+
+pay () {
+  if (this.totalPrice !== 0) {
+    this.router.navigate(['/payment'])
   } else {
-    alert("Coupon non valido")
+    alert ("Aggiungi qualcosa al carrello")
   }
 }
 

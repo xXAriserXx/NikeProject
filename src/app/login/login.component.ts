@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { UserService } from '../services/user.service';
 import { RouterLink } from '@angular/router';
 import { CheckLogService } from '../services/check-log.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -35,9 +36,9 @@ export class LoginComponent {
           localStorage.setItem("authToken", token)
           this.router.navigate(["/dashboard", id])
         },
-        error: (error) => {
+        error: (error:HttpErrorResponse) => {
           console.log(error)
-          alert("Password errata")
+          alert(error.error.msg)
         },
         complete: () => {
           console.log("user has logged in")

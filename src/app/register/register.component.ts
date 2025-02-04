@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
 import { UserService } from '../services/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -30,9 +31,8 @@ form: FormGroup;
       console.log(this.form.value);
       this.usersService.register(this.form.value).subscribe({
         next: (data) => {console.log(data)},
-        error: (error) => {
-          console.error(error.error.msg)
-          alert("Utente gia' registrato")
+        error: (error:HttpErrorResponse) => {
+          alert(error.error.msg)
         },
         complete: () => {console.log("Letsgoski, the user has been registered")}
       })

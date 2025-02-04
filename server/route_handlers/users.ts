@@ -26,6 +26,7 @@ router.post("/register", async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             password: encrypt(req.body.password),
+            date: new Date
         });
         const cart = await carts.insertOne({
             userId: String(user.insertedId),

@@ -36,10 +36,15 @@ section {
     outline: none;
     font-family: "fontNike";
     padding: 10px; 
-    color: var(--grayText);
+    color: white; 
     font-size: 1.3em;
     border-radius: 40px;
     margin-top: 20px;
+    background-color: rgb(255, 167, 167);
+    transition: 0.2s;
+    &:hover {
+    background-color: rgb(253, 147, 147);
+    }
 }
 
 #inputProduct {
@@ -129,9 +134,28 @@ section {
     }
 }
 
+.userDetails {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.349);
+    width: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.userName {
+    font-size: 1.5em;
+    & + p{
+        color: var(--grayText);
+    }
+}
+
 @media (max-width: "1199px") {
     .conRandom {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
     }
     .conFavorites div {
         grid-template-columns: 1fr 1fr 1fr 1fr;

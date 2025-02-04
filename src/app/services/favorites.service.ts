@@ -12,11 +12,7 @@ export class FavoritesService {
 
   apiFavorites:string = "http://localhost:3000/favorites"
 
-  getFavoritesGuest () {
-  }
-
   addFavorite (shoeFav:IShoeFav) {
-    console.log(shoeFav)
     return this.http.patch(this.apiFavorites, {shoeFav})
   }
 
@@ -29,5 +25,6 @@ export class FavoritesService {
     return this.http.get(this.apiFavorites)
   }
 
+  
 
 }

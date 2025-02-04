@@ -101,6 +101,11 @@ addToCart () {
   this.shoeCart.price = this.shoe.prezzo
   this.shoeCart.imageIcon = this.shoe.immagini[0]
 
+  if (this.chosenSize == "") {
+    alert("Scegli una taglia")
+    return
+  }
+
   if (this.isLoggedIn) {
     this.cartService.updateQuantity(this.shoeCart, "add").subscribe({
       next: (data) => {
