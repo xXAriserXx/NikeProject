@@ -2,11 +2,11 @@
     "name": "nike-server",
     "version": "0.0.0.0.0.0.0.1-pre-alpha",
     "description": "",
-    "main": "app.js",
+    "main": "dist/app.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node dist/app.js",
-      "build": "chmod +x ./node_modules/.bin/tsc && npx tsc"
+      "start": "npx tsc && node dist/app.js" ,
+      "build": "npx tsc"
     },
     "author": "",
     "license": "ISC",
