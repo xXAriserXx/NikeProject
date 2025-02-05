@@ -20,6 +20,7 @@ app.use("/favorites", favoritesTs)
 
 export const secretKey:string = "KGJH324234@sdfkbj"
 
-app.listen(3000, () => {console.log("Backend started, listening on port 3000")})
-
-
+const port = process.env.PORT || 3000; 
+app.listen(port, () => {
+  console.log(`Backend started, listening on port ${port}`);
+});
