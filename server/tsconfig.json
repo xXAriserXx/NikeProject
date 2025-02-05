@@ -8,9 +8,10 @@
     "esModuleInterop": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
+    "outDir": "./dist"
   },
     "include": [
-    "server/**/*.ts", // Your server folder
-    "custom.d.ts"      // Include the types file here
+    "server/**/*.ts", 
+    "custom.d.ts"         
   ]
 }
