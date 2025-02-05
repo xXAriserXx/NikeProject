@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IOrder } from '../../../server/models/IOrder';
+import { environment } from '../../enviroments/enviromment';
 import { IShoeCart } from '../../../server/models/IShoeCart';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class OrderService {
 
   constructor(private http:HttpClient) { }
 
-  apiOrders:string = "http://localhost:3000/orders"
+  apiOrders:string = `${environment.apiUrl}/orders`
 
   createOrder (order:IShoeCart[]) {
     console.log(order)

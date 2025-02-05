@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
-import { IShoe } from '../../../server/models/IShoe';
-import { ICart } from '../../../server/models/ICart';
+import { environment } from '../../enviroments/enviromment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class ProductService {
 
   constructor(private http:HttpClient) { }
 
-  apiShoes = "http://localhost:3000/shoes"
+  apiShoes = `${environment.apiUrl}/shoes`
   
   getAllShoes() {
     return this.http.get(`${this.apiShoes}`)

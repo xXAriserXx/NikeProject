@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ICart } from '../../../server/models/ICart';
 import { IShoeCart } from '../../../server/models/IShoeCart';
 import { map } from 'rxjs';
+import { environment } from '../../enviroments/enviromment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CartService {
 
   constructor(private http:HttpClient) { } 
 
-  apiCart = "http://localhost:3000/carts"
+  apiCart = `${environment.apiUrl}/carts`
 
 
   getUserCart (userId) { 

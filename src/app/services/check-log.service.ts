@@ -19,20 +19,20 @@ export class CheckLogService {
         const decodedToken: any = jwtDecode(token);
         const isExpired = decodedToken.exp * 1000 < Date.now();
         if (!isExpired) {
-          this.loginStatus$.next(true); // Token is valid
+          this.loginStatus$.next(true); 
         } else {
-          this.loginStatus$.next(false); // Token expired
+          this.loginStatus$.next(false); 
         }
       } catch (e) {
-        this.loginStatus$.next(false); // Invalid token
+        this.loginStatus$.next(false); 
       }
     } else {
-      this.loginStatus$.next(false); // No token
+      this.loginStatus$.next(false); 
     }
   }
 
   isLoggedIn(): boolean {
-      return this.loginStatus$.value; // Returns the current login status
+      return this.loginStatus$.value; 
   }
 
 }
