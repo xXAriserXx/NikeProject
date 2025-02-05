@@ -2,10 +2,10 @@
     "name": "nike-server",
     "version": "0.0.0.0.0.0.0.1-pre-alpha",
     "description": "",
-    "main": "dist/app.js",
+    "main": "app.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "tsc && node dist/app.js",
+      "start": "tsc && node app.js",
       "build": "chmod +x ./node_modules/.bin/tsc && npx tsc"
     },
     "author": "",
