@@ -18,6 +18,19 @@ app.use("/orders", ordersWs)
 app.use("/carts", cartWs)
 app.use("/favorites", favoritesTs)
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Welcome to the API!",
+    availableRoutes: [
+      "/shoes",
+      "/users",
+      "/orders",
+      "/carts",
+      "/favorites"
+    ]
+  });
+});
+
 export const secretKey:string = "KGJH324234@sdfkbj"
 
 const port = process.env.PORT || 3000; 
