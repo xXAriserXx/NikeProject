@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, viewChild, ViewChild } from '@angular/core';
 import { CheckLogService } from '../services/check-log.service';
 import { IShoe } from '../../../server/models/IShoe';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { IUser } from '../../../server/models/IUser';
 import { ProductService } from '../services/product.service';
@@ -33,7 +33,7 @@ export class HeaderComponent {
   shoes: IShoe[] = [];
   quantity: number = 0;
 
-  constructor(private checkLogService: CheckLogService, private userService: UserService, private productService: ProductService, private cartService: CartService) {}
+  constructor(private checkLogService: CheckLogService, private userService: UserService, private productService: ProductService, private cartService: CartService, private router:Router) {}
 
   ngAfterViewInit() {
     this.lastScrollY = 0; 
@@ -75,11 +75,16 @@ export class HeaderComponent {
     }
   }
 
-  onClickSearch() {
+  onClickSearch () {
     this.searching = true;
     setTimeout(() => {
       this.searchInput.nativeElement.focus();
     }, 1);
+  }
+
+  onEnter() {
+    this.router.navigate(['/products'], {queryParams: { name: this.userInput }})
+    this.searching = false
   }
 
   onSearch() {

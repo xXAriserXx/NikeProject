@@ -80,6 +80,7 @@ app-modal {
     right: 20px;
     button {
         background-color: white;
+        cursor: pointer;
         width: 36px;
         height: 36px;
         border-radius: 30px;
@@ -164,7 +165,12 @@ app-modal {
 
 .sizes {
     justify-content: center;
+    margin: 0;
+    width: 95%;
+    border: 1px solid transparent;
 }
+
+
 
 .sizeLabel {
     display: block;
@@ -250,6 +256,13 @@ app-modal {
     background: linear-gradient(to right, blue 50%, green 50%);
 }
 
+.Grigio\/Blu {
+    background: linear-gradient(to right, gray 50%, blue 50%);
+}
+.Bianco\/Rosso {
+    background: linear-gradient(to right, white 50%, red 50%);
+}
+
 .colors {
     gap: 5px;
 }
@@ -282,6 +295,22 @@ input[type="radio"]:checked + label::after {
 }
 
 @media (max-width:959px) {
+
+    .mainImage {
+        width: 100vw;
+        height: calc(125vw);
+    }
+
+    .mainImage img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mainImage video {
+        width: 100%;
+        height: 100%;
+    }
+
     .container {
         flex-direction: column;
         align-items: center;
@@ -289,6 +318,7 @@ input[type="radio"]:checked + label::after {
     } 
     .left {
         width: fit-content;
+        height: fit-content;
         .conScroll {
             display: none;
         }

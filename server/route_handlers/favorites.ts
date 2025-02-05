@@ -25,15 +25,29 @@ router.patch("/", tokenRequired, async (req: CustomRequest, res) => {
     try {
         const favoriteToAdd = req.body.shoeFav;
         const userId = req.user._id;
+
+        const userFavorites = await favorites.findOne({userId: userId})
+        console.log(favoriteToAdd)
+        console.log(userFavorites.favoriteItems)
+        console.log(userFavorites?.favoriteItems.some(favItem => favItem.shoeId === favoriteToAdd.shoeId))
+
+        if (userFavorites?.favoriteItems.some(favItem => favItem.shoeId == favoriteToAdd.shoeId)) {
+            res.status(400).send({ msg: "Already added to your favorites"})
+            return
+        }
+
         const favorite = await favorites.updateOne(
             { userId: userId },
             { $push: { favoriteItems: favoriteToAdd } }
         );
+
         res.status(200).send({ message: "Favorite added successfully"});
     } catch (err) {
-        res.status(500).send({ message: "Error adding favorite" });
+        res.status(500).send({ message: "Error adding favorite", code: err});
     }
 });
+
+
 
 router.patch("/remove", tokenRequired, async (req: CustomRequest, res) => {
     try {

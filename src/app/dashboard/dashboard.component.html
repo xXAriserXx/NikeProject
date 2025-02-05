@@ -23,9 +23,9 @@
             </div>
         </div>
     </div>
+    <h2 *ngIf="!emptyFav">I tuoi preferiti</h2>
     <div class="conFavorites">
-        <div *ngFor="let favorite of favorites; let i = index">
-        <h2 *ngIf="favorite.favoriteItems.length !== 0">I tuoi preferiti</h2>
+        <div *ngFor="let favorite of favorites">
             <div class="favItem" *ngFor="let shoe of favorite.favoriteItems">
                 <img [routerLink]="['/shoeDetail', shoe.shoeId]" src="{{shoe.imageIcon}}">
                 <button (click)="removeFavorite(shoe)"><img src="icons/trash.svg" alt=""></button>

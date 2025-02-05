@@ -14,6 +14,7 @@ import { ModalComponent } from "../modal/modal.component";
 import { EuroPipe } from '../pipes/euro.pipe';
 import { FavoritesService } from '../services/favorites.service';
 import { IShoeFav } from '../../../server/models/IShoeFav';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-shoe-detail',
@@ -62,6 +63,7 @@ chosenSize:string = ""
 shoeName:string
 modalActive:boolean = false
 currentImage:number = 2
+error:boolean = false
 
 ngOnInit () {
   window.scrollTo(0, 0)
@@ -102,9 +104,11 @@ addToCart () {
   this.shoeCart.imageIcon = this.shoe.immagini[0]
 
   if (this.chosenSize == "") {
-    alert("Scegli una taglia")
+    this.error = true
     return
   }
+
+  this.error = false
 
   if (this.isLoggedIn) {
     this.cartService.updateQuantity(this.shoeCart, "add").subscribe({
@@ -147,7 +151,7 @@ addToFavorites () {
         console.log(data)
         alert("Aggiunto ai preferiti")
       },
-      error: (error) => {console.log(error)},
+      error: (error:HttpErrorResponse) => {alert(error.error.msg)},
       complete: ()=> {}
     })
   } else {

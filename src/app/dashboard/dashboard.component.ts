@@ -13,6 +13,7 @@ import { IShoe } from '../../../server/models/IShoe';
 import { IShoeFav } from '../../../server/models/IShoeFav';
 import { IUser } from '../../../server/models/IUser';
 import { CapitalizeFirstPipe } from '../pipes/capitalize-first.pipe';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +30,7 @@ export class DashboardComponent {
   favorites:IFavorite[] = []
   random:IShoe[] = []
   user:IUser
+  emptyFav:boolean = false
     
   ngOnInit () {
 
@@ -46,7 +48,11 @@ export class DashboardComponent {
     this.favoritesService.getFavorites().subscribe({
       next: (response: {msg:string, favoritesFound:IFavorite[]}) => {
         this.favorites = response.favoritesFound
-        console.log(response)
+        if (response.favoritesFound[0].favoriteItems.length !== 0) {
+          this.emptyFav = false
+        } else {
+          this.emptyFav = true
+        }
       },
       error: (error) => {console.log(error)},
       complete: () => {}

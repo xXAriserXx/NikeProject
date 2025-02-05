@@ -36,7 +36,7 @@
 
   <div class="textSizes">
     <div>
-      <p>Seleziona la taglia/misura</p>   
+      <p [ngStyle]="{'color': error ? 'red' : 'black' }">Seleziona la taglia/misura</p>   
     </div>
     <div>
       <img src="icons/size.svg" alt="">
@@ -47,7 +47,7 @@
   </div>
 
 
-  <div class="options sizes">
+  <div class="options sizes" [ngStyle]="{'border-color': error ? 'red' : 'transparent'}">
     @for (size of sizes; track size) {
       <input [(ngModel)]="chosenSize" id="{{size}}" type="radio" name="shoeSize" value="{{size}}"> 
       <label for="{{size}}" class="sizeLabel">EU {{size}}</label>

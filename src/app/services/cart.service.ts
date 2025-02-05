@@ -14,7 +14,7 @@ export class CartService {
   apiCart = "http://localhost:3000/carts"
 
 
-  getUserCart (userId) { //this gets the user cart
+  getUserCart (userId) { 
     return this.http.get(`${this.apiCart}/${userId}`)
   }
 

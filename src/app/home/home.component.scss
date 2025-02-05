@@ -52,6 +52,7 @@
     gap: 12px;
     img {
         width: 568px;
+        cursor: pointer;
     }
 }
 
@@ -75,7 +76,7 @@
 }
 
 ::-webkit-scrollbar {
-    height: 12px; /* Width of the scrollbar */
+    height: 12px; 
 }
 
 ::-webkit-scrollbar-track {
@@ -83,11 +84,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: transparent; /* Semi-transparent scrollbar thumb */
+    background: transparent; 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.7); /* Darker thumb on hover */
+    background: rgba(0, 0, 0, 0.7); 
 }
 
 .productsButton {

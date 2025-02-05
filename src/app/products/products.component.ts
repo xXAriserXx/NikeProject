@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
+import { switchMap, map } from 'rxjs';
 import { Component } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Params, RouterLink } from '@angular/router';
 import { FilterComponent } from '../filter/filter.component';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
@@ -18,20 +19,43 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsComponent {
 
-  constructor(private productservice:ProductService) {
+  constructor(private productservice:ProductService, private route:ActivatedRoute) {
   }
 
   allShoes:IShoe[] = []
 
-  ngOnInit () {
-    this.productservice.getAllShoes().subscribe({
-      next: (shoes:IShoe[]) => {
-        this.allShoes = shoes
+  ngOnInit() {
+    this.route.queryParamMap.pipe(
+      switchMap((params: Params) => {
+        const query = params.get("name");
+        return this.productservice.getAllShoes().pipe(
+          map((shoes: IShoe[]) => {
+            if (query) {
+              shoes = shoes.filter(x => x.nome.toLowerCase().includes(query.toLowerCase()));
+            }
+            return shoes;
+          })
+        );
+      })
+    ).subscribe({
+      next: (shoes: IShoe[]) => {
+        this.allShoes = shoes;
       },
-      error: (error) => {console.log(error)},
-      complete: () => {console.log("All shoes were retrieved")}
-    })
+      error: (error) => { console.log(error); },
+      complete: () => { console.log("All shoes were retrieved"); }
+    });
+
+
+
+    this.productservice.getAllShoes().subscribe({
+      next: (shoes: IShoe[]) => {
+        this.allShoes = shoes;
+      },
+      error: (error) => { console.log(error); },
+      complete: () => { console.log("All shoes were retrieved"); }
+    });
   }
+
 
   onFilterChange (filteredShoes) {
     this.allShoes = filteredShoes

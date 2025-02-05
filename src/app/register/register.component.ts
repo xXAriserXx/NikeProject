@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
 import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RegisterComponent {
 form: FormGroup;
 
-  constructor(private fb: FormBuilder, private usersService:UserService) {
+  constructor(private fb: FormBuilder, private usersService:UserService, private router:Router) {
     this.form = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -34,7 +35,10 @@ form: FormGroup;
         error: (error:HttpErrorResponse) => {
           alert(error.error.msg)
         },
-        complete: () => {console.log("Letsgoski, the user has been registered")}
+        complete: () => {
+          alert("User has been registered")
+          this.router.navigate(['/login'])
+        }
       })
     }
   }

@@ -32,12 +32,12 @@
     </div>
 
     <div class="bigBar">
-        <div routerLink="/home" class="conLogo"> <!--This is where the logo will go just the logo-->
+        <div routerLink="/home" class="conLogo"> 
             <img src="icons/nikelogo.svg" alt="">
         </div>
 
-        <div class="conMenu"> <!--This is where the menu will be this disappears at some point -->
-            <div class="menu menuNovita"> <!--This is the first section in which Novita e in evidenza is contained, it has 4 sections so 4 divsThis div will be shown when hovering on novita' e in evidenza -->
+        <div class="conMenu"> 
+            <div class="menu menuNovita"> 
                 <p>Novita' e in evidenza</p> 
                 <div class="inner innerNovita">
                     <div>
@@ -84,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="menu menuUomo"> <!--This is the first section in which Novita e in evidenza is contained, it has 4 sections so 4 divsThis div will be shown when hovering on novita' e in evidenza -->
+            <div class="menu menuUomo"> 
                 <p>Uomo</p> 
                 <div class="inner innerUomo">
                     <div>
@@ -140,7 +140,7 @@
                 </div>
             </div>
 
-            <div class="menu menuDonna"> <!--This is the first section in which Novita e in evidenza is contained, it has 4 sections so 4 divsThis div will be shown when hovering on novita' e in evidenza -->
+            <div class="menu menuDonna"> 
                 <p>Donna</p> 
                 <div class="inner innerDonna">
                     <div>
@@ -199,7 +199,7 @@
                 </div>
             </div>
 
-            <div class="menu menuKids"> <!--This is the first section in which Novita e in evidenza is contained, it has 4 sections so 4 divsThis div will be shown when hovering on novita' e in evidenza -->
+            <div class="menu menuKids"> 
                 <p>Kids</p> 
                 <div class="inner innerKids">
                     <div>
@@ -251,7 +251,7 @@
                 </div>
             </div>
 
-            <div class="menu menuOutlet"> <!--This is the first section in which Novita e in evidenza is contained, it has 4 sections so 4 divsThis div will be shown when hovering on novita' e in evidenza -->
+            <div class="menu menuOutlet"> 
                 <p>Outlet</p> 
                 <div class="inner innerOutlet">
                     <div>
@@ -300,13 +300,13 @@
         </div>
         <div class="overlay"></div>
 
-        <div class="conSearchIcons"> <!--Contains the search bar and the favorites and cart icons-->
+        <div class="conSearchIcons"> 
             <div (click)="onClickSearch()" class="conSearchBar">
                 <img src="icons/search.svg" alt="">
                 <input type="text" placeholder="Cerca">
-            </div> <!--contains the search bar-->
+            </div> 
             <div class="conHeartCart">
-                <img class="heartIcon" src="icons/heart.svg" alt="">
+                <img class="heartIcon" src="icons/heart.svg" alt="" [routerLink]="isLoggedIn ? ['/dashboard', user._id] : ['/login']">
                 <div class="cart" [routerLink]="isLoggedIn ? ['/cart', user._id] : ['/cart']" alt="">
                     <img  src="icons/cart.svg" >
                     @if (quantity > 0) {
@@ -328,7 +328,7 @@
         <img src="icons/nikelogo.svg" alt="">
         <div class="conSearchBar2">
             <img src="icons/search.svg" alt="">
-            <input [(ngModel)]="userInput" (keyup)="onSearch()" type="text" placeholder="Cerca" #searchInput>
+            <input [(ngModel)]="userInput" (keyup)="onSearch()" (keydown.enter)="onEnter()" type="text" placeholder="Cerca" #searchInput>
         </div> 
         <p (click)="close()">Annulla</p>
         <div class="results">
