@@ -1,17 +1,15 @@
 {
-  "ts-node": {
-    "compilerOptions": {
-      "module": "NodeNext"
-    }
-  },
   "compilerOptions": {
     "esModuleInterop": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "outDir": "./dist"
+    "target": "ES6", 
+    "outDir": "./dist",  
+    "rootDir": "./", 
+    "skipLibCheck": true
   },
-    "include": [
-    "server/**/*.ts", 
-    "custom.d.ts"         
+  "include": [
+    "**/*.ts",  
+    "custom.d.ts"
   ]
 }
