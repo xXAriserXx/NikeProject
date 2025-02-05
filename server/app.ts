@@ -22,5 +22,5 @@ export const secretKey:string = "KGJH324234@sdfkbj"
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {
-  console.log(`Backend started, listening on port ${port}`);
+  console.log(`Backend started, listening on port ${port} wowowiwo`);
 });
