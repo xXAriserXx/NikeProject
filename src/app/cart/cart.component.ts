@@ -86,6 +86,7 @@ calcTotPrice(cart: ICart) {
     this.totalPrice = +cart.shoes.map(item => item.price * item.quantity).reduce((acc, price) => acc + price, 0).toFixed(2);
   } else {
     this.totalPrice = 0
+    this.priceAfterDiscount = 0
   }
 }
 
@@ -98,7 +99,9 @@ applyCoupon () {
     console.log(totalDiscount)
     alert("Codice Coupon applicato")
     this.discountApplied = true
-  } 
+  } else {
+    alert("Codice cuopon errato")
+  }
 }
 
 addFavorite (shoe:IShoeCart) {

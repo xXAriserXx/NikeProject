@@ -100,27 +100,21 @@ section {
 }
 
 @media (max-width: 1199px) {
-    input {
-        width: 100px;
-
-    }
     .test {
         align-items: center;
         justify-content: center;
     }
+    .containerForm {
+        width: 90vw;
+    }
+    
 }
 
-@media (max-width: 850px) {
-    .containerForm, .containerForm2 {
-        width: 40vw;
+@media (max-width: 559px) {
+    .containerForm {
+        width: 95vw;
     }
     input {
-        width: 70px;
-    }
-}
-
-@media (max-width: 560px) {
-    input {
-        width: 30px;
+        width: 90%;
     }
 }

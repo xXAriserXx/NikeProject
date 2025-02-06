@@ -41,7 +41,7 @@ export class ModalComponent {
         complete: () => {}
       })
     } else {
-      this.quantity = this.cartService.getQuantityGuest()
+      this.quantity = this.cartService.getQuantityGuest() - 1
     }
 
   }
