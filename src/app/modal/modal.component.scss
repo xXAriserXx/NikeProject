@@ -64,3 +64,19 @@ button {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.465);
 }
+
+@media (max-width: 959px) {
+    .container {
+        top: 60px;
+    }
+}
+
+@media (max-width: 559px) {
+    .container {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        z-index: 4;
+        top: 180px;
+    }
+}

@@ -20,10 +20,12 @@
         </div> 
         <div #scrollContainer class="outerSlider">
             <div class="slider">
-                <div [routerLink]="['/shoeDetail', newArrival._id]" *ngFor="let newArrival of newArrivals">
-                    <img src="{{newArrival.immagini[0]}}">
-                    <p>{{newArrival.nome}}</p>
-                </div>
+                @for (newArrival of newArrivals; track newArrival) {
+                    <div [routerLink]="['/products']" [queryParams]="{ name: newArrival.nome }">
+                        <img src="{{newArrival.immagini[0]}}">
+                        <p>{{newArrival.nome}}</p>
+                    </div>
+                }
             </div>
         </div>
     </div> 
@@ -36,10 +38,16 @@
         </div> 
         <div #scrollContainer2 class="outerSlider">
             <div class="slider">
-                <div [routerLink]="['/shoeDetail', bestSeller._id]" *ngFor="let bestSeller of bestSellers">
+                @for (bestSeller of bestSellers; track bestSeller) {
+                    <div [routerLink]="['/products']" [queryParams]="{ name: bestSeller.nome }">
+                        <img src="{{bestSeller.immagini[0]}}">
+                        <p>{{bestSeller.nome}}</p>
+                    </div>
+                }
+                <!--<div [routerLink]="['/shoeDetail', bestSeller._id]" *ngFor="let bestSeller of bestSellers">
                     <img src="{{bestSeller.immagini[0]}}">
                     <p>{{bestSeller.nome}}</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div> 

@@ -389,6 +389,12 @@ app-search-bar {
 
 }
 
+.userIcon {
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+}
+
 @media (max-width: 1199px) {
     .conSearchIcons {
         gap: 0;
@@ -416,9 +422,44 @@ app-search-bar {
         display: flex;
     }
 
+    .smallBar {
+        display: none;
+    }
+
+    .conLogo {
+    img {
+        padding-left: 24px;
+    }
+    }
+
+    .conSearchIcons {
+        margin-right: 24px;
+    }
 }
 
+.back {
+    margin-left: 24px;
+}
 
+.menuHamburger div .back::before{
+    content: "";;
+    background: url("/icons/left.svg") no-repeat center/cover;
+    position: absolute; 
+    margin-top: 4.5px; 
+    margin-left: -24px;
+    height: 24px;
+    width: 24px;
+}
+
+.menuHamburger div label:not(.back):after{
+    content: "";;
+    background: url("/icons/right.svg") no-repeat center/cover;
+    position: absolute; 
+    margin-top: 4.5px; 
+    height: 24px;
+    width: 24px;
+
+}
 
 #novita:checked ~ div:nth-of-type(1) div label {
     display: block;
@@ -942,7 +983,6 @@ app-search-bar {
 #outletSport:checked ~ div:nth-of-type(5) label:nth-of-type(2) {
     display: none;
 }
-
 
 
 

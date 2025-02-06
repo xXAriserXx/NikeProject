@@ -345,6 +345,15 @@
 
     <div class="x" (click)="closeHamburger()"><img [src]="'/icons/x.svg'" alt=""></div> 
     <div class="wrap">
+
+        <div class="userIcon" [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'">
+            <img src="icons/user.svg" alt="">
+            @if (isLoggedIn) {
+                <p>Ciao, {{user.name}}</p>
+            } @else {
+                <p>Login/registrazione</p>
+            }
+        </div>
         <div class="menuHamburger">
 
             <input type="checkbox" id="novita">
@@ -381,11 +390,12 @@
             <input type="checkbox" id="outletKids">
             <input type="checkbox" id="outletSport">
 
+
             <div>
-            <label for="novita">Novita' e in evidenza<img src="icons/right.svg" alt=""></label>
-            <label for="novita" class="back"><img src="icons/left.svg" alt="">Tutto</label>
+            <label for="novita">Novita' e in evidenza</label>
+            <label for="novita" class="back">Tutto</label>
                 <div>
-                    <label for="novitaEvidenza">In evidenza<img src="icons/right.svg" alt=""></label>
+                    <label for="novitaEvidenza">In evidenza</label>
                     <label for="novitaEvidenza" class="back"><img src="icons/left.svg" alt="">Novita' e in evidenza</label>
                     <p>Tutti i nuovi arrivi</p>
                     <p>Best seller</p>

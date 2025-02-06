@@ -200,6 +200,45 @@ h2 {
     }
 }
 
+@media (max-width: 959px) {
+    .spacer {
+        height: 60px;
+    }
+    .divShoes {
+        grid-template-areas: 
+        "image text"
+        "buttons priceText "
+        "extraText extraText";
+        .priceText {
+            margin-left: 0;
+            justify-self: flex-start;
+        }
+    }
+}
+
+@media (max-width: 559px) {
+    h2 {
+        text-align: center;
+    }
+    .divShoes {
+        grid-template-columns: 1fr;
+        justify-items: center; 
+        grid-template-areas: 
+        "image"
+        "buttons"
+        "text"
+        "extraText"
+        "priceText";
+        .priceText {
+            justify-self: center;
+        }
+        .extraText {
+            display: none;
+        }
+    }
+
+}
+
 @media (max-width: 1199px) {
     section {
         flex-direction: column;

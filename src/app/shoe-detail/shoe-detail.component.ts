@@ -138,7 +138,7 @@ addToCart () {
   setTimeout(() => {
     this.modalActive = false 
     document.body.style.overflow = "auto"
-  }, 5000);
+  }, 50000);
 }
 
 addToFavorites () {

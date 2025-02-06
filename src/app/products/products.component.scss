@@ -2,16 +2,29 @@
     height: 96px;
 }
 
+section {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 
+    "filter searchTerm"
+    "filter shoes"
+}
 
 .containerGrande {
+    grid-area: "shoes";
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     width: 100%;
     gap: 20px;
 }
 
+.searchTerm {
+    grid-area: searchTerm;
+}
+
 .containerScarpa {
     width: fit-content; 
+    cursor: pointer;
     border-radius: 10px;
     .image {
         width: 100%
@@ -23,16 +36,14 @@
 
 
 app-filter {
+    grid-area: filter;
     margin-top: 20px;
+    padding-left: 40px; 
     display: flex; 
     flex-direction: column;
     align-items: center; 
     width: 20%;
     min-width: 220px;
-}
-
-section {
-    display: flex;
 }
 
 
@@ -42,8 +53,21 @@ section {
     }
 }
 
+@media (max-width:959px) {
+    .spacer {
+        height: 60px;
+    }
+}
+
 @media (max-width:559px) {
 
+    section {
+        display: flex;
+    }
+
+    .searchTerm {
+        text-align: center;
+    }
 
     .containerGrande {
         grid-template-columns: 1fr;
@@ -69,10 +93,10 @@ section {
     app-filter {
         width: 100vw;
         height: fit-content; 
+        padding-left: 0; 
     }
     section {
         flex-direction: column;
     }
 }
-
 

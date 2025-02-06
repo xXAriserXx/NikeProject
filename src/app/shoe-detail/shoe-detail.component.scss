@@ -74,6 +74,7 @@ app-modal {
     }
 }
 
+
 .left .buttons {
     position: absolute;
     bottom: 20px;
@@ -350,7 +351,18 @@ input[type="radio"]:checked + label::after {
         padding: 30px;
     }
 
+    .spacer {
+        height: 60px;
+    }
 
+
+}
+
+@media (max-width: 559px) {
+
+    app-modal {
+        z-index: 3;
+    }
 }
 
 

@@ -118,3 +118,19 @@
        }
     }
 }
+
+@media (max-width: 959px) {
+    .spacer {
+        height: 60px;
+    }
+
+    .containerBanner {
+        display: flex;
+        justify-content: center;
+    }
+
+    .containerBanner img {
+        height: 60vh;
+        width: auto;
+    }
+}

@@ -16,13 +16,10 @@ router.get("/random", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    console.log("Fetching all shoes...")   
     const allShoes = await shoes.find().toArray()
-    console.log("Shoes fetched successfully:", allShoes)    
     res.send(allShoes)
   } 
   catch (error) {
-    console.error("Error fetching shoes:", error)  
     res.status(500).send("Server error")
   }
 })

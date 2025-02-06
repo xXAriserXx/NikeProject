@@ -3,8 +3,13 @@
 
 <section>
     <app-filter class="filter" (filterChange)="onFilterChange($event)"></app-filter>
-
+        @if (searchTerm) {
+            <div class="searchTerm">
+                <p>Risultati per: {{searchTerm}}</p>
+            </div>
+        }  
     <div class="containerGrande">
+
         <div *ngIf="allShoes.length === 0">
             <p>Non ci sono risultati</p>
         </div>

@@ -31,6 +31,7 @@ export class CartComponent {
   validCoupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
   priceAfterDiscount: number
   discountApplied:boolean = false
+  shoes:IShoeCart[] = []
 
   ngOnInit () { 
     window.scroll(0, 0)
@@ -53,6 +54,7 @@ export class CartComponent {
 
       this.cart = JSON.parse(localStorage.getItem("cart"))
       console.log(this.cart)
+      this.calcTotPrice(this.cart)
 
     }
 
@@ -80,7 +82,11 @@ export class CartComponent {
   }
 
 calcTotPrice(cart: ICart) {
-  this.totalPrice = +cart.shoes.map(item => item.price * item.quantity).reduce((acc, price) => acc + price, 0).toFixed(2);
+  if (cart.shoes.length > 0) {
+    this.totalPrice = +cart.shoes.map(item => item.price * item.quantity).reduce((acc, price) => acc + price, 0).toFixed(2);
+  } else {
+    this.totalPrice = 0
+  }
 }
 
 

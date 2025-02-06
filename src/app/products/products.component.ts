@@ -23,14 +23,18 @@ export class ProductsComponent {
   }
 
   allShoes:IShoe[] = []
+  searchTerm:string = ""
 
   ngOnInit() {
+    window.scroll(0, 0)
     this.route.queryParamMap.pipe(
       switchMap((params: Params) => {
         const query = params.get("name");
+        console.log("risultati per:" + query)
         return this.productservice.getAllShoes().pipe(
           map((shoes: IShoe[]) => {
             if (query) {
+              this.searchTerm = query
               shoes = shoes.filter(x => x.nome.toLowerCase().includes(query.toLowerCase()));
             }
             return shoes;
@@ -45,15 +49,14 @@ export class ProductsComponent {
       complete: () => { console.log("All shoes were retrieved"); }
     });
 
-
-
+    /*
     this.productservice.getAllShoes().subscribe({
       next: (shoes: IShoe[]) => {
         this.allShoes = shoes;
       },
       error: (error) => { console.log(error); },
       complete: () => { console.log("All shoes were retrieved"); }
-    });
+    }); */
   }
 
 
