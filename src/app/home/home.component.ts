@@ -21,26 +21,6 @@ export class HomeComponent {
 
   @ViewChild("scrollContainer") scrollContainer!: ElementRef
   @ViewChild("scrollContainer2") scrollContainer2!: ElementRef
-  /*
-  @ViewChild("header", { read: ElementRef }) header!: ElementRef;
-  @HostListener("window:scroll", ["$event"])
-
-onWindowScroll(event: Event) {
-  const currentScrollY = window.scrollY;
-
-  if (currentScrollY > this.lastScrollY) {
-    this.header.nativeElement.style.transform = "translateY(-100%)";
-    this.header.nativeElement.style.opacity = "0";
-    this.header.nativeElement.style.position = "absolute";
-  } else {
-    this.header.nativeElement.style.transform = "translateY(0)";
-    this.header.nativeElement.style.opacity = "1";
-    this.header.nativeElement.style.position = "fixed";
-  }
-
-  this.lastScrollY = currentScrollY;
-}*/
-
 
   private canClick = true
   isLoggedIn:boolean = false
