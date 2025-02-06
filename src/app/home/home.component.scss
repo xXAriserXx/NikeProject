@@ -127,10 +127,11 @@
     .containerBanner {
         display: flex;
         justify-content: center;
+        overflow: hidden;
     }
 
     .containerBanner img {
-        height: 60vh;
+        height: 500px;
         width: auto;
     }
 }
