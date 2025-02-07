@@ -70,16 +70,6 @@ router.post("/filter", async (req, res) => {
   const filterParams:IFilterParams = req.body
   const filter:Filter<IShoe> = {}
   if (filterParams.price.length) {
-    if () {
-      filter.prezzo = 
-    }
-    if () {
-      filter.prezzo = 
-    }
-    if () {
-      filter.prezzo = 
-    }
-
   }
   if (filterParams.color.length) {
     console.log(filterParams.color)
