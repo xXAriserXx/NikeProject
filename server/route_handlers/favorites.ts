@@ -1,9 +1,6 @@
 import express from "express"
 import { CustomRequest, tokenRequired } from "../middleware/authMiddleware"
 import { favorites } from "../db"
-import { IFavorite } from "../models/IFavorite"
-import { IShoeFav } from "../models/IShoeFav"
-
 
 const router = express.Router()
 

@@ -49,17 +49,20 @@ export class FilterComponent {
     this.initCategoryOptions();
     this.filterForm.valueChanges.pipe(
     switchMap(value => {
-      const selectedFilters = this.getSelectedFilters(value);  // Get selected filters here
-      return this.productService.getFilteredShoes(selectedFilters);  // Pass selected filters to the service
+      const selectedFilters = this.getSelectedFilters(value); 
+      return this.productService.getFilteredShoesDB(selectedFilters);       
     })
-  ).subscribe(filteredShoes => {
-    console.log(filteredShoes);  // Handle the filtered shoes here
+  ).subscribe((filteredShoes) => {
     this.filterChange.emit(filteredShoes)
-
-  });
+  })
+ /* 
+  subscribe((filteredShoes: {shoes, msg}) => {
+    console.log(filteredShoes.shoes)
+    this.filterChange.emit(filteredShoes.shoes)
+  }); */
 
   }
-
+  
   private initPriceOptions() {
     this.priceOptions.forEach(() => this.price.push(this.fb.control(false)));
   }
@@ -72,7 +75,6 @@ export class FilterComponent {
     this.categoryOptions.forEach(() => this.category.push(this.fb.control(false)));
   }
 
-  // Helper function to get the selected filters as strings
   private getSelectedFilters(formValue: any) {
     const selectedFilters = {
       price: this.priceOptions.filter((_, index) => formValue.price[index]).map(option => option.value),

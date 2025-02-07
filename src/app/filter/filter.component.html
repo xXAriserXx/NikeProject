@@ -6,8 +6,8 @@
     </label> 
     <div class="conPrice">
       <div *ngFor="let price of priceOptions; let i = index">
-        <label [for]="'price_' + i">{{ price.label }}</label>
         <input [id]="'price_' + i" type="checkbox" [formControlName]="i" />
+        <label [for]="'price_' + i">{{ price.label }}</label>
       </div>
     </div>
   </div>
@@ -19,8 +19,8 @@
     </label>
     <div class="conColor">
       <div *ngFor="let color of colorOptions; let i = index">
-        <label [for]="'color_' + i">{{ color }}</label>
         <input [id]="'color_' + i" type="checkbox" [formControlName]="i" />
+        <label [for]="'color_' + i">{{ color }}</label>
       </div>
     </div>
   </div>
@@ -32,8 +32,8 @@
     </label>
     <div class="conCategory">
       <div *ngFor="let category of categoryOptions; let i = index">
-        <label [for]="'category_' + i">{{ category }}</label>
         <input [id]="'category_' + i" type="checkbox" [formControlName]="i" />
+        <label [for]="'category_' + i">{{ category }}</label>
       </div>
     </div>
   </div>

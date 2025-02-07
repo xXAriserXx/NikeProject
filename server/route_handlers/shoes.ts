@@ -1,6 +1,8 @@
 import express from "express"
 import { shoes } from "../db"
-import { ObjectId } from "mongodb"
+import { ObjectId, Filter } from "mongodb"
+import { IShoe } from "../models/IShoe"
+import { IFilterParams } from "../models/IFilterParams"
 
 const router = express.Router()
 
@@ -53,7 +55,7 @@ router.get("/byName/:userInput", async (req, res) => {
     const foundShoes = await shoes.find(
       { nome: { $regex: userInput, $options: "i" } }
     )
-    .limit(6) // Limit to 6 items
+    .limit(6) 
     .toArray();
 
     if (foundShoes) {
@@ -63,6 +65,42 @@ router.get("/byName/:userInput", async (req, res) => {
     res.status(500).send("Internal Server error " + err);
   }
 });
+
+router.post("/filter", async (req, res) => {
+  const filterParams:IFilterParams = req.body
+  const filter:Filter<IShoe> = {}
+  if (filterParams.price.length) {
+    if () {
+      filter.prezzo = 
+    }
+    if () {
+      filter.prezzo = 
+    }
+    if () {
+      filter.prezzo = 
+    }
+
+  }
+  if (filterParams.color.length) {
+    console.log(filterParams.color)
+    filter.colori_disponibili = {$in: filterParams.color.map(color => new RegExp(color, 'i')) }
+  }
+  if (filterParams.category.length) {
+    console.log(filterParams.category)
+    filter.categoria = {$in: filterParams.category.map(color => new RegExp(color, 'i')) }
+  }
+
+  try {
+    const filteredShoes = await shoes.find(filter).toArray()
+    res.send({
+      shoes: filteredShoes,
+      msg: "Shoes successfully retrieved"
+    })
+  }
+  catch (e) {
+    res.status(500).send(`Internal server error, mongo errorCode${e}`)
+  }
+})
 
 
 

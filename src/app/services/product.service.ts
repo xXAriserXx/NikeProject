@@ -43,7 +43,6 @@ export class ProductService {
     console.log('Filter:', filter);
     return this.http.get(`${this.apiShoes}`).pipe(
       map((shoes: any[]) => {
-        console.log('Shoes:', shoes);
         return shoes.filter(shoe => {
           const priceFilter = filter.price;
           let priceCondition = true;
@@ -69,6 +68,11 @@ export class ProductService {
         });
       })
     );
+  }
+  
+  getFilteredShoesDB (filter) {
+    console.log(filter)
+    return this.http.post(`${this.apiShoes}/filter`, filter)
   }
 
   getRandomShoes() {

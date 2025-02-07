@@ -331,10 +331,12 @@
             <input [(ngModel)]="userInput" (keyup)="onSearch()" (keydown.enter)="onEnter()" type="text" placeholder="Cerca" #searchInput>
         </div> 
         <p (click)="close()">Annulla</p>
-        <div class="results">
-            <div [routerLink]="['/shoeDetail', shoeRes._id]" (click)="close()" class="conShoes" *ngFor="let shoeRes of shoes">
-                <img  [src]="shoeRes.immagini[0]" alt="">
-                <p>{{shoeRes.nome}}</p>
+        <div class="sliderResults">
+            <div class="results">
+                <div [routerLink]="['/shoeDetail', shoeRes._id]" (click)="close()" class="conShoes" *ngFor="let shoeRes of shoes">
+                    <img  [src]="shoeRes.immagini[0]" alt="">
+                    <p>{{shoeRes.nome}}</p>
+                </div>
             </div>
         </div>
     </div>

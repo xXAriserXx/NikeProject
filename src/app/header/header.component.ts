@@ -77,6 +77,7 @@ export class HeaderComponent {
 
   onClickSearch () {
     this.searching = true;
+    document.body.style.overflow = "hidden"
     setTimeout(() => {
       this.searchInput.nativeElement.focus();
     }, 1);
@@ -85,6 +86,7 @@ export class HeaderComponent {
   onEnter() {
     this.router.navigate(['/products'], {queryParams: { name: this.userInput }})
     this.searching = false
+    document.body.style.overflow = "auto"
   }
 
   onSearch() {
@@ -98,11 +100,14 @@ export class HeaderComponent {
   }
 
   close() {
+    document.body.style.overflow = "auto" 
     this.searching = false;
+    /*
     setTimeout(() => {
       
     window.location.reload()
     }, 200);
+    */
   }
 
   closeHamburger () {

@@ -9,12 +9,6 @@ header {
     transition: transform 0.3s ease-in-out
 }
 
-app-search-bar {
-    left: 0;
-    z-index: 1;
-}
-
-
 .smallBar {
     height: 36px;
     width: 100%;
@@ -143,7 +137,7 @@ app-search-bar {
 }
 
 
-.conSearchIcons { //contains the whole thing
+.conSearchIcons { 
     justify-self: flex-end;
     grid-area: search;
     display: flex;
@@ -152,7 +146,7 @@ app-search-bar {
     width: fit-content;
 }
 
-.conSearchBar { //contains searchbar with the input and stuff
+.conSearchBar { 
     cursor: pointer;
     height: 36px;
     width: 168px;
@@ -184,7 +178,7 @@ app-search-bar {
 }
 
 
-.conHeartCart { //contains heart and cart icons
+.conHeartCart { 
     display: flex;
     width: fit-content;
     img {
@@ -224,6 +218,10 @@ app-search-bar {
     pointer-events: none;
 }
 
+.sliderResults {
+    grid-area: sliderResults;
+}
+
 .conSearch2 {
     width: 100vw;
     background-color: white;
@@ -232,13 +230,13 @@ app-search-bar {
     display: grid;
     grid-template-areas: 
     "nikeLogo searchBar annulla"
-    "results results results";
+    "sliderResults sliderResults sliderResults";
     justify-content: center;
     position: relative;
     align-items: center;
 }
 
-.conSearchBar2 { //contains searchbar with the input and stuff
+.conSearchBar2 { 
     grid-area: searchBar;
     margin-top: 10px; 
     cursor: pointer;
@@ -411,6 +409,43 @@ app-search-bar {
 }
 
 @media (max-width: 959px) {
+
+
+    .conSearch2 {
+        grid-template-rows: 1fr 8fr;
+        height: 100vh; 
+        > img {
+            display: none;
+        }
+        p {
+            align-self: flex-start;
+            margin-top: 7px;
+        }
+    } 
+
+    .conSearchBar2 {
+        align-self: flex-start;
+        width: 75vw;
+    }
+
+    .sliderResults {
+        grid-area: sliderResults;
+        overflow: scroll;
+        height: 100%;
+        width: 100%;
+    }
+
+    .results {
+        justify-content: center;
+        height: fit-content;
+        flex-wrap: wrap;
+        .conShoes {
+            width: 45%;
+            img {
+                width: 100%;
+            }
+        }
+    }
 
     .hamburger {
         display: block;
