@@ -31,7 +31,11 @@ export class ProductsComponent {
       switchMap((params: Params) => {
         const query = params.get("name");
         console.log("risultati per:" + query)
-        return this.productservice.getShoesByName(query)
+        if (query) {
+          return this.productservice.getShoesByName(query)
+        } else {
+          return this.productservice.getAllShoes()
+        }
       })).subscribe({
       next: (shoes: IShoe[]) => {
         this.allShoes = shoes;
