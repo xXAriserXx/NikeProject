@@ -31,17 +31,8 @@ export class ProductsComponent {
       switchMap((params: Params) => {
         const query = params.get("name");
         console.log("risultati per:" + query)
-        return this.productservice.getAllShoes().pipe(
-          map((shoes: IShoe[]) => {
-            if (query) {
-              this.searchTerm = query
-              shoes = shoes.filter(x => x.nome.toLowerCase().includes(query.toLowerCase()));
-            }
-            return shoes;
-          })
-        );
-      })
-    ).subscribe({
+        return this.productservice.getShoesByName(query)
+      })).subscribe({
       next: (shoes: IShoe[]) => {
         this.allShoes = shoes;
       },

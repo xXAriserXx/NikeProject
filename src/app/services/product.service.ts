@@ -38,7 +38,7 @@ export class ProductService {
       return of([])
     }
   }
-
+/*
   getFilteredShoes(filter) {
     console.log('Filter:', filter);
     return this.http.get(`${this.apiShoes}`).pipe(
@@ -68,7 +68,7 @@ export class ProductService {
         });
       })
     );
-  }
+  } */
   
   getFilteredShoesDB (filter) {
     console.log(filter)
