@@ -67,17 +67,30 @@ router.get("/byName/:userInput", async (req, res) => {
 });
 
 router.post("/filter", async (req, res) => {
+  console.log("triggered")
   const filterParams:IFilterParams = req.body
   const filter:Filter<IShoe> = {}
   if (filterParams.price.length) {
+    const priceRanges = []
+    if (filterParams.price.includes('50')) {
+      priceRanges.push({ prezzo: { $gte: 50, $lte: 100 } })
+    }
+    if (filterParams.price.includes('100')) {
+      priceRanges.push({ prezzo: { $gte: 100, $lte: 150 } })
+    }
+    if (filterParams.price.includes('150')) {
+      priceRanges.push({ prezzo: { $gte: 150 } })
+    }
+    filter.$or = priceRanges
   }
+
   if (filterParams.color.length) {
     console.log(filterParams.color)
     filter.colori_disponibili = {$in: filterParams.color.map(color => new RegExp(color, 'i')) }
   }
   if (filterParams.category.length) {
     console.log(filterParams.category)
-    filter.categoria = {$in: filterParams.category.map(color => new RegExp(color, 'i')) }
+    filter.categoria = {$in: filterParams.category.map(category => new RegExp(category, 'i')) }
   }
 
   try {

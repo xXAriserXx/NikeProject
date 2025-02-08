@@ -52,14 +52,10 @@ export class FilterComponent {
       const selectedFilters = this.getSelectedFilters(value); 
       return this.productService.getFilteredShoesDB(selectedFilters);       
     })
-  ).subscribe((filteredShoes) => {
-    this.filterChange.emit(filteredShoes)
-  })
- /* 
-  subscribe((filteredShoes: {shoes, msg}) => {
+  ).subscribe((filteredShoes: {shoes, msg}) => {
     console.log(filteredShoes.shoes)
     this.filterChange.emit(filteredShoes.shoes)
-  }); */
+  }); 
 
   }
   
