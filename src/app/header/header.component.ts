@@ -60,6 +60,10 @@ export class HeaderComponent {
     this.getShoeQuantity();
   }
 
+  ngOnDestroy () {
+    document.body.style.overflow = "auto"
+  }
+
   getShoeQuantity() {
     if (this.isLoggedIn) {
       this.user = this.userService.getUserData();
