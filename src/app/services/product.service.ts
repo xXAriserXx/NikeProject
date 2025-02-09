@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
 import { environment } from '../../enviroments/enviromment';
+import { IFilterParams } from '../../../server/models/IFilterParams';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,18 @@ export class ProductService {
   
   getAllShoes() {
     return this.http.get(`${this.apiShoes}`)
+  }
+
+  getShoesPG (page: number, limit: number, name?:string, filter?:IFilterParams) {
+
+    let params = new HttpParams().set("page", page).set("limit", limit)
+    if (name) {
+      params = params.set("name", name)
+    }
+    if (filter) {
+      params = params.set("filter", JSON.stringify(filter))
+    }
+    return this.http.get(`${this.apiShoes}`, { params })
   }
 
   getNewArrivals () {

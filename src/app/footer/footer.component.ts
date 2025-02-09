@@ -16,10 +16,8 @@ export class FooterComponent {
   inHome:boolean = false
 
   ngOnInit () {
-    console.log(this.route.snapshot.url[0].path)
     if (this.route.snapshot.url[0].path === "home") {
       this.inHome = true
-      console.log(this.inHome)
     }
   }
 

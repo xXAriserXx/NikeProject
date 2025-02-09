@@ -47,7 +47,16 @@ export class FilterComponent {
     this.initPriceOptions();
     this.initColorOptions();
     this.initCategoryOptions();
-    this.filterForm.valueChanges.pipe(
+    this.filterForm.valueChanges.subscribe({
+      next: (data) => {
+        this.filterChange.emit(this.getSelectedFilters(data))
+      },
+      error: (err) => {console.error(err)}
+
+    })
+    
+    
+    /*pipe(
     switchMap(value => {
       const selectedFilters = this.getSelectedFilters(value); 
       return this.productService.getFilteredShoesDB(selectedFilters);       
@@ -55,7 +64,7 @@ export class FilterComponent {
   ).subscribe((filteredShoes: {shoes, msg}) => {
     console.log(filteredShoes.shoes)
     this.filterChange.emit(filteredShoes.shoes)
-  }); 
+  }); */
 
   }
   

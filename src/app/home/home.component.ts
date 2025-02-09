@@ -42,7 +42,6 @@ export class HomeComponent {
     this.productService.getBestSellers().subscribe({
       next:(data:IShoe[]) => {
         this.bestSellers = data
-        console.log(this.bestSellers)
       },
       error:() => {},
       complete:() => {}
@@ -50,7 +49,6 @@ export class HomeComponent {
 
     this.productService.getNewArrivals().subscribe({
       next:(data:IShoe[]) => {
-        console.log(data)
         this.newArrivals = data
       },
       error:() => {},
