@@ -1,8 +1,10 @@
 <app-header></app-header>
 <div class="spacer"></div>
 
-<section>
-    <app-filter class="filter" (filterChange)="onFilterChange($event)"></app-filter>
+<section> 
+    <label class="labelFilter" for="filterButton">Filtri</label>
+    <input type="checkbox" id="filterButton"> 
+    <app-filter class="deskFilter" (filterChange)="onFilterChange($event)"></app-filter>
         @if (searchTerm) {
             <div class="searchTerm">
                 <p>Risultati per: {{searchTerm}}</p>

@@ -94,14 +94,13 @@ export class ProductsComponent {
     const startObserving = () => {
       if (hasScrolled && this.scrollTrigger) {
         observer.observe(this.scrollTrigger.nativeElement)
-        window.removeEventListener("scroll", handleScroll)
       }
     }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !this.loading) {
-          this.loadItems()
+          this.loadItems() 
         }
       })
     }, options)
@@ -112,9 +111,6 @@ export class ProductsComponent {
     }
 
     window.addEventListener("scroll", handleScroll)
+
   }
-
-
-
-
 }

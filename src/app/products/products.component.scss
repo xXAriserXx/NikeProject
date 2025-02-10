@@ -22,6 +22,14 @@ section {
     grid-area: searchTerm;
 }
 
+#filterButton {
+    display: none;
+}
+
+.labelFilter {
+    display: none;
+}
+
 .containerScarpa {
     width: fit-content; 
     cursor: pointer;
@@ -44,6 +52,13 @@ app-filter {
     align-items: center; 
     width: 20%;
     min-width: 220px;
+}
+
+.filter {
+    border: red 1px solid;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
 }
 
 
@@ -90,12 +105,37 @@ app-filter {
     margin: 10px;     
     }
 
+    .labelFilter {
+        display: block;
+        align-self: center;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: var(--grayPressed2);
+        margin: 10px;
+        &:active {
+            background-color: var(--grayPressed);
+        }
+    }
+
+
+    #filterButton:checked ~ app-filter {
+        max-height: 80vh;
+        overflow: scroll;
+    }
+
     app-filter {
-        display: none;
         width: 100vw;
         height: fit-content; 
         padding-left: 0; 
+        position: fixed;
+        bottom: 0;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.2s;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.349);
     }
+
     section {
         flex-direction: column;
     }
