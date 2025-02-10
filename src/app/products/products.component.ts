@@ -1,5 +1,5 @@
-import { switchMap, map } from 'rxjs';
-import { Component, HostListener } from '@angular/core';
+import { switchMap } from 'rxjs';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { ActivatedRoute, Params, RouterLink } from '@angular/router';
@@ -21,6 +21,8 @@ export class ProductsComponent {
 
   constructor(private productservice:ProductService, private route:ActivatedRoute) {
   }
+
+  @ViewChild("scrollTrigger") scrollTrigger!: ElementRef
 
   allShoes:IShoe[] = []
   searchTerm:string = ""
@@ -44,22 +46,15 @@ export class ProductsComponent {
       })).subscribe({
       next: (shoes: IShoe[]) => {
         this.allShoes = shoes;
-        this.page++
+        console.log("increased page")
       },
       error: (error) => { console.log(error); },
       complete: () => { console.log("All shoes were retrieved"); }
     });
+  }
 
-
-
-    /*
-    this.productservice.getAllShoes().subscribe({
-      next: (shoes: IShoe[]) => {
-        this.allShoes = shoes;
-      },
-      error: (error) => { console.log(error); },
-      complete: () => { console.log("All shoes were retrieved"); }
-    }); */
+  ngAfterViewInit () {
+    this.setupIntersectionObserver()
   }
 
   onFilterChange (filter): void {
@@ -86,11 +81,40 @@ export class ProductsComponent {
       }
     })
   }
-  @HostListener('window:scroll', ['$event'])
-  onScroll(): void {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !this.loading && window.scrollY > 100) {
-        this.loadItems();
-    }   
-  }  
+
+  setupIntersectionObserver () {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1.0
+    }
+
+    let hasScrolled = false
+
+    const startObserving = () => {
+      if (hasScrolled && this.scrollTrigger) {
+        observer.observe(this.scrollTrigger.nativeElement)
+        window.removeEventListener("scroll", handleScroll)
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !this.loading) {
+          this.loadItems()
+        }
+      })
+    }, options)
+
+    const handleScroll = () => {
+      hasScrolled = true
+      startObserving()
+    }
+
+    window.addEventListener("scroll", handleScroll)
+  }
+
+
+
 
 }
