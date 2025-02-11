@@ -1,18 +1,26 @@
 <app-header></app-header>
 <div class="spacer"></div>
 
+<input type="checkbox" id="inputFilter">
 <section> 
+    <div class="searchTerm">
+        <p>Risultati di ricerca per:</p>
+        <h3>{{searchTerm}}</h3>
+    </div>
+    <div class="extraButtons">
+        <label for="inputFilter">
+            <div>Mostra filtri</div>
+            <img src="icons/filter.svg" alt="">
+        </label>
+    </div>
+
+
     <label class="labelFilter" for="filterButton">Filtri</label>
     <input type="checkbox" id="filterButton"> 
     <app-filter class="deskFilter" (filterChange)="onFilterChange($event)"></app-filter>
-        @if (searchTerm) {
-            <div class="searchTerm">
-                <p>Risultati per: {{searchTerm}}</p>
-            </div>
-        }  
     <div class="containerGrande">
         <div *ngFor="let shoe of allShoes" [routerLink]="['/shoeDetail', shoe._id]" class="containerScarpa">
-            <img class="image" [src]="shoe.immagini[0]" alt="">
+            <img (load)="onImageLoad($event)" class="image" [src]="shoe.immagini[0]" alt="">
             <p>{{shoe.nome}}</p>
             <p>{{shoe.prezzo | euro}}</p>
         </div>

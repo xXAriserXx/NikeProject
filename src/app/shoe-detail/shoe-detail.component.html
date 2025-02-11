@@ -13,7 +13,7 @@
       </ng-container>
     </div>
     <div class="mainImage">
-      <img *ngIf="isImage(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" alt="media" />
+      <img (load)="onImageLoad($event)" *ngIf="isImage(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" alt="media" />
       <video *ngIf="isVideo(shoe.immagini[currentImage])" [src]="shoe.immagini[currentImage]" autoplay loop></video>
       <div class="buttons">
         <button><img src="icons/left.svg" (click)="leftImage()" alt=""></button>

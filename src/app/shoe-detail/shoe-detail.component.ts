@@ -159,6 +159,13 @@ addToFavorites () {
   }
 }
 
+onImageLoad (event:Event) {
+  const img = event.target as HTMLImageElement
+  if (img) {
+    img.style.opacity = "1"
+  }
+}
+
 isImage(url: string): boolean {
   return /\.(jpg|jpeg|png)$/i.test(url);
 }

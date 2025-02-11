@@ -139,6 +139,7 @@ header {
 
 .conSearchIcons { 
     justify-self: flex-end;
+    align-items: center;
     grid-area: search;
     display: flex;
     gap: 20px;
@@ -181,8 +182,13 @@ header {
 .conHeartCart { 
     display: flex;
     width: fit-content;
+    div {
+        display: flex;
+        align-items: center;
+    }
     img {
         cursor: pointer;
+        height: 24px;
         padding: 6px;
         border-radius: 50%;
         &:hover {
@@ -191,9 +197,6 @@ header {
     }
 }
 
-.heartIcon {
-    height: 24px;
-}
 
 .searchPart {
     position: fixed;

@@ -69,7 +69,9 @@ app-modal {
     video {
         width: 552px;
     }
-    img {
+    > img {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
         width: 552px;
     }
 }

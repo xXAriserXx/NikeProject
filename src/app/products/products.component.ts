@@ -37,7 +37,7 @@ export class ProductsComponent {
     this.route.queryParamMap.pipe(
       switchMap((params: Params) => {
         this.query = params.get("name");
-        console.log("risultati per:" + this.query)
+        this.searchTerm = this.query
         if (this.query !== "") {
           return this.productservice.getShoesPG(this.page, this.limit, this.query)
         } else {
@@ -55,6 +55,13 @@ export class ProductsComponent {
 
   ngAfterViewInit () {
     this.setupIntersectionObserver()
+  }
+
+  onImageLoad (event:Event) {
+    const img = event.target as HTMLImageElement
+    if (img) {
+      img.style.opacity = "1"
+    }
   }
 
   onFilterChange (filter): void {

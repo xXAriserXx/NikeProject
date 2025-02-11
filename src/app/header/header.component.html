@@ -306,7 +306,10 @@
                 <input type="text" placeholder="Cerca">
             </div> 
             <div class="conHeartCart">
-                <img class="heartIcon" src="icons/heart.svg" alt="" [routerLink]="isLoggedIn ? ['/dashboard', user._id] : ['/login']">
+                <div class="heartIcon">
+                    <img src="icons/heart.svg" alt="" [routerLink]="isLoggedIn ? ['/dashboard', user._id] : ['/login']">
+                </div>
+
                 <div class="cart" [routerLink]="isLoggedIn ? ['/cart', user._id] : ['/cart']" alt="">
                     <img  src="icons/cart.svg" >
                     @if (quantity > 0) {
@@ -314,6 +317,9 @@
                     } @else {
                         <p class="quantity"></p>
                     }
+                </div>
+                <div class="userIcon">
+                    <img [routerLink]="isLoggedIn ? ['/dashboard', userId] : '/login'" src="icons/user.svg" alt="">
                 </div>
                 <div class="hamburger" (click)="openHamburger()">
                     <img src="icons/hamburger.svg" alt="">

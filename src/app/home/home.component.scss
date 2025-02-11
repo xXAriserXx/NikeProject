@@ -52,9 +52,12 @@
     gap: 12px;
     img {
         width: 568px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
         cursor: pointer;
     }
 }
+
 
 .buttons {
     cursor: pointer;

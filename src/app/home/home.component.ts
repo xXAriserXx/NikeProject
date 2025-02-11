@@ -57,6 +57,13 @@ export class HomeComponent {
 
   }
 
+  onImageLoad(event:Event) {
+    const img = event.target as HTMLImageElement
+    if (img) {
+      img.style.opacity = "1"
+    }
+  }
+
   sliderMove (input, slider) {
     if (!this.canClick) {
       return

@@ -20,7 +20,7 @@
     <div class="conColor">
       <div *ngFor="let color of colorOptions; let i = index">
         <input [id]="'color_' + i" type="checkbox" [formControlName]="i" />
-        <label [for]="'color_' + i">{{ color }}</label>
+        <label class="colorLabel {{color}}" [for]="'color_' + i"></label>
       </div>
     </div>
   </div>
