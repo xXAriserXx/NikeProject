@@ -63,6 +63,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+
 router.get("/newArrivals", async (req, res) => {
   try {
     const foundShoes = await shoes.find(

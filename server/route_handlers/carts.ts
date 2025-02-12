@@ -5,6 +5,25 @@ import { CustomRequest, tokenRequired } from "../middleware/authMiddleware"
 
 const router = express()
 
+router.get("/quantity", tokenRequired, async (req:CustomRequest, res) => {
+    const user = req.user._id
+
+    try {
+    const cart = await carts.findOne({
+        userId: user
+    })
+
+    const length = cart.shoes.length
+    console.log(cart.shoes)
+    console.log(length)
+        res.json(length)
+    }
+    catch (err) {
+    console.log("cawabunga2")
+    res.status(500).send({ msg: "Internal server error", err: err})
+    }
+})
+
 router.get("/:id", tokenRequired, async (req, res) => {
     try {
         const userId = req.params.id
@@ -17,6 +36,7 @@ router.get("/:id", tokenRequired, async (req, res) => {
         res.status(500).send({ msg: "Internal server error"})
     }
 })
+
 
 router.patch("/update-quantity", tokenRequired, async (req:CustomRequest, res) => {
     try {

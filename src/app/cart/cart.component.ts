@@ -1,4 +1,4 @@
-import { ApplicationModule, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICart } from '../../../server/models/ICart';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CheckLogService } from '../services/check-log.service';
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { FavoritesService } from '../services/favorites.service';
 import { IShoeFav } from '../../../server/models/IShoeFav';
 import { IShoeCart } from '../../../server/models/IShoeCart';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -23,14 +24,15 @@ import { IShoeCart } from '../../../server/models/IShoeCart';
 
 export class CartComponent {
 
-  constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService, private favoritesServices:FavoritesService, private router:Router) {}
+  constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService, private favoriteService:FavoritesService, private router:Router) {}
   cart:ICart = {userId: undefined, shoes: []}
   isLoggedIn: boolean
   totalPrice: number
   couponCode: string = ""
-  validCoupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
+  coupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
   priceAfterDiscount: number
   discountApplied:boolean = false
+  validCoupon: boolean = true
   shoes:IShoeCart[] = []
 
   ngOnInit () { 
@@ -66,7 +68,7 @@ export class CartComponent {
       next: (data:any) => {
         this.cart = data.cart
         this.calcTotPrice(this.cart)
-        this.priceAfterDiscount = this.totalPrice
+        this.applyCouponAdded()
       },
       error: (error) => {console.log(error)},
       complete: () => {
@@ -77,8 +79,8 @@ export class CartComponent {
       this.cart = this.cartService.updateQuantityGuest(shoe, action)
       localStorage.setItem("cart", JSON.stringify(this.cart))
       this.calcTotPrice(this.cart)
+      this.applyCouponAdded()
     }
-    this.applyCoupon()
   }
 
 calcTotPrice(cart: ICart) {
@@ -92,30 +94,71 @@ calcTotPrice(cart: ICart) {
 
 
 applyCoupon () {
-  if (this.validCoupons.some(validCoupon => this.couponCode === validCoupon.code)) {
-    const discount:number = this.validCoupons.find(validCoupon => this.couponCode === validCoupon.code).discount
+  if (this.coupons.some(validCoupon => this.couponCode === validCoupon.code)) {
+    const discount:number = this.coupons.find(validCoupon => this.couponCode === validCoupon.code).discount
     this.priceAfterDiscount = this.totalPrice - ((this.totalPrice * discount) / 100)
     const totalDiscount = (this.totalPrice * discount)/100
     console.log(totalDiscount)
     alert("Codice Coupon applicato")
     this.discountApplied = true
   } else {
-    alert("Codice cuopon errato")
+    this.validCoupon = false
   }
 }
 
+applyCouponAdded () {
+  if (this.coupons.some(validCoupon => this.couponCode === validCoupon.code)) {
+    const discount:number = this.coupons.find(validCoupon => this.couponCode === validCoupon.code).discount
+    this.priceAfterDiscount = this.totalPrice - ((this.totalPrice * discount) / 100)
+    const totalDiscount = (this.totalPrice * discount)/100
+    console.log(totalDiscount)
+    this.discountApplied = true
+  } else {
+    this.priceAfterDiscount = this.totalPrice
+  }
+
+}
+
 addFavorite (shoe:IShoeCart) {
-  alert("Devi essere loggato per aggiungere ai preferiti")
+  if (this.isLoggedIn) {
   const shoeFav:IShoeFav = {
     shoeId: shoe.shoeId,
     shoeName: shoe.shoeName,
     imageIcon: shoe.imageIcon
   }
-  this.favoritesServices.addFavorite(shoeFav).subscribe({
-    next: (data) => {console.log(data)},
-    error: (error) => {console.log(error)},
-    complete: () => {}
-  })
+    this.favoriteService.addFavorite(shoeFav).subscribe({
+      next: (data) => {
+        console.log(data)
+        alert("Aggiunto ai preferiti")
+      },
+      error: (error:HttpErrorResponse) => {
+        console.log(error)
+        alert(error.error.msg)
+      },
+      complete: () => {}
+    })
+  } else {
+    alert("Devi essere loggato per aggiungere ai preferiti")
+  }
+}
+
+addToFavorites (shoe:IShoeCart) {
+  if (this.isLoggedIn) {
+    const shoeFav:IShoeFav = {
+      shoeId: shoe.shoeId,
+      shoeName: shoe.shoeName,
+      imageIcon: shoe.imageIcon
+    }
+    this.favoriteService.addFavorite(shoeFav).subscribe({
+      next: (data) => {
+        alert("Aggiunto ai preferiti")
+      },
+      error: (error:HttpErrorResponse) => {alert(error.error.msg)},
+      complete: ()=> {}
+    })
+  } else {
+    alert("Devi essere loggato per aggiungere ai preferiti")
+  }
 }
 
 pay () {

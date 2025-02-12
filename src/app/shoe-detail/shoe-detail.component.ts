@@ -67,21 +67,17 @@ error:boolean = false
 
 ngOnInit () {
   window.scrollTo(0, 0)
-  console.log(window.scrollY)
   this.checkLogService.checkLoginStatus()
   this.isLoggedIn = this.checkLogService.isLoggedIn()
   this.getRandomShoes()
   if (this.isLoggedIn) {
     this.userId = this.userService.getUserData()._id
-    console.log("logged in ")
   } else {
-    console.log("not logged in ")
   }
 
   const id = this.route.snapshot.paramMap.get("id");
   this.productService.getDetailShoe(id).subscribe({
     next:(data:IShoe) => {
-      console.log(data)
       this.shoe = data
       this.colors = data.colori_disponibili
       this.sizes = data.taglie_disponibili
@@ -113,7 +109,6 @@ addToCart () {
   if (this.isLoggedIn) {
     this.cartService.updateQuantity(this.shoeCart, "add").subscribe({
       next: (data) => {
-        console.log(data)
         this.headerComponent.getShoeQuantity()
       },
       error: (error) => {console.log(error)},
@@ -127,7 +122,6 @@ addToCart () {
       guestCart.shoes[alreadyPresent].quantity++
     } else {
       guestCart.shoes.push(this.shoeCart)
-      console.log(this.shoeCart)
     }
     localStorage.setItem("cart", JSON.stringify(guestCart))
     this.headerComponent.getShoeQuantity()
@@ -148,7 +142,6 @@ addToFavorites () {
     this.shoeFavorite.imageIcon = this.shoe.immagini[0]
     this.favoritesService.addFavorite(this.shoeFavorite).subscribe({
       next: (data) => {
-        console.log(data)
         alert("Aggiunto ai preferiti")
       },
       error: (error:HttpErrorResponse) => {alert(error.error.msg)},
@@ -186,7 +179,6 @@ hoverImage (i) {
 getRandomShoes () {
   this.productService.getRandomShoes().subscribe({
     next: (randomShoes:IShoe) => {
-      console.log(randomShoes)
     },
     error: (error) => {console.log(error)},
     complete: () => {}

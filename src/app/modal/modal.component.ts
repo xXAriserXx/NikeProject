@@ -32,13 +32,10 @@ export class ModalComponent {
     console.log(this.shoeImage)
 
     if (this.isLoggedIn) {
-      this.userId = this.userService.getUserData()._id
-      this.cartService.getQuantityUser(this.userId).subscribe({
-        next: (quantity:number) => {
-          this.quantity = quantity
-        },
-        error: () => {},
-        complete: () => {}
+      this.cartService.getQuantityUser().subscribe({
+        next: (data:number) => {
+          this.quantity = data
+        }
       })
     } else {
       this.quantity = this.cartService.getQuantityGuest() - 1

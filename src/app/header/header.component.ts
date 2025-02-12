@@ -67,9 +67,9 @@ export class HeaderComponent {
   getShoeQuantity() {
     if (this.isLoggedIn) {
       this.user = this.userService.getUserData();
-      this.cartService.getUserCart(this.user._id).subscribe({
-        next: (cart: ICart) => {
-          this.quantity = cart.shoes.length;
+      this.cartService.getQuantityUser().subscribe({
+        next: (data:number) => {
+          this.quantity = data;
         },
         error: () => {},
         complete: () => {}

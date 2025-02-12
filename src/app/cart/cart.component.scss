@@ -120,6 +120,7 @@ h2 {
     transition: 0.2s;
 }
 
+
 #textInputPromo {
     margin-top: 5px;
     max-height: 0;
@@ -151,6 +152,14 @@ h2 {
         background-color: white;
         width: 150px;
     }
+}
+
+.valid {
+    border: 1px solid green !important
+}
+
+.invalid {
+    border: 1px solid red !important;
 }
 
 

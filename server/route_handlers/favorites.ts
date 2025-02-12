@@ -29,7 +29,7 @@ router.patch("/", tokenRequired, async (req: CustomRequest, res) => {
         console.log(userFavorites?.favoriteItems.some(favItem => favItem.shoeId === favoriteToAdd.shoeId))
 
         if (userFavorites?.favoriteItems.some(favItem => favItem.shoeId == favoriteToAdd.shoeId)) {
-            res.status(400).send({ msg: "Already added to your favorites"})
+            res.status(400).send({ msg: "Gia' aggiunto ai tuoi preferiti"})
             return
         }
 

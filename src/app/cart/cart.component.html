@@ -44,14 +44,15 @@
         <h2>Riepilogo</h2>
         <div class="promoCode">
             <input type="checkbox" id="promoInput">
-            <label for="promoInput">
+            <label for="promoInput" >
                 Hai un codice promozionale?
                 <img src="icons/down.svg" alt="">
             </label>
             <div id="textInputPromo">
-                <input [disabled]="discountApplied" [(ngModel)]="couponCode" type="text" id="couponCode">
+                <input [disabled]="discountApplied" [(ngModel)]="couponCode" [ngClass]="{'valid': discountApplied, 'invalid': !validCoupon}" type="text" id="couponCode">
                 <button  [disabled]="discountApplied" (click)="applyCoupon()">Applica</button>
             </div>
+            <small style="color: var(--grayText);">Prova: "SAVE10"</small>
         </div>
         <div class="subTotal">
             <p>Subtotale</p>

@@ -31,6 +31,7 @@ export class ProductsComponent {
   loading = false
   query = ""
   filter:IFilterParams = {price : [], color: [], category: []}
+  filterMsg: string = "Nascondi filtri"
 
   ngOnInit() {
     window.scroll(0, 0)
@@ -119,5 +120,13 @@ export class ProductsComponent {
 
     window.addEventListener("scroll", handleScroll)
 
+  }
+
+  changeFilterMsg () {
+    if (this.filterMsg === "Mostra filtri") {
+      this.filterMsg = "Nascondi filtri"
+    } else {
+      this.filterMsg = "Mostra filtri"
+    }
   }
 }

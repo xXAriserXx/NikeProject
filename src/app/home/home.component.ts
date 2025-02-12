@@ -64,31 +64,35 @@ export class HomeComponent {
     }
   }
 
-  sliderMove (input, slider) {
+sliderMove(input, slider) {
     if (!this.canClick) {
-      return
+        return;
     }
-    this.canClick = false
-    if (input === "left" && slider === "newArrivals") {
-      this.scrollContainer.nativeElement.scrollBy({ left: -568, behavior: 'smooth' });
-      console.log("slider goes left")
+    this.canClick = false;
+
+    const scrollPercentage = 33; 
+
+    let scrollContainer = null;
+    if (slider === "newArrivals") {
+        scrollContainer = this.scrollContainer.nativeElement;
+    } else if (slider === "bestSellers") {
+        scrollContainer = this.scrollContainer2.nativeElement;
     }
-    if (input === "right" && slider === "newArrivals") {
-      this.scrollContainer.nativeElement.scrollBy({ left: 568, behavior: 'smooth' });
-      console.log("slider goes right")
+
+    if (scrollContainer) {
+        const scrollDistance = (scrollContainer.offsetWidth * scrollPercentage) / 100;
+
+        if (input === "left") {
+            scrollContainer.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
+        } else if (input === "right") {
+            scrollContainer.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+        }
     }
-    if (input === "left" && slider === "bestSellers") {
-      this.scrollContainer2.nativeElement.scrollBy({ left: -568, behavior: 'smooth' });
-      console.log("slider goes left")
-    }
-    if (input === "right" && slider === "bestSellers") {
-      this.scrollContainer2.nativeElement.scrollBy({ left: 568, behavior: 'smooth' });
-      console.log("slider goes right")
-    }
+
     setTimeout(() => {
-      this.canClick = true 
+        this.canClick = true;
     }, 200);
-  }
+}
 
 
 

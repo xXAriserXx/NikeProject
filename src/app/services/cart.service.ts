@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICart } from '../../../server/models/ICart';
 import { IShoeCart } from '../../../server/models/IShoeCart';
-import { map } from 'rxjs';
 import { environment } from '../../enviroments/enviromment';
 
 @Injectable({
@@ -50,10 +49,8 @@ export class CartService {
     return quantity
   }
 
-  getQuantityUser (userId) {
-    return this.http.get(`${this.apiCart}/${userId}`).pipe(
-      map((cart:ICart) => cart.shoes.length)
-    )
+  getQuantityUser () {
+    return this.http.get(`${this.apiCart}/quantity`)
   }
 
 

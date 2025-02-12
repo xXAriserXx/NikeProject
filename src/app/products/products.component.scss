@@ -6,36 +6,27 @@
     display: none;
 }
 
-#inputFilter:checked ~ section {
-    grid-template-areas: 
-    "searchTerm extraButtons"
-    "shoes shoes";
-}
 #inputFilter:checked ~ section app-filter{
     max-width: 0px;
-}
-
-#inputFilter:checked ~ section .containerGrande{
-    width: 100%; 
-    justify-items: center;
-    transition: 0.2s;
+    padding: 0;
+    overflow: hidden;
 }
 
 section {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 70px 1fr;
     grid-template-areas: 
     "searchTerm extraButtons"
-    "filter shoes";
+    "container container";
 }
 
 .searchTerm {
-    align-self: center; 
     grid-area: searchTerm;
     display: flex;
     flex-direction: column;
-    justify-self: center;
+    justify-self: flex-start;
+    padding-left: 30px;
     min-width: 220px;
     margin-bottom: 10px;
     h3 {
@@ -58,18 +49,26 @@ section {
         cursor: pointer;
         user-select: none;
         display: flex;
+        padding-right: 30px;
     }
 }
 
 
+.container {
+    grid-area: container;
+    display: flex;
+    justify-items: center;
+}
 
 .containerGrande {
-    grid-area: shoes;
+    transition: 0.5s;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     justify-items: center;
-    width: 97%;
+    width: 100%;
     gap: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 
@@ -97,13 +96,13 @@ section {
 
 
 app-filter {
-    grid-area: filter;
+    max-width: 220px;
     justify-self: center; 
+    transition: 0.5s;
     margin-top: 20px;
+    padding: 0 30px 0 30px;
     display: flex; 
     flex-direction: column;
-    align-items: center; 
-    overflow: hidden;
 }
 
 
@@ -177,7 +176,7 @@ app-filter {
         background-color: white;
         max-height: 0;
         overflow: hidden;
-        transition: 0.2s;
+        transition: 0.5s;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.349);
     }
 

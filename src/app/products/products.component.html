@@ -8,8 +8,8 @@
         <h3>{{searchTerm}}</h3>
     </div>
     <div class="extraButtons">
-        <label for="inputFilter">
-            <div>Mostra filtri</div>
+        <label (click)="changeFilterMsg()" for="inputFilter">
+            <div>{{filterMsg}}</div>
             <img src="icons/filter.svg" alt="">
         </label>
     </div>
@@ -17,12 +17,14 @@
 
     <label class="labelFilter" for="filterButton">Filtri</label>
     <input type="checkbox" id="filterButton"> 
-    <app-filter class="deskFilter" (filterChange)="onFilterChange($event)"></app-filter>
-    <div class="containerGrande">
-        <div *ngFor="let shoe of allShoes" [routerLink]="['/shoeDetail', shoe._id]" class="containerScarpa">
-            <img (load)="onImageLoad($event)" class="image" [src]="shoe.immagini[0]" alt="">
-            <p>{{shoe.nome}}</p>
-            <p>{{shoe.prezzo | euro}}</p>
+    <div class="container">
+        <app-filter class="deskFilter" (filterChange)="onFilterChange($event)"></app-filter>
+        <div class="containerGrande">
+            <div *ngFor="let shoe of allShoes" [routerLink]="['/shoeDetail', shoe._id]" class="containerScarpa">
+                <img (load)="onImageLoad($event)" class="image" [src]="shoe.immagini[0]" alt="">
+                <p>{{shoe.nome}}</p>
+                <p>{{shoe.prezzo | euro}}</p>
+            </div>
         </div>
     </div>
 </section>
