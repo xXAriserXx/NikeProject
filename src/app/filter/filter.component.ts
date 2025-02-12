@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from '../services/product.service';
-import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-filter',
@@ -30,6 +29,7 @@ export class FilterComponent {
   }
 
   @Output() filterChange = new EventEmitter<any>()
+  @Output() buttonChange = new EventEmitter<any>()
 
   get price() {
     return (this.filterForm.get('price') as FormArray);
@@ -87,5 +87,9 @@ export class FilterComponent {
       category: this.categoryOptions.filter((_, index) => formValue.category[index]).map(option => option),
     };
     return selectedFilters;
+  }
+  
+  changeParent () {
+    this.buttonChange.emit("")    
   }
 }

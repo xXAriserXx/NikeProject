@@ -16,6 +16,10 @@ label {
 
 }
 
+.labelFilter {
+    display: none;
+}
+
 #priceSec, #colorSec, #categorySec {
     display: none;
 }
@@ -162,8 +166,33 @@ input:checked + label::after {
 @media (max-width:559px) {
 
     form {
+        width: 100vw;
         margin-top: 30px;
         margin-left: 0;
-        align-items:flex-start;
+        align-items: center;
+
+        .colors, .prices, .categories {
+            max-width: 50%;
+            width: 50%;
+        }
     }
+
+    .labelFilter {
+        display: block;
+        background-color: var(--grayPressed2);
+        border-radius: 12px;
+        padding: 5px;
+        margin-bottom: 20px;
+        color: var(--lightBlack);
+        &:active {
+            background-color: var(--graypressed);
+        }
+    }
+
+    .apply {
+        background-color: black;
+        color: white;
+        font-size: 1.2em;
+    }
+
 }

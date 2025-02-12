@@ -1,4 +1,5 @@
 <form [formGroup]="filterForm">
+  <label for="inputFilter" class="labelFilter" (click)="changeParent()">Chiudi</label>
   <div class="prices" formArrayName="price">
     <input type="checkbox" id="priceSec">
     <label for="priceSec">Acquista per prezzo
@@ -37,5 +38,5 @@
       </div>
     </div>
   </div>
-
+  <label for="inputFilter" class="labelFilter apply" (click)="changeParent()">Applica</label>
 </form>

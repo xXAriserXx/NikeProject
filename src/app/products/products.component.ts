@@ -1,5 +1,5 @@
 import { switchMap } from 'rxjs';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { ActivatedRoute, Params, RouterLink } from '@angular/router';
@@ -128,5 +128,9 @@ export class ProductsComponent {
     } else {
       this.filterMsg = "Mostra filtri"
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
   }
 }
