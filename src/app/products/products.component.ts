@@ -38,6 +38,8 @@ export class ProductsComponent {
     } 
     if (this.windowService.nativeWindow.innerWidth <= 560 && this.checkedInput) {
       document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
     }
   }
 
