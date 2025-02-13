@@ -28,6 +28,7 @@
 
 .newArrivals {
     display: grid;
+    grid-template-columns: 3fr 1fr;
     grid-template-areas: 
     "title buttons"
     "slider slider";
@@ -35,6 +36,7 @@
 
 .bestSellers {
     display: grid;
+    grid-template-columns: 3fr 1fr;
     grid-template-areas: 
     "title buttons"
     "slider slider";

@@ -43,6 +43,7 @@ this.form = this.fb.group({
   isLoggedIn:boolean
 
   ngOnInit () {
+    window.scroll(0, 0)
     this.checkLogService.checkLoginStatus()
     this.isLoggedIn = this.checkLogService.isLoggedIn()
 

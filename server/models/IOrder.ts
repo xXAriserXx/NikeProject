@@ -5,5 +5,6 @@ export interface IOrder {
     orderDate: Date,
     status: string
     orderItems: IShoeCart[]     
-    
+    discountApplied?: number
+    total?: number
 }

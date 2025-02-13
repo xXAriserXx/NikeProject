@@ -1,5 +1,5 @@
 import { switchMap } from 'rxjs';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, input, ViewChild } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { ActivatedRoute, Params, RouterLink } from '@angular/router';
@@ -9,6 +9,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { EuroPipe } from '../pipes/euro.pipe';
 import { CommonModule } from '@angular/common';
 import { IFilterParams } from '../../../server/models/IFilterParams';
+import { WindowService } from '../services/window.service';
 
 @Component({
   selector: 'app-products',
@@ -19,10 +20,26 @@ import { IFilterParams } from '../../../server/models/IFilterParams';
 })
 export class ProductsComponent {
 
-  constructor(private productservice:ProductService, private route:ActivatedRoute) {
+  constructor(private productservice:ProductService, private route:ActivatedRoute, private windowService:WindowService) {
   }
 
   @ViewChild("scrollTrigger") scrollTrigger!: ElementRef
+  @ViewChild("appFilter", { read: ElementRef }) appFilter!: ElementRef
+  @ViewChild("inputFilter", { read: ElementRef }) inputFilter!: HTMLInputElement
+
+  @HostListener("window:resize", ['$event'])
+  onResize(event:Event) {
+    if (this.windowService.nativeWindow.innerWidth <= 560) {
+      this.filterMsg = "Mostra filtri"
+      
+    } 
+    else if (this.filterMsg == "Mostra filtri" && this.checkedInput == false) {
+      this.filterMsg = "Nascondi filtri"
+    } 
+    if (this.windowService.nativeWindow.innerWidth <= 560 && this.checkedInput) {
+      document.body.style.overflow = "hidden"
+    }
+  }
 
   allShoes:IShoe[] = []
   searchTerm:string = ""
@@ -32,9 +49,12 @@ export class ProductsComponent {
   query = ""
   filter:IFilterParams = {price : [], color: [], category: []}
   filterMsg: string = "Nascondi filtri"
+  checkedInput: boolean = false
 
   ngOnInit() {
+    this.onResize(new Event ("resize"))
     window.scroll(0, 0)
+
     this.route.queryParamMap.pipe(
       switchMap((params: Params) => {
         this.query = params.get("name");
@@ -130,7 +150,15 @@ export class ProductsComponent {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  check (event:Event) {
+    const target = event.target as HTMLInputElement
+    if (target.checked) {
+      this.checkedInput = true
+    } else {
+      this.checkedInput = false
+    }
+
+    this.onResize(new Event ("resize"))
   }
+
 }

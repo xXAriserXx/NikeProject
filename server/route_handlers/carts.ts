@@ -201,6 +201,4 @@ router.patch("/empty", tokenRequired, async (req:CustomRequest, res) => {
 })
 
 
-
-
 export const cartWs = router

@@ -1,9 +1,9 @@
 <app-header></app-header>
 <div class="spacer"></div>
 
-<input type="checkbox" id="inputFilter">
+<input #inputFilter (click)="check($event)" type="checkbox" id="inputFilter" >
 <section> 
-    <div class="searchTerm">
+    <div [ngStyle]="{'opacity': searchTerm ? '1' : '0'}" class="searchTerm">
         <p>Risultati di ricerca per:</p>
         <h3>{{searchTerm}}</h3>
     </div>
@@ -15,9 +15,8 @@
     </div>
 
 
-    <input type="checkbox" id="filterButton"> 
     <div class="container">
-        <app-filter class="deskFilter"  (buttonChange)="changeFilterMsg()" (filterChange)="onFilterChange($event)"></app-filter>
+        <app-filter class="deskFilter" #appFilter (buttonChange)="changeFilterMsg()" (filterChange)="onFilterChange($event)"></app-filter>
         <div class="containerGrande">
             <div *ngFor="let shoe of allShoes" [routerLink]="['/shoeDetail', shoe._id]" class="containerScarpa">
                 <img (load)="onImageLoad($event)" class="image" [src]="shoe.immagini[0]" alt="">

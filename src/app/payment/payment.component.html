@@ -5,14 +5,17 @@
     <h2>Pagamento</h2>
 
     <h4>I tuoi articoli</h4>
-    <div class="test">
-        <div *ngFor="let shoe of cart.shoes">
-            <p>{{ shoe.shoeName }}</p> 
-            <p>Quantita': {{ shoe.quantity}}</p>
-            <p>Colore: {{ shoe.color }}</p>
-            <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
-            <br>
+    <div class="summary">
+        <div class="cartItems"> 
+            <div *ngFor="let shoe of cart.shoes">
+                <p>{{ shoe.shoeName }}</p> 
+                <p>Quantita': {{ shoe.quantity}}</p>
+                <p>Colore: {{ shoe.color }}</p>
+                <p>Prezzo: {{ shoe.price | currency: "EUR" }}</p>
+                <br>
+            </div>
         </div>
+        <div class="total">Totale</div>
     </div>
 
     <div class="containerForm1 containerForm">

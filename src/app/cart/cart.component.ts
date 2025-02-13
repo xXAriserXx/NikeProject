@@ -142,31 +142,10 @@ addFavorite (shoe:IShoeCart) {
   }
 }
 
-addToFavorites (shoe:IShoeCart) {
-  if (this.isLoggedIn) {
-    const shoeFav:IShoeFav = {
-      shoeId: shoe.shoeId,
-      shoeName: shoe.shoeName,
-      imageIcon: shoe.imageIcon
-    }
-    this.favoriteService.addFavorite(shoeFav).subscribe({
-      next: (data) => {
-        alert("Aggiunto ai preferiti")
-      },
-      error: (error:HttpErrorResponse) => {alert(error.error.msg)},
-      complete: ()=> {}
-    })
-  } else {
-    alert("Devi essere loggato per aggiungere ai preferiti")
-  }
-}
-
 pay () {
   if (this.totalPrice !== 0) {
-    this.router.navigate(['/payment'])
-  } else {
-    alert ("Aggiungi qualcosa al carrello")
-  }
+    this.router.navigate(['/payment'], { queryParams: { key: 'value' } });
+  } 
 }
 
 

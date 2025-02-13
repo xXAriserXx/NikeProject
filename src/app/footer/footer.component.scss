@@ -1,7 +1,9 @@
 footer {
     max-width: 1824px;
     margin: 0 auto;
-    width: 100%;
+    width: 90%;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 hr {
@@ -29,13 +31,14 @@ hr {
         } 
         p:nth-of-type(1) {
             color: black;
-            font-size: 1.4em;
+            font-size: 1.2em;
         }
     }
 }
 
 .footerSecond {
     display: flex;    
+    width: 100%;
     justify-content:space-between; 
     div {
         p {
@@ -83,7 +86,7 @@ hr {
     p {
         margin-left: 30px;
         color: var(--grayText);
-        font-size: 1.2em;
+        font-size: 1em;
         &:hover {
             color: black;
         }
@@ -110,6 +113,10 @@ hr {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+}
+
+.footerThird {
+    flex-wrap: wrap;
 }
 
 #inputScarpe:checked ~ .listScarpe {
