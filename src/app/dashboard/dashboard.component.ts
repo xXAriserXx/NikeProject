@@ -10,10 +10,8 @@ import { FavoritesService } from '../services/favorites.service';
 import { IFavorite } from '../../../server/models/IFavorite';
 import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
-import { IShoeFav } from '../../../server/models/IShoeFav';
 import { IUser } from '../../../server/models/IUser';
 import { CapitalizeFirstPipe } from '../pipes/capitalize-first.pipe';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,8 +66,9 @@ export class DashboardComponent {
 
   removeFavorite (favoriteToRemove) {
     this.favoritesService.removeFavorite(favoriteToRemove).subscribe({
-      next: (data) => {
-        window.location.reload()
+      next: (data: { msg: string, updatedFavorites: IFavorite[] }) => {
+        console.log(data)
+        this.favorites = data.updatedFavorites
       },
       error: (error) => {console.log(error)},
       complete: () => {}

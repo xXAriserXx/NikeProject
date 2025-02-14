@@ -394,6 +394,7 @@ header {
     cursor: pointer;
     display: flex;
     gap: 5px;
+    display: none !important;
 }
 
 @media (max-width: 1199px) {
@@ -412,7 +413,9 @@ header {
 }
 
 @media (max-width: 959px) {
-
+    .userIcon {
+        display: flex !important;
+    }
 
     .conSearch2 {
         grid-template-rows: 1fr 8fr;

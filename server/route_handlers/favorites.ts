@@ -50,15 +50,28 @@ router.patch("/remove", tokenRequired, async (req: CustomRequest, res) => {
     try {
         const favoriteToRemove = req.body.favorite;
         const userId = req.user._id;
-        const favorite = await favorites.updateOne(
+
+        const updateResult = await favorites.updateOne(
             { userId: userId },
             { $pull: { favoriteItems: favoriteToRemove } }
         );
-        res.status(200).send({ message: "Favorite removed successfully"});
+
+        if (updateResult.modifiedCount === 0) {
+            res.status(404).send({ message: "Favorite not found or already removed" });
+            return
+        }
+
+        const updatedFavorites = await favorites.findOne({ userId: userId });
+
+        res.status(200).send({
+            message: "Favorite removed successfully",
+            updatedFavorites: updatedFavorites?.favoriteItems || []
+        });
     } catch (err) {
+        console.error(err); 
         res.status(500).send({ message: "Error removing favorite" });
     }
-});
+});;
 
 
 export const favoritesTs = router
