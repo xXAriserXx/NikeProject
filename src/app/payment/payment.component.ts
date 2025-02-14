@@ -10,11 +10,12 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CheckLogService } from '../services/check-log.service';
+import { EuroPipe } from '../pipes/euro.pipe';
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, ReactiveFormsModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, ReactiveFormsModule, EuroPipe],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })
@@ -41,17 +42,24 @@ this.form = this.fb.group({
   cart:ICart = {userId: undefined, shoes: []}
   order:IShoeCart[]
   isLoggedIn:boolean
+  discount?:number = 0
+  total: number
 
   ngOnInit () {
     window.scroll(0, 0)
+    this.discount = history.state.discount[0] - history.state.discount[1]
+    this.total = history.state.discount[0] - (history.state.discount[0]  - history.state.discount[1])
+
     this.checkLogService.checkLoginStatus()
     this.isLoggedIn = this.checkLogService.isLoggedIn()
-
 
     if (this.isLoggedIn) {
       this.userId = this.userService.getUserData()._id
       this.cartService.getUserCart(this.userId).subscribe({
         next: (data:ICart) => {
+          if (this.total == 0) {
+            this.calcTotPrice(data)
+          }
           console.log(data)
           this.cart = data
           this.order = data.shoes
@@ -61,12 +69,19 @@ this.form = this.fb.group({
       })
     } else {
       this.cart = this.cartService.getGuestCart()
+      this.calcTotPrice(this.cart)
     }
+  }
+
+  calcTotPrice(cart: ICart) {
+    if (cart.shoes.length > 0) {
+      this.total = +cart.shoes.map(item => item.price * item.quantity).reduce((acc, price) => acc + price, 0).toFixed(2);
+    } 
   }
 
   onSubmit () {
     console.log(this.order)
-    this.orderService.createOrder(this.order).subscribe({
+    this.orderService.createOrder(this.order, this.total, this.discount).subscribe({
       next: (data) => {
         console.log(data)
         this.cartService.emptyCart().subscribe({

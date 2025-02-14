@@ -15,7 +15,14 @@
                 <br>
             </div>
         </div>
-        <div class="total">Totale</div>
+        <div class="total">
+            <p>
+            Totale {{ total | euro}}
+            </p>
+            <p>
+                Sconto applicato: {{ discount | euro }}
+            </p>
+        </div>
     </div>
 
     <div class="containerForm1 containerForm">

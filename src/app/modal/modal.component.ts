@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CheckLogService } from '../services/check-log.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { UserService } from '../services/user.service';
 import { IShoeCart } from '../../../server/models/IShoeCart';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ICart } from '../../../server/models/ICart';
 
 @Component({
   selector: 'app-modal',
@@ -17,7 +16,7 @@ import { ICart } from '../../../server/models/ICart';
 })
 export class ModalComponent {
 
-  constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService) {}
+  constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService, private router:Router) {}
 
   @Input() shoeData:IShoeCart
   @Input() shoeImage:IShoeCart
@@ -40,7 +39,10 @@ export class ModalComponent {
     } else {
       this.quantity = this.cartService.getQuantityGuest() - 1
     }
+  }
 
+  pay () {
+    this.router.navigate(['/payment'], {state: { discount: [ 0 , 0] }})
   }
 
   ngOnDestroy () {

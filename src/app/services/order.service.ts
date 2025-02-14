@@ -12,9 +12,8 @@ export class OrderService {
 
   apiOrders:string = `${environment.apiUrl}/orders`
 
-  createOrder (order:IShoeCart[]) {
-    console.log(order)
-    return this.http.post(this.apiOrders, {order} )
+  createOrder (orderToAdd:IShoeCart[], total:number, discount:number) {
+    return this.http.post(this.apiOrders, {orderToAdd, total, discount} )
   }
 
   getOrders () {

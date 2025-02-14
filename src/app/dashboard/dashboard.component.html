@@ -19,8 +19,12 @@
                 <p>Colore: {{order.color}}</p>
                 <p>Taglia: {{order.size}}</p>
                 <p>Prezzo: {{ order.price | currency: "EUR" }}</p>
-
             </div>
+            <hr>
+            <p>Totale: {{order.finalPrice | euro }}</p>
+            @if (order.discountApplied !== 0) {
+                <p>Sconto applicato: {{order.discountApplied | euro }}</p>
+            }
         </div>
     </div>
     <h2 *ngIf="!emptyFav">I tuoi preferiti</h2>

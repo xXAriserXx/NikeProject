@@ -12,11 +12,12 @@ import { ProductService } from '../services/product.service';
 import { IShoe } from '../../../server/models/IShoe';
 import { IUser } from '../../../server/models/IUser';
 import { CapitalizeFirstPipe } from '../pipes/capitalize-first.pipe';
+import { EuroPipe } from '../pipes/euro.pipe';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, CapitalizeFirstPipe],
+  imports: [CommonModule, HeaderComponent, FooterComponent, RouterLink, CapitalizeFirstPipe, EuroPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

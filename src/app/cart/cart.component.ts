@@ -30,7 +30,7 @@ export class CartComponent {
   totalPrice: number
   couponCode: string = ""
   coupons: {code:string, discount:number}[] = [{code:'SAVE10', discount:10}, {code:'WELCOME15', discount:15}, {code:'BIGDEAL20', discount:20}];
-  priceAfterDiscount: number
+  priceAfterDiscount?: number = 0
   discountApplied:boolean = false
   validCoupon: boolean = true
   shoes:IShoeCart[] = []
@@ -53,11 +53,10 @@ export class CartComponent {
       })
 
     } else {
-
       this.cart = JSON.parse(localStorage.getItem("cart"))
       console.log(this.cart)
       this.calcTotPrice(this.cart)
-
+      this.priceAfterDiscount = this.totalPrice
     }
 
   }
@@ -86,6 +85,7 @@ export class CartComponent {
 calcTotPrice(cart: ICart) {
   if (cart.shoes.length > 0) {
     this.totalPrice = +cart.shoes.map(item => item.price * item.quantity).reduce((acc, price) => acc + price, 0).toFixed(2);
+    this.priceAfterDiscount
   } else {
     this.totalPrice = 0
     this.priceAfterDiscount = 0
@@ -144,7 +144,7 @@ addFavorite (shoe:IShoeCart) {
 
 pay () {
   if (this.totalPrice !== 0) {
-    this.router.navigate(['/payment'], { queryParams: { key: 'value' } });
+    this.router.navigate(['/payment'], { state: { discount: [this.totalPrice, this.priceAfterDiscount || 0] } });
   } 
 }
 

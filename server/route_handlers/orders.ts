@@ -6,8 +6,9 @@ const router = express.Router();
 
 router.post("", tokenRequired, async (req: CustomRequest, res) => {
     try {
-        const orderToAdd = req.body.order;
         const userId = req.user._id;
+        const { orderToAdd, total, discount } = req.body
+
         console.log(orderToAdd)
 
         const order = await orders.insertOne({
@@ -15,6 +16,8 @@ router.post("", tokenRequired, async (req: CustomRequest, res) => {
             orderDate: new Date(),
             status: "In elaborazione",
             orderItems: orderToAdd,
+            finalPrice: total,
+            discountApplied: discount
         });
 
         res.status(201).send({ msg: "Order added successfully", order });
