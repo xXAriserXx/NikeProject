@@ -13,11 +13,12 @@ import { FavoritesService } from '../services/favorites.service';
 import { IShoeFav } from '../../../server/models/IShoeFav';
 import { IShoeCart } from '../../../server/models/IShoeCart';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ModalComponent } from "../modal/modal.component";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, RouterLink, HeaderComponent, FooterComponent, EuroPipe, FormsModule],
+  imports: [CommonModule, CurrencyPipe, RouterLink, HeaderComponent, FooterComponent, EuroPipe, FormsModule, ModalComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -34,6 +35,8 @@ export class CartComponent {
   discountApplied:boolean = false
   validCoupon: boolean = true
   shoes:IShoeCart[] = []
+  modalActive:boolean = false
+  messageModal: string = ""
 
   ngOnInit () { 
     window.scroll(0, 0)
@@ -99,11 +102,20 @@ applyCoupon () {
     this.priceAfterDiscount = this.totalPrice - ((this.totalPrice * discount) / 100)
     const totalDiscount = (this.totalPrice * discount)/100
     console.log(totalDiscount)
-    alert("Codice Coupon applicato")
     this.discountApplied = true
+    this.messageModal = "validCoupon"
   } else {
     this.validCoupon = false
+    this.messageModal = "invalidCoupon"
   }
+
+  this.modalActive = true
+  document.body.style.overflow = "hidden"
+  window.scroll(0, 0)
+  setTimeout(() => {
+    this.modalActive = false 
+    document.body.style.overflow = "auto"
+  }, 5000);
 }
 
 applyCouponAdded () {
@@ -128,8 +140,7 @@ addFavorite (shoe:IShoeCart) {
   }
     this.favoriteService.addFavorite(shoeFav).subscribe({
       next: (data) => {
-        console.log(data)
-        alert("Aggiunto ai preferiti")
+        this.messageModal = "loggedIn"      
       },
       error: (error:HttpErrorResponse) => {
         console.log(error)
@@ -138,14 +149,26 @@ addFavorite (shoe:IShoeCart) {
       complete: () => {}
     })
   } else {
-    alert("Devi essere loggato per aggiungere ai preferiti")
+    this.messageModal = "notLoggedIn"
   }
+  this.modalActive = true
+  document.body.style.overflow = "hidden"
+  window.scroll(0, 0)
+  setTimeout(() => {
+    this.modalActive = false 
+    document.body.style.overflow = "auto"
+  }, 5000);
 }
 
 pay () {
   if (this.totalPrice !== 0) {
     this.router.navigate(['/payment'], { state: { discount: [this.totalPrice, this.priceAfterDiscount || 0] } });
   } 
+}
+
+closeModal () {
+  this.modalActive = false
+  document.body.style.overflow = "auto"
 }
 
 

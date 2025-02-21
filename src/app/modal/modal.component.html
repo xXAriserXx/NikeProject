@@ -1,4 +1,5 @@
 <div class="container">
+  @if (message === "") {
     <p>Aggiunto al carrello</p>
     <div class="shoeDetails">
         <img src="{{shoeImage}}" alt="">
@@ -14,6 +15,16 @@
     </button>
     <button class="paymentButton" (click)="pay()">Pagamento</button>
   </div>
+  }
+  @else if (message === "validCoupon") {
+    <p>Valid coupon</p>
+  } @else if (message === "invalidCoupon") {
+    <p>Invalid coupon</p>
+  } @else if (message === "notLoggedIn") {
+    <p>Must be logged in</p>
+  } @else if (message === "loggedIn") {
+    <p>Shoe added to your favorites</p>
+  }
 </div>
 
 <div class="overlay" (click)="close()"></div>

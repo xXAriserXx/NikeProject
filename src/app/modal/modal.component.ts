@@ -18,14 +18,16 @@ export class ModalComponent {
 
   constructor (private checkLogService:CheckLogService, private cartService:CartService, private userService:UserService, private router:Router) {}
 
-  @Input() shoeData:IShoeCart
-  @Input() shoeImage:IShoeCart
+  @Input() shoeData:IShoeCart = undefined
+  @Input() shoeImage:IShoeCart = undefined
+  @Input() message: string = ""
   @Output () closeEvent = new EventEmitter()
   isLoggedIn:boolean
   quantity:number
   userId:string
 
   ngOnInit () {
+    console.log(this.message)
     this.checkLogService.checkLoginStatus()
     this.isLoggedIn = this.checkLogService.isLoggedIn()
     console.log(this.shoeImage)

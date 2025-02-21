@@ -1,4 +1,7 @@
 <app-header></app-header>
+@if (modalActive) {
+    <app-modal  (closeEvent)="closeModal()" [message]="this.messageModal"></app-modal>
+}
 <div class="spacer"></div>
 <section>
     <div class="left"> 
