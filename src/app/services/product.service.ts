@@ -30,7 +30,7 @@ export class ProductService {
   }
 
   getNewArrivals () {
-    console.log(`${this.apiShoes}/newArrivavls`)
+    console.log(`${this.apiShoes}/newArrivals`)
     return this.http.get(`${this.apiShoes}/newArrivals`)
   }
 

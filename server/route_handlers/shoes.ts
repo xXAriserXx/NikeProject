@@ -65,6 +65,7 @@ router.get("/", async (req, res) => {
 
 
 router.get("/newArrivals", async (req, res) => {
+  console.log("triggered")
   try {
     const foundShoes = await shoes.find(
       { nuovo_arrivi: true }
