@@ -6,8 +6,12 @@ import { usersWs } from "./route_handlers/users"
 import { ordersWs } from "./route_handlers/orders"
 import { cartWs } from "./route_handlers/carts"
 import { favoritesTs } from "./route_handlers/favorites"
+import dotenv from "dotenv"
+dotenv.config()
+require('dotenv').config()
 
 const app = express()
+
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -31,7 +35,7 @@ app.get("/", (req, res) => {
   });
 });
 
-export const secretKey:string = "KGJH324234@sdfkbj"
+export const secretKey:string = process.env.apiUrl
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {

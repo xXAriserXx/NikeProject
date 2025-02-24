@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IShoeFav } from '../../../server/models/IShoeFav';
-import { environment } from '../../enviroments/enviromment';
+import { environment } from '../../../server/environments/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../enviroments/enviromment';
+import { environment } from '../../../server/environments/environment';
 import { IShoeCart } from '../../../server/models/IShoeCart';
 
 @Injectable({

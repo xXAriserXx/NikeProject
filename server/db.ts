@@ -5,7 +5,7 @@ import { ICart } from "./models/ICart";
 import { IOrder } from "./models/IOrder";
 import { IFavorite } from "./models/IFavorite";
 
-const client = new MongoClient("mongodb+srv://jrprecilla365:v4pLRrF9PdIhISjx@nike-project-db.xpt5e.mongodb.net/?retryWrites=true&w=majority&appName=nike-project-db")
+const client = new MongoClient(process.env.connectionString)
 const db = client.db("nikeDB")
 
 export const shoes = db.collection<IShoe>("shoes")

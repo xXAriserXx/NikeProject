@@ -11,6 +11,10 @@
 /server/node_modules
 npm-debug.log
 yarn-error.log
+/server/environments
+
+#secretStuff
+.env
 
 # IDEs and editors
 .idea/
