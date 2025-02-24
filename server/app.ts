@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
   });
 });
 
-export const secretKey:string = process.env.apiUrl
+export const secretKey:string = process.env.secretKey
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {
