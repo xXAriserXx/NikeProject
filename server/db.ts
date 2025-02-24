@@ -5,6 +5,7 @@ import { ICart } from "./models/ICart";
 import { IOrder } from "./models/IOrder";
 import { IFavorite } from "./models/IFavorite";
 
+console.log('DB Connection String:', process.env.connectionString);
 const client = new MongoClient(process.env.connectionString)
 const db = client.db("nikeDB")
 
