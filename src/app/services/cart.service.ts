@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICart } from '../../../server/models/ICart';
 import { IShoeCart } from '../../../server/models/IShoeCart';
-import { environment } from '../../../server/environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

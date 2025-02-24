@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { environment } from '../../../server/environments/environment';
+import { environment } from '../../environments/environment';
 import { IFilterParams } from '../../../server/models/IFilterParams';
 
 @Injectable({
