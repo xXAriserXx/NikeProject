@@ -6,7 +6,7 @@ header {
     justify-content: space-between;
     flex-direction: column;
     z-index: 2;
-    transition: transform 0.3s ease-in-out
+    transition: transform 0.3s ease-in-out;
 }
 
 .smallBar {
@@ -117,7 +117,8 @@ header {
     display: flex;
     gap: 80px;
     justify-content: center;
-    max-height: 40vh; 
+    height: fit-content;
+    max-height: 60vh; 
     p {
         &:first-of-type {
             margin-top: 40px;

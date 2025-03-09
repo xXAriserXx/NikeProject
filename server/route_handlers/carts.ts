@@ -1,39 +1,40 @@
 
-import express from "express"
-import { carts } from "../db"
-import { CustomRequest, tokenRequired } from "../middleware/authMiddleware"
+import express from "express" //imports the express module
+import { carts } from "../db" //imports the carts collection from the db module    
+import { CustomRequest, tokenRequired } from "../middleware/authMiddleware" //imports the CustomRequest and tokenRequired from the authMiddleware module
 
-const router = express()
+const router = express() //creates a router using the express module
 
-router.get("/quantity", tokenRequired, async (req:CustomRequest, res) => {
-    const user = req.user._id
+router.get("/quantity", tokenRequired, async (req:CustomRequest, res) => { //creates a get request to the /quantity endpoint that requires a token
+    const user = req.user._id //creates a constant variable user that is assigned the value of the user id from the request
 
     try {
-    const cart = await carts.findOne({
-        userId: user
+    const cart = await carts.findOne({ //creates a constant variable cart that is assigned the value of the cart document with the user id
+        userId: user 
     })
 
-    const length = cart.shoes.length
-    console.log(cart.shoes)
-    console.log(length)
-        res.json(length)
+    if (!cart) {
+        res.status(404).send({ msg: "Cart not found" }) //sends a 404 status and a message that says "Cart not found"
     }
-    catch (err) {
-    console.log("cawabunga2")
-    res.status(500).send({ msg: "Internal server error", err: err})
+        res.json(cart.shoes.length) //sends a json response with the length of the shoes array
+    }
+    catch (error) { 
+    res.status(500).send({ msg: "Internal server error", error: error}) //sends a 500 status and a message that says "Internal server error"
     }
 })
 
-router.get("/:id", tokenRequired, async (req, res) => {
+router.get("/:id", tokenRequired, async (req, res) => { //creates a get request to the /:id endpoint that requires a token
     try {
-        const userId = req.params.id
+        const userId = req.params.id //creates a constant variable userId that is assigned the value of the id parameter from the request
         const userCart = await carts.findOne(
             { userId: userId }
         )
-        res.send(userCart)
-    } 
-    catch {
-        res.status(500).send({ msg: "Internal server error"})
+        if (!userCart) {
+            res.status(404).send({ msg: "Cart not found" })
+        } 
+        res.send(userCart)}
+    catch (error) {
+        res.status(500).send({ msg: "Internal server error", error: error})
     }
 })
 
